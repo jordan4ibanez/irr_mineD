@@ -29,20 +29,23 @@ import include.irr_math;
 class vector3d(T)
 {
     //! X coordinate of the vector
-	T X;
+	T X=0;
 
 	//! Y coordinate of the vector
-	T Y;
+	T Y=0;
 
 	//! Z coordinate of the vector
-	T Z;
+	T Z=0;
 public:
 	//! Default constructor (null vector).
-	constexpr vector3d() :
-			X(0), Y(0), Z(0) {}
+	// constexpr vector3d() :
+	// 		X(0), Y(0), Z(0) {}
 	//! Constructor with three different values
-	constexpr vector3d(T nx, T ny, T nz) :
-			X(nx), Y(ny), Z(nz) {}
+	this(T nx, T ny, T nz) {
+			X =nx;
+             Y =ny ; 
+             Z = nz;
+            }
 	//! Constructor with the same value for all elements
 	explicit constexpr vector3d(T n) :
 			X(n), Y(n), Z(n) {}
