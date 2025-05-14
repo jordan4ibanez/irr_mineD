@@ -201,18 +201,20 @@ f64 radToDeg(f64 radians)
 
 union FloatIntUnion32
 {
-	FloatIntUnion32(float f1 = 0.0f) :
-			f(f1) {}
+	this(float f1 = 0.0f)  {
+        f(f1);
+    }
+			
 	// Portable sign-extraction
 	bool sign() const { return (i >> 31) != 0; }
 
-	irr::s32 i;
-	irr::f32 f;
-};
+	s32 i;
+	f32 f;
+}
 
 //! We compare the difference in ULP's (spacing between floating-point numbers, aka ULP=1 means there exists no float between).
 //\result true when numbers have a ULP <= maxUlpDiff AND have the same sign.
-inline bool equalsByUlp(f32 a, f32 b, int maxUlpDiff)
+ bool equalsByUlp(f32 a, f32 b, int maxUlpDiff)
 {
 	// Based on the ideas and code from Bruce Dawson on
 	// http://www.altdevblogaday.com/2012/02/22/comparing-floating-point-numbers-2012-edition/
@@ -240,62 +242,62 @@ inline bool equalsByUlp(f32 a, f32 b, int maxUlpDiff)
 }
 
 //! returns if a equals zero, taking rounding errors into account
-inline bool iszero(const f64 a, const f64 tolerance = ROUNDING_ERROR_f64)
+bool iszero(const f64 a, const f64 tolerance = ROUNDING_ERROR_f64)
 {
 	return fabs(a) <= tolerance;
 }
 
 //! returns if a equals zero, taking rounding errors into account
-inline bool iszero(const f32 a, const f32 tolerance = ROUNDING_ERROR_f32)
+bool iszero(const f32 a, const f32 tolerance = ROUNDING_ERROR_f32)
 {
 	return fabsf(a) <= tolerance;
 }
 
 //! returns if a equals not zero, taking rounding errors into account
-inline bool isnotzero(const f32 a, const f32 tolerance = ROUNDING_ERROR_f32)
+bool isnotzero(const f32 a, const f32 tolerance = ROUNDING_ERROR_f32)
 {
 	return fabsf(a) > tolerance;
 }
 
 //! returns if a equals zero, taking rounding errors into account
-inline bool iszero(const s32 a, const s32 tolerance = 0)
+bool iszero(const s32 a, const s32 tolerance = 0)
 {
 	return (a & 0x7ffffff) <= tolerance;
 }
 
 //! returns if a equals zero, taking rounding errors into account
-inline bool iszero(const u32 a, const u32 tolerance = 0)
+bool iszero(const u32 a, const u32 tolerance = 0)
 {
 	return a <= tolerance;
 }
 
 //! returns if a equals zero, taking rounding errors into account
-inline bool iszero(const s64 a, const s64 tolerance = 0)
+bool iszero(const s64 a, const s64 tolerance = 0)
 {
 	return abs_(a) <= tolerance;
 }
 
-inline s32 s32_min(s32 a, s32 b)
+s32 s32_min(s32 a, s32 b)
 {
 	return min_(a, b);
 }
 
-inline s32 s32_max(s32 a, s32 b)
+s32 s32_max(s32 a, s32 b)
 {
 	return max_(a, b);
 }
 
-inline s32 s32_clamp(s32 value, s32 low, s32 high)
+s32 s32_clamp(s32 value, s32 low, s32 high)
 {
 	return clamp(value, low, high);
 }
 
 // integer log2 of an integer. returning 0 if denormal
-inline s32 u32_log2(u32 in)
+s32 u32_log2(u32 input)
 {
 	s32 ret = 0;
-	while (in > 1) {
-		in >>= 1;
+	while (input > 1) {
+		input >>= 1;
 		ret++;
 	}
 	return ret;
@@ -314,12 +316,12 @@ inline s32 u32_log2(u32 in)
 	in general: number = (sign ? -1:1) * 2^(exponent) * 1.(mantissa bits)
 */
 
-typedef union
+ union inttofloat
 {
 	u32 u;
 	s32 s;
 	f32 f;
-} inttofloat;
+} 
 
 #define F32_AS_S32(f) (*((s32 *)&(f)))
 #define F32_AS_U32(f) (*((u32 *)&(f)))
