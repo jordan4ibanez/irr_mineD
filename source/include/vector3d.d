@@ -85,6 +85,7 @@ public:
 		}
 	}
 
+	// Operator assignment.
 	ref vector3d!T opOpAssign(string op, U)(const U value) {
 		// This is compiler code. 
 		// Give vector3d even more assignment operator operators than C++.
@@ -107,6 +108,7 @@ public:
 		return this;
 	}
 
+	// Operators.
 	vector3d!T opBinary(string op, U)(const U value) const {
 		// This is compiler code. 
 		// Give vector3d even more operators than C++.
