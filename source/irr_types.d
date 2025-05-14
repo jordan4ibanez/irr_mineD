@@ -59,3 +59,13 @@ string _IRR_TEXT(string X) {
 void IRR_CODE_UNREACHABLE() {
     assert(false);
 }
+
+/** some compilers can create those by directly writing the
+code like 'code', but some generate warnings so we use this macro here */
+/// creates four CC codes used in Irrlicht for simple ids
+u32 MAKE_IRR_ID(A, B, C, D)(A c0, B c1, C c2, D c3) {
+    return (
+        cast(u32) cast(u8)(c0) | (cast(u32) cast(u8)(c1) << 8) | (
+            cast(u32) cast(u8)(c2) << 16) | (cast(u32) cast(u8)(c3) << 24)
+    );
+}
