@@ -3,6 +3,7 @@ module include.irr_math;
 import include.irr_types;
 import std.math.algebraic;
 import std.math.constants;
+import std.math.rounding;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -369,12 +370,12 @@ pragma(inline, true) bool F32_A_GREATER_B(f32 a, f32 b) {
 //       (only low number which seems to go wrong is 0.49999997 which is rounded to 1)
 //      Also negative 0.5 is rounded up not down unlike with the standard function (p.E. input -0.5 will be 0 and not -1)
 pragma(inline, true) f32 round_(f32 x) {
-    return floorf(x + 0.5f);
+    return floor(x + 0.5f);
 }
 
 // calculate: sqrt ( x )
 pragma(inline, true) f32 squareroot(const f32 f) {
-    return sqrtf(f);
+    return sqrt(f);
 }
 
 // calculate: sqrt ( x )
@@ -399,7 +400,7 @@ pragma(inline, true) f64 reciprocal_squareroot(const f64 x) {
 
 // calculate: 1 / sqrtf ( x )
 pragma(inline, true) f32 reciprocal_squareroot(const f32 f) {
-    return 1.f / sqrtf(f);
+    return 1.0f / sqrt(f);
 }
 
 // calculate: 1 / sqrtf( x )
@@ -409,7 +410,7 @@ pragma(inline, true) s32 reciprocal_squareroot(const s32 x) {
 
 // calculate: 1 / x
 pragma(inline, true) f32 reciprocal(const f32 f) {
-    return 1.f / f;
+    return 1.0f / f;
 }
 
 // calculate: 1 / x
@@ -419,15 +420,15 @@ pragma(inline, true) f64 reciprocal(const f64 f) {
 
 // calculate: 1 / x, low precision allowed
 pragma(inline, true) f32 reciprocal_approxim(const f32 f) {
-    return 1.f / f;
+    return 1.0f / f;
 }
 
 pragma(inline, true) s32 floor32(f32 x) {
-    return cast(s32) floorf(x);
+    return cast(s32) floor(x);
 }
 
 pragma(inline, true) s32 ceil32(f32 x) {
-    return cast(s32) ceilf(x);
+    return cast(s32) ceil(x);
 }
 
 // NOTE: Please check round_ documentation about some inaccuracies in this compared to standard library round function.
@@ -444,7 +445,7 @@ pragma(inline, true) f32 f32_min3(const f32 a, const f32 b, const f32 c) {
 }
 
 pragma(inline, true) f32 fract(f32 x) {
-    return x - floorf(x);
+    return x - floor(x);
 }
 
 // } // end namespace core
