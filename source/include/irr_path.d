@@ -1,4 +1,4 @@
-module irr_path;
+module include.irr_path;
 
 import irr_types;
 import std.string;
