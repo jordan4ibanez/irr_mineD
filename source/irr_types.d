@@ -43,6 +43,7 @@ alias f64 = double;
 /// We want int snprintf_irr(char *str, size_t size, const char *format, ...);
 alias snprintf_irr = format;
 
+///! Note: this was a workaround for an ANCIENT microsoft compiler bug. This should be removed!
 /// Type name for character type used by the file system (legacy).
 alias fschar_t = char;
 string _IRR_TEXT(string X) {
