@@ -323,9 +323,17 @@ s32 u32_log2(u32 input)
 	f32 f;
 } 
 
-#define F32_AS_S32(f) (*((s32 *)&(f)))
-#define F32_AS_U32(f) (*((u32 *)&(f)))
-#define F32_AS_U32_POINTER(f) (((u32 *)&(f)))
+s32 F32_AS_S32(f32 f) {
+    return (*(cast(s32 *)&(f)));
+}
+
+u32 F32_AS_U32(f32 f) {
+    return (*(cast(u32 *)&(f)));
+}
+
+u32* F32_AS_U32_POINTER(f32 f) {
+    return (cast(u32 *)&(f));
+}
 
 #define F32_VALUE_0 0x00000000
 #define F32_VALUE_1 0x3f800000
