@@ -68,11 +68,11 @@ public:
 	// operators
 
 	// Negate.
-	// vector3d!T opUnary(string s : "-")() const {
-	// 	return vector3d!T(-X, -Y, -Z);
-	// }
+	vector3d!T opBinary(string s : "-")() const {
+		return vector3d!T(-X, -Y, -Z);
+	}
 
-	vector3d!T opUnary(string s : "+")(const ref vector3d!T other) const {
+	vector3d!T opBinary(string s : "+")(const ref vector3d!T other) const {
 		return vector3d!T(X + other.X, Y + other.Y, Z + other.Z);
 	}
 
@@ -83,7 +83,7 @@ public:
 		return this;
 	}
 
-	vector3d!T opUnary(string s : "+")(const T val) const {
+	vector3d!T opBinary(string s : "+")(const T val) const {
 		return vector3d!T(X + val, Y + val, Z + val);
 	}
 
@@ -94,7 +94,7 @@ public:
 		return this;
 	}
 
-	vector3d!T opUnary(string s : "-")(const ref vector3d!T other) const {
+	vector3d!T opBinary(string s : "-")(const ref vector3d!T other) const {
 		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z);
 	}
 
@@ -105,9 +105,9 @@ public:
 		return this;
 	}
 
-	// vector3d!T opUnary(string s : "-")(const T val) const {
-	// 	return vector3d!T(X - val, Y - val, Z - val);
-	// }
+	vector3d!T opBinary(string s : "-")(const T val) const {
+		return vector3d!T(X - val, Y - val, Z - val);
+	}
 
 	ref vector3d!T opOpAssign(string s : "-=")(const T val) {
 		X -= val;
@@ -116,7 +116,7 @@ public:
 		return this;
 	}
 
-	vector3d!T opUnary(string s : "*")(const ref vector3d!T other) const {
+	vector3d!T opBinary(string s : "*")(const ref vector3d!T other) const {
 		return vector3d!T(X * other.X, Y * other.Y, Z * other.Z);
 	}
 
@@ -127,7 +127,7 @@ public:
 		return this;
 	}
 
-	vector3d!T opUnary(string s : "*")(const T v) const {
+	vector3d!T opBinary(string s : "*")(const T v) const {
 		return vector3d!T(X * v, Y * v, Z * v);
 	}
 
@@ -138,7 +138,7 @@ public:
 		return this;
 	}
 
-	vector3d!T opUnary(string s : "/")(const ref vector3d!T other) const {
+	vector3d!T opBinary(string s : "/")(const ref vector3d!T other) const {
 		return vector3d!T(X / other.X, Y / other.Y, Z / other.Z);
 	}
 
@@ -149,7 +149,7 @@ public:
 		return this;
 	}
 
-	vector3d!T opUnary(string s : "/")(const T v) const {
+	vector3d!T opBinary(string s : "/")(const T v) const {
 		return vector3d!T(X / v, Y / v, Z / v);
 	}
 
