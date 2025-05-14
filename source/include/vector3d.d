@@ -80,9 +80,9 @@ public:
 		// This is compiler code. 
 		// Give vector3d even more operators than C++.
 		static if (is(typeof(T) == vector3d!T)) {
-			mixin("X " ~ op ~ "= value.x;");
-			mixin("Y " ~ op ~ "= value.y;");
-			mixin("Z " ~ op ~ "= value;");
+			mixin("X " ~ op ~ "= value.X;");
+			mixin("Y " ~ op ~ "= value.Y;");
+			mixin("Z " ~ op ~ "= value.Z;");
 		} else {
 			mixin("X " ~ op ~ "= value;");
 			mixin("Y " ~ op ~ "= value;");
