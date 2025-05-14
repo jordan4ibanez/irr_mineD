@@ -1,4 +1,4 @@
-module path;
+module irr_path;
 
 import irr_types;
 import std.string;
@@ -23,7 +23,7 @@ struct SNamedPath {
 
     //! Constructor
     this(const path* p) {
-        this.Path = *p;
+        this.foop = *p;
         InternalName = PathToName(p);
     }
 
@@ -34,13 +34,13 @@ struct SNamedPath {
 
     //! Set the path.
     void setPath(const path* p) {
-        Path = *p;
+        foop = *p;
         InternalName = PathToName(p);
     }
 
     //! Get the path.
     const(path)* getPath() const {
-        return &Path;
+        return &foop;
     }
 
     //! Get the name which is used to identify the file.
@@ -65,6 +65,6 @@ protected:
     }
 
 private:
-    path Path;
+    path foop;
     path InternalName;
 }
