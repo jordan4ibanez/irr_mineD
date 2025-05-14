@@ -486,11 +486,6 @@ public:
 						forwards.Z * pseudoMatrix[8]));
 	}
 
-    size_t hashOf() {
-
-    }
-
-	
 }
 
 //! partial specialization for integer vectors
@@ -526,11 +521,11 @@ public:
 // 	return angle;
 // }
 
-// //! Typedef for a f32 3d vector.
-// typedef vector3d<f32> vector3df;
+//! Typedef for a f32 3d vector.
+alias vector3df = vector3d!f32 ;
 
-// //! Typedef for an integer 3d vector.
-// typedef vector3d<s32> vector3di;
+//! Typedef for an integer 3d vector.
+alias vector3di = vector3d!s32 ;
 
 // //! Function multiplying a scalar and a vector component-wise.
 // template <class S, class T>
