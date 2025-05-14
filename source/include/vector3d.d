@@ -120,13 +120,23 @@ public:
 		return this;
 	}
 
-	// Negate.
-	vector3d!T opUnary(string s : "-")() const {
-		return vector3d!T(-X, -Y, -Z);
-	}
+	vector3d!T opBinary(string op, U)(const U value) const {
+		// This is compiler code. 
+		// Give vector3d even more operators than C++.
+		pragma(msg, "=====");
+		pragma(msg, op);
+		pragma(msg, U);
 
-	vector3d!T opBinary(string s : "+")(const ref vector3d!T other) const {
-		return vector3d!T(X + other.X, Y + other.Y, Z + other.Z);
+		static if (__traits(isSame, U, vector3d)) {
+			mixin("return vector3d!T(X " ~ op ~ " value.X, Y " ~ op ~ " value.Y, Z " ~ op ~ " value.Z);");
+		} else static if (isArray!U) {
+			static assert(isNumeric!(typeof(value[0])));
+			mixin(
+				"return vector3d!T(X " ~ op ~ " value[0], Y " ~ op ~ " value[1], Z " ~ op ~ " value[2]);");
+		} else {
+			static assert(isNumeric!(typeof(value)));
+			mixin("return vector3d!T(X " ~ op ~ " value, Y " ~ op ~ " value, Z " ~ op ~ " value);");
+		}
 	}
 
 	vector3d!T opBinary(string s : "+")(const T val) const {
