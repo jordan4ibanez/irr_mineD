@@ -67,7 +67,7 @@ public:
 	// Assignment.
 	void opAssign(U)(U value) {
 		// This is (half) compiler code. 
-		// Give vector3d even more assignment operators than C++.
+		// Give vector3d even more assignments than C++.
 		static if (__traits(isSame, U, vector3d)) {
 			this.X = value.X;
 			this.Y = value.Y;
