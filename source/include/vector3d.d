@@ -9,19 +9,6 @@ import std.traits;
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-// #pragma once
-
-// #include "irrMath.h"
-
-// #include <functional>
-// #include <array>
-// #include <cassert>
-
-// namespace irr
-// {
-// namespace core
-// {
-
 //! 3d vector template class with lots of operators and methods.
 /** The vector3d class is used in Irrlicht for three main purposes:
 	1) As a direction vector (most of the methods assume this).
@@ -469,68 +456,8 @@ public:
 
 }
 
-//! partial specialization for integer vectors
-// Implementer note: inline keyword needed due to template specialization for s32. Otherwise put specialization into a .cpp
-// template <>
-// pragma(inli) vector3d<s32> vector3d<s32>::operator/(s32 val) const
-// {
-// 	return core::vector3d<s32>(X / val, Y / val, Z / val);
-// }
-// template <>
-// inline vector3d<s32> &vector3d<s32>::operator/=(s32 val)
-// {
-// 	X /= val;
-// 	Y /= val;
-// 	Z /= val;
-// 	return this;
-// }
-
-// template <>
-// inline vector3d<s32> vector3d<s32>::getSphericalCoordinateAngles() const
-// {
-// 	vector3d<s32> angle;
-// 	const f64 length = X * X + Y * Y + Z * Z;
-
-// 	if (length) {
-// 		if (X != 0) {
-// 			angle.Y = round32((f32)(atan2((f64)Z, (f64)X) * RADTODEG64));
-// 		} else if (Z < 0)
-// 			angle.Y = 180;
-
-// 		angle.X = round32((f32)(acos(Y * core::reciprocal_squareroot(length)) * RADTODEG64));
-// 	}
-// 	return angle;
-// }
-
 //! Typedef for a f32 3d vector.
 alias vector3df = vector3d!f32;
 
 //! Typedef for an integer 3d vector.
 alias vector3di = vector3d!s32;
-
-// //! Function multiplying a scalar and a vector component-wise.
-// template <class S, class T>
-// vector3d<T> operator*(const S scalar, const vector3d<T> &vector)
-// {
-// 	return vector * scalar;
-// }
-
-// } // end namespace core
-// } // end namespace irr
-
-// namespace std
-// {
-
-// template <class T>
-// struct hash<irr::core::vector3d<T>>
-// {
-// 	size_t operator()(const irr::core::vector3d<T> &vec) const
-// 	{
-// 		size_t h1 = hash<T>()(vec.X);
-// 		size_t h2 = hash<T>()(vec.Y);
-// 		size_t h3 = hash<T>()(vec.Z);
-// 		return (h1 << (5 * sizeof(h1)) | h1 >> (3 * sizeof(h1))) ^ (h2 << (2 * sizeof(h2)) | h2 >> (6 * sizeof(h2))) ^ h3;
-// 	}
-// };
-
-// }
