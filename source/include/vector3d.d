@@ -1,21 +1,23 @@
 module include.vector3d;
 
+import include.irr_math;
+
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#pragma once
+// #pragma once
 
-#include "irrMath.h"
+// #include "irrMath.h"
 
-#include <functional>
-#include <array>
-#include <cassert>
+// #include <functional>
+// #include <array>
+// #include <cassert>
 
-namespace irr
-{
-namespace core
-{
+// namespace irr
+// {
+// namespace core
+// {
 
 //! 3d vector template class with lots of operators and methods.
 /** The vector3d class is used in Irrlicht for three main purposes:
@@ -529,8 +531,8 @@ vector3d<T> operator*(const S scalar, const vector3d<T> &vector)
 	return vector * scalar;
 }
 
-} // end namespace core
-} // end namespace irr
+// } // end namespace core
+// } // end namespace irr
 
 namespace std
 {
