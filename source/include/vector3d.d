@@ -29,6 +29,10 @@ import std.math.trigonometry;
 */
 // template <class T>
 struct vector3d(T) {
+
+	// Basic any typecheck.
+	static assert(isNumeric!T);
+
 	//! X coordinate of the vector
 	T X = 0;
 
