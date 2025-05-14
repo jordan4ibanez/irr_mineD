@@ -23,7 +23,7 @@ struct SNamedPath {
 
     //! Constructor
     this(const path* p) {
-        this.foop = *p;
+        this.Path = *p;
         InternalName = PathToName(p);
     }
 
@@ -34,13 +34,13 @@ struct SNamedPath {
 
     //! Set the path.
     void setPath(const path* p) {
-        foop = *p;
+        Path = *p;
         InternalName = PathToName(p);
     }
 
     //! Get the path.
     const(path)* getPath() const {
-        return &foop;
+        return &Path;
     }
 
     //! Get the name which is used to identify the file.
@@ -65,6 +65,6 @@ protected:
     }
 
 private:
-    path foop;
+    path Path;
     path InternalName;
 }
