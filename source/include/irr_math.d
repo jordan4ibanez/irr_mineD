@@ -230,12 +230,12 @@ pragma(inline, true) bool iszero(const f64 a, const f64 tolerance = ROUNDING_ERR
 
 //! returns if a equals zero, taking rounding errors into account
 pragma(inline, true) bool iszero(const f32 a, const f32 tolerance = ROUNDING_ERROR_f32) {
-    return fabsf(a) <= tolerance;
+    return fabs(a) <= tolerance;
 }
 
 //! returns if a equals not zero, taking rounding errors into account
 pragma(inline, true) bool isnotzero(const f32 a, const f32 tolerance = ROUNDING_ERROR_f32) {
-    return fabsf(a) > tolerance;
+    return fabs(a) > tolerance;
 }
 
 //! returns if a equals zero, taking rounding errors into account
