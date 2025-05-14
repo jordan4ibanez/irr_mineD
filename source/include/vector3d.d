@@ -1,7 +1,7 @@
 module include.vector3d;
 
-import include.irr_math;
-import include.irr_types;
+import IrrMath = include.irr_math;
+import include.irr_types ;
 import std.math.trigonometry;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
@@ -207,7 +207,7 @@ public:
 	\param other Vector to compare with.
 	\return True if the two vector are (almost) equal, else false. */
 	bool equals(const ref vector3d!T other) const {
-		return equals(X, other.X) && equals(Y, other.Y) && equals(Z, other.Z);
+		return IrrMath.equals(X, other.X) && IrrMath.equals(Y, other.Y) && IrrMath.equals(Z, other.Z);
 	}
 
 	ref vector3d!T set(const T nx, const T ny, const T nz) {
@@ -230,7 +230,7 @@ public:
 
 	//! Get length of the vector.
 	T getLength() const {
-		return squareroot(X * X + Y * Y + Z * Z);
+		return IrrMath.squareroot(X * X + Y * Y + Z * Z);
 	}
 
 	//! Get squared length of the vector.
@@ -283,11 +283,11 @@ public:
 		f64 length = X * X + Y * Y + Z * Z;
 		if (length == 0) // this check isn't an optimization but prevents getting NAN in the sqrt.
 			return this;
-		length = reciprocal_squareroot(length);
+		length = IrrMath.reciprocal_squareroot(length);
 
-		X = (T)(X * length);
-		Y = (T)(Y * length);
-		Z = (T)(Z * length);
+		X = cast(T)(X * length);
+		Y = cast(T)(Y * length);
+		Z = cast(T)(Z * length);
 		return this;
 	}
 
@@ -312,12 +312,12 @@ public:
 	\param degrees Number of degrees to rotate around the Y axis.
 	\param center The center of the rotation. */
 	void rotateXZBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
-		degrees *= DEGTORAD64;
+		degrees *= IrrMath.DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
 		X -= center.X;
 		Z -= center.Z;
-		set((T)(X * cs - Z * sn), Y, (T)(X * sn + Z * cs));
+		set(cast(T)(X * cs - Z * sn), Y, cast(T)(X * sn + Z * cs));
 		X += center.X;
 		Z += center.Z;
 	}
@@ -326,12 +326,12 @@ public:
 	/** \param degrees: Number of degrees to rotate around the Z axis.
 	\param center: The center of the rotation. */
 	void rotateXYBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
-		degrees *= DEGTORAD64;
+		degrees *= IrrMath.DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
 		X -= center.X;
 		Y -= center.Y;
-		set((T)(X * cs - Y * sn), (T)(X * sn + Y * cs), Z);
+		set(cast(T)(X * cs - Y * sn), cast(T)(X * sn + Y * cs), Z);
 		X += center.X;
 		Y += center.Y;
 	}
@@ -340,12 +340,12 @@ public:
 	/** \param degrees: Number of degrees to rotate around the X axis.
 	\param center: The center of the rotation. */
 	void rotateYZBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
-		degrees *= DEGTORAD64;
+		degrees *= IrrMath.DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
 		Z -= center.Z;
 		Y -= center.Y;
-		set(X, (T)(Y * cs - Z * sn), (T)(Y * sn + Z * cs));
+		set(X, cast(T)(Y * cs - Z * sn), cast(T)(Y * sn + Z * cs));
 		Z += center.Z;
 		Y += center.Y;
 	}
@@ -374,9 +374,9 @@ public:
 		const f64 mul1 = cast(T) 2.0 * d * inv;
 		const f64 mul2 = d * d;
 
-		return vector3d!T((T)(X * mul0 + v2.X * mul1 + v3.X * mul2),
-			(T)(Y * mul0 + v2.Y * mul1 + v3.Y * mul2),
-			(T)(Z * mul0 + v2.Z * mul1 + v3.Z * mul2));
+		return vector3d!T(cast(T)(X * mul0 + v2.X * mul1 + v3.X * mul2),
+			cast(T)(Y * mul0 + v2.Y * mul1 + v3.Y * mul2),
+			cast(T)(Z * mul0 + v2.Z * mul1 + v3.Z * mul2));
 	}
 
 	//! Sets this vector to the linearly interpolated vector between a and b.
@@ -410,7 +410,7 @@ public:
 		vector3d!T angle;
 
 		// tmp avoids some precision troubles on some compilers when working with T=s32
-		f64 tmp = (atan2(cast(f64) X, cast(f64) Z) * RADTODEG64);
+		f64 tmp = (atan2(cast(f64) X, cast(f64) Z) * IrrMath.RADTODEG64);
 		angle.Y = cast(T) tmp;
 
 		if (angle.Y < 0)
@@ -418,9 +418,9 @@ public:
 		if (angle.Y >= 360)
 			angle.Y -= 360;
 
-		const f64 z1 = squareroot(X * X + Z * Z);
+		const f64 z1 = IrrMath.squareroot(X * X + Z * Z);
 
-		tmp = (atan2(cast(f64) z1, cast(f64) Y) * RADTODEG64 - 90.0);
+		tmp = (atan2(cast(f64) z1, cast(f64) Y) * IrrMath.RADTODEG64 - 90.0);
 		angle.X = cast(T) tmp;
 
 		if (angle.X < 0)
@@ -442,11 +442,11 @@ public:
 
 		if (length) {
 			if (X != 0) {
-				angle.Y = cast(T)(atan2(cast(f64) Z, cast(f64) X) * RADTODEG64);
+				angle.Y = cast(T)(atan2(cast(f64) Z, cast(f64) X) * IrrMath.RADTODEG64);
 			} else if (Z < 0)
 				angle.Y = 180;
 
-			angle.X = cast(T)(acos(Y * reciprocal_squareroot(length)) * RADTODEG64);
+			angle.X = cast(T)(acos(Y * IrrMath.reciprocal_squareroot(length)) * IrrMath.RADTODEG64);
 		}
 		return angle;
 	}
@@ -460,12 +460,12 @@ public:
 	\return A direction vector calculated by rotating the forwards direction by the 3 Euler angles
 	(in degrees) represented by this vector. */
 	vector3d!T rotationToDirection(const inout vector3d!T forwards = vector3d!T(0, 0, 1)) const {
-		const f64 cr = cos(DEGTORAD64 * X);
-		const f64 sr = sin(DEGTORAD64 * X);
-		const f64 cp = cos(DEGTORAD64 * Y);
-		const f64 sp = sin(DEGTORAD64 * Y);
-		const f64 cy = cos(DEGTORAD64 * Z);
-		const f64 sy = sin(DEGTORAD64 * Z);
+		const f64 cr = cos(IrrMath.DEGTORAD64 * X);
+		const f64 sr = sin(IrrMath.DEGTORAD64 * X);
+		const f64 cp = cos(IrrMath.DEGTORAD64 * Y);
+		const f64 sp = sin(IrrMath.DEGTORAD64 * Y);
+		const f64 cy = cos(IrrMath.DEGTORAD64 * Z);
+		const f64 sy = sin(IrrMath.DEGTORAD64 * Z);
 
 		const f64 srsp = sr * sp;
 		const f64 crsp = cr * sp;
