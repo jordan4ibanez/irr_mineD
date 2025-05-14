@@ -100,7 +100,7 @@ public:
 
 	ref vector3d!T opOpAssign(string op, U)(const U value) {
 		// This is compiler code. 
-		// Give vector3d even more operators than C++.
+		// Give vector3d even more assignment operator operators than C++.
 		static if (__traits(isSame, U, vector3d)) {
 			mixin("X " ~ op ~ "= value.X;");
 			mixin("Y " ~ op ~ "= value.Y;");
