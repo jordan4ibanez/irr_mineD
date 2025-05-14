@@ -116,13 +116,13 @@ pragma(inline, true) T abs_(T)(const ref T a) {
 //! returns linear interpolation of a and b with ratio t
 //! \return: a if t==0, b if t==1, and the linear interpolation else
 // template <class T>
-pragma(inline, true) T lerp(const ref T a, const ref T b, const f32 t) {
+pragma(inline, true) T lerp(T)(const ref T a, const ref T b, const f32 t) {
     return (T)(a * (1.f - t)) + (b * t);
 }
 
 //! clamps a value between low and high
 // template <class T>
-pragma(inline, true) T clamp(const ref T value, const ref T low, const ref T high) const {
+pragma(inline, true) T clamp(T)(const ref T value, const ref T low, const ref T high) const {
     return min_(max_(value, low), high);
 }
 
@@ -130,27 +130,27 @@ pragma(inline, true) T clamp(const ref T value, const ref T low, const ref T hig
 //  T roundingError();
 
 // template <>
-pragma(inline, true) f32 roundingError() {
+pragma(inline, true) f32 roundingError(T = f32)() {
     return ROUNDING_ERROR_f32;
 }
 
 // template <>
-pragma(inline, true) f64 roundingError() {
+pragma(inline, true) f64 roundingError(T = f64)() {
     return ROUNDING_ERROR_f64;
 }
 
 // template <class T>
-pragma(inline, true) T relativeErrorFactor() {
+pragma(inline, true) T relativeErrorFactor(T)() {
     return 1;
 }
 
 // template <>
-pragma(inline, true) f32 relativeErrorFactor() {
+pragma(inline, true) f32 relativeErrorFactor(T = f32)() {
     return 4;
 }
 
 // template <>
-pragma(inline, true) f64 relativeErrorFactor() {
+pragma(inline, true) f64 relativeErrorFactor(T = f64)() {
     return 8;
 }
 
@@ -180,8 +180,8 @@ pragma(inline, true) bool equalsRelative(T)(const T a, const T b, const T factor
 }
 
 union FloatIntUnion32 {
-    this(float f1 = 0.0f) {
-        f(f1);
+    this(float f1) {
+        f = f1;
     }
 
     // Portable sign-extraction
