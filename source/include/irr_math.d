@@ -11,20 +11,6 @@ import std.math.rounding;
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-// #pragma once
-
-// #include "irrTypes.h"
-// #include <cmath>
-// #include <cfloat>
-// #include <cstdlib> // for abs() etc.
-// #include <climits> // For INT_MAX / UINT_MAX
-// #include <type_traits>
-
-// namespace irr
-// {
-// namespace core
-// {
-
 //! Rounding error constant often used when comparing f32 values.
 
 static immutable f32 ROUNDING_ERROR_f32 = 0.000001f;
@@ -102,9 +88,6 @@ alias abs_ = abs;
 pragma(inline, true) T lerp(T)(const ref T a, const ref T b, const f32 t) {
     return (T)(a * (1.f - t)) + (b * t);
 }
-
-// template <class T>
-//  T roundingError();
 
 // template <>
 pragma(inline, true) f32 roundingError(T = f32)() {
@@ -333,14 +316,6 @@ pragma(inline, true) bool F32_A_GREATER_B(f32 a, f32 b) {
     return ((a) > (b));
 }
 
-// #ifndef REALINLINE
-// #ifdef _MSC_VER
-// #define REALINLINE __forceinline
-// #else
-// #define REALINLINE inline
-// #endif
-// #endif
-
 // NOTE: This is not as exact as the c99/c++11 round function, especially at high numbers starting with 8388609
 //       (only low number which seems to go wrong is 0.49999997 which is rounded to 1)
 //      Also negative 0.5 is rounded up not down unlike with the standard function (p.E. input -0.5 will be 0 and not -1)
@@ -422,9 +397,3 @@ pragma(inline, true) f32 f32_min3(const f32 a, const f32 b, const f32 c) {
 pragma(inline, true) f32 fract(f32 x) {
     return x - floor(x);
 }
-
-// } // end namespace core
-// } // end namespace irr
-
-// using irr::core::FR;
-// using irr::core::IR;
