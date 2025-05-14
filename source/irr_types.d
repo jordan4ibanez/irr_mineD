@@ -1,34 +1,32 @@
 module irr_types;
 
-import core.stdc.inttypes;
-
 //! 8 bit unsigned variable.
-alias u8 = uint8_t;
+alias u8 = ubyte;
 
 //! 8 bit signed variable.
-alias s8 = int8_t;
+alias s8 = byte;
 
 //! 8 bit character variable.
 /** This is a typedef for char, it ensures portability of the engine. */
 alias c8 = char;
 
 //! 16 bit unsigned variable.
-alias u16 = uint16_t;
+alias u16 = ushort;
 
 //! 16 bit signed variable.
-alias s16 = int16_t;
+alias s16 = short;
 
 //! 32 bit unsigned variable.
-alias u32 = uint32_t;
+alias u32 = uint;
 
 //! 32 bit signed variable.
-alias s32 = int32_t;
+alias s32 = int;
 
 //! 64 bit unsigned variable.
-alias u64 = uint64_t;
+alias u64 = ulong;
 
 //! 64 bit signed variable.
-alias s64 = int64_t;
+alias s64 = long;
 
 //! 32 bit floating point variable.
 /** This is a typedef for float, it ensures portability of the engine. */
