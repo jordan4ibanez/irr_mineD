@@ -3,6 +3,7 @@ module include.vector3d;
 import include.irr_types;
 import IrrMath = include.irr_math;
 import std.math.trigonometry;
+import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
