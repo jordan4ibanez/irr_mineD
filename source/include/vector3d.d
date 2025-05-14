@@ -76,6 +76,25 @@ public:
 		return vector3d!T(-X, -Y, -Z);
 	}
 
+	// Assignment.
+	void opAssign(U)(U value) {
+		static if (is(typeof(T) == vector3d!T)) {
+			this.X = value.X;
+			this.Y = value.Y;
+			this.Z = value.Z;
+		} else static if (isArray!U) {
+			static assert(isNumeric!(typeof(value[0])));
+			this.X = value[0];
+			this.Y = value[1];
+			this.Z = value[2];
+		} else {
+			static assert(isNumeric!(typeof(value)));
+			this.X = value;
+			this.Y = value;
+			this.Z = value;
+		}
+	}
+
 	ref vector3d!T opOpAssign(string op)(const T value) {
 		// This is compiler code. 
 		// Give vector3d even more operators than C++.
