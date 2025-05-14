@@ -139,34 +139,6 @@ public:
 		}
 	}
 
-	vector3d!T opBinary(string s : "+")(const T val) const {
-		return vector3d!T(X + val, Y + val, Z + val);
-	}
-
-	vector3d!T opBinary(string s : "-")(const ref vector3d!T other) const {
-		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z);
-	}
-
-	vector3d!T opBinary(string s : "-")(const T val) const {
-		return vector3d!T(X - val, Y - val, Z - val);
-	}
-
-	vector3d!T opBinary(string s : "*")(const ref vector3d!T other) const {
-		return vector3d!T(X * other.X, Y * other.Y, Z * other.Z);
-	}
-
-	vector3d!T opBinary(string s : "*")(const T v) const {
-		return vector3d!T(X * v, Y * v, Z * v);
-	}
-
-	vector3d!T opBinary(string s : "/")(const ref vector3d!T other) const {
-		return vector3d!T(X / other.X, Y / other.Y, Z / other.Z);
-	}
-
-	vector3d!T opBinary(string s : "/")(const T v) const {
-		return vector3d!T(X / v, Y / v, Z / v);
-	}
-
 	ref T opIndex(u32 index) {
 		switch (index) {
 		case 0:
