@@ -2,6 +2,7 @@ module include.vector3d;
 
 import include.irr_math;
 import include.irr_types;
+import std.math.trigonometry;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -170,6 +171,7 @@ public:
 		default:
 			IRR_CODE_UNREACHABLE();
 		}
+		assert(0);
 	}
 
 	T opIndex(u32 index) const {
@@ -183,6 +185,7 @@ public:
 		default:
 			IRR_CODE_UNREACHABLE();
 		}
+		assert(0);
 	}
 
 	//! sort in order X, Y, Z.
