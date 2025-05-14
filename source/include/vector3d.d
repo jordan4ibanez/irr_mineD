@@ -79,7 +79,7 @@ public:
 
 	// Assignment.
 	void opAssign(U)(U value) {
-		static if (is(typeof(T) == vector3d!T)) {
+		static if (__traits(isSame, U, vector3d)) {
 			this.X = value.X;
 			this.Y = value.Y;
 			this.Z = value.Z;
@@ -96,14 +96,20 @@ public:
 		}
 	}
 
-	ref vector3d!T opOpAssign(string op)(const T value) {
+	ref vector3d!T opOpAssign(string op, U)(const U value) {
 		// This is compiler code. 
 		// Give vector3d even more operators than C++.
-		static if (is(typeof(T) == vector3d!T)) {
+		static if (__traits(isSame, U, vector3d)) {
 			mixin("X " ~ op ~ "= value.X;");
 			mixin("Y " ~ op ~ "= value.Y;");
 			mixin("Z " ~ op ~ "= value.Z;");
+		} else static if (isArray!U) {
+			static assert(isNumeric!(typeof(value[0])));
+			mixin("X " ~ op ~ "= value[0];");
+			mixin("Y " ~ op ~ "= value[1];");
+			mixin("Z " ~ op ~ "= value[2];");
 		} else {
+			static assert(isNumeric!(typeof(value)));
 			mixin("X " ~ op ~ "= value;");
 			mixin("Y " ~ op ~ "= value;");
 			mixin("Z " ~ op ~ "= value;");
