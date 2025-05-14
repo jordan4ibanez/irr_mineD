@@ -34,14 +34,14 @@ struct dimension2d(T)
 	// 		Width(0), Height(0) {}
 
 	//! Constructor with width and height
-	constexpr dimension2d(const ref T width, const ref T height)  {
+	this(const ref T width, const ref T height)  {
         Width = width; Height = height;
     }
 
     // todo: fix this
-	this(const ref vector2d!T other){
+	// this(const ref vector2d!T other){
 
-    } // Defined in vector2d.h
+    // } // Defined in vector2d.h
 
 	//! Use this constructor only where you are sure that the conversion is valid.
 	// template <class U>
@@ -201,24 +201,24 @@ struct dimension2d(T)
 	/** \param other Other dimension to interpolate with.
 	\param d Value between 0.0f and 1.0f. d=0 returns other, d=1 returns this, values between interpolate.
 	\return Interpolated dimension. */
-	dimension2d<T> getInterpolated(const dimension2d<T> &other, f32 d) const
+	dimension2d!T getInterpolated(const ref dimension2d!T other, f32 d) const
 	{
 		f32 inv = (1.0f - d);
-		return dimension2d<T>((T)(other.Width * inv + Width * d), (T)(other.Height * inv + Height * d));
+		return dimension2d!T(cast(T)(other.Width * inv + Width * d), cast(T)(other.Height * inv + Height * d));
 	}
 
 	
-};
+}
 
 //! Typedef for an f32 dimension.
-typedef dimension2d<f32> dimension2df;
+alias  dimension2df = dimension2d!f32;
 //! Typedef for an unsigned integer dimension.
-typedef dimension2d<u32> dimension2du;
+alias dimension2du = dimension2d!u32 ;
 
 //! Typedef for an integer dimension.
 /** There are few cases where negative dimensions make sense. Please consider using
 	dimension2du instead. */
-typedef dimension2d<s32> dimension2di;
+alias dimension2di = dimension2d!s32 ;
 
 // } // end namespace core
 // } // end namespace irr
