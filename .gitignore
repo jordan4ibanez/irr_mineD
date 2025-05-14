@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/irr_mined
+irr_mined.so
+irr_mined.dylib
+irr_mined.dll
+irr_mined.a
+irr_mined.lib
+irr_mined-test-*
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst
