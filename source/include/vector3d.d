@@ -153,7 +153,7 @@ public:
 		assert(0);
 	}
 
-	T opIndex(u32 index) const {
+	ref const(T) opIndex(u32 index) const {
 		switch (index) {
 		case 0:
 			return X;
