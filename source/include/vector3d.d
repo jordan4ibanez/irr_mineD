@@ -25,9 +25,17 @@ import include.irr_math;
 	2) As a position in 3d space (which is synonymous with a direction vector from the origin to this position).
 	3) To hold three Euler rotations, where X is pitch, Y is yaw and Z is roll.
 */
-template <class T>
-class vector3d
+// template <class T>
+class vector3d(T)
 {
+    //! X coordinate of the vector
+	T X;
+
+	//! Y coordinate of the vector
+	T Y;
+
+	//! Z coordinate of the vector
+	T Z;
 public:
 	//! Default constructor (null vector).
 	constexpr vector3d() :
@@ -475,14 +483,7 @@ public:
 						forwards.Z * pseudoMatrix[8]));
 	}
 
-	//! X coordinate of the vector
-	T X;
-
-	//! Y coordinate of the vector
-	T Y;
-
-	//! Z coordinate of the vector
-	T Z;
+	
 };
 
 //! partial specialization for integer vectors
