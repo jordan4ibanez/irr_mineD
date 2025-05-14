@@ -1,5 +1,7 @@
 module include.irr_math;
 
+import std.math.trigonometry;
+
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
@@ -20,14 +22,15 @@ module include.irr_math;
 
 //! Rounding error constant often used when comparing f32 values.
 
-constexpr f32 ROUNDING_ERROR_f32 = 0.000001f;
-constexpr f64 ROUNDING_ERROR_f64 = 0.00000001;
+static immutable f32 ROUNDING_ERROR_f32 = 0.000001f;
+static immutable f64 ROUNDING_ERROR_f64 = 0.00000001;
 
-#ifdef PI // make sure we don't collide with a define
-#undef PI
-#endif
+// #ifdef PI // make sure we don't collide with a define
+// #undef PI
+// #endif
+
 //! Constant for PI.
-constexpr f32 PI = static_cast<f32>(M_PI);
+// static immutable f32 PI = PI;
 
 #ifdef PI64 // make sure we don't collide with a define
 #undef PI64
