@@ -1,8 +1,8 @@
 module os;
 
-import i_logger;
-import irr_path;
-import irr_types;
+import include.i_logger;
+import include.irr_path;
+import include.irr_types;
 
 class ByteSwap {
 	static u16 byteswap(u16 num);

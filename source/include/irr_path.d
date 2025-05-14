@@ -1,6 +1,6 @@
 module include.irr_path;
 
-import irr_types;
+import include.irr_types;
 import std.string;
 
 //! Type used for all file system related strings.

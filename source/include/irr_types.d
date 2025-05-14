@@ -1,4 +1,4 @@
-module irr_types;
+module include.irr_types;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".

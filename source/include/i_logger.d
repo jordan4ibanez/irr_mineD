@@ -1,6 +1,6 @@
-module i_logger;
+module include.i_logger;
 
-import irr_types;
+import include.irr_types;
 
 //! Possible log levels.
 //! When used has filter ELL_DEBUG means => log everything and ELL_NONE means => log (nearly) nothing.
