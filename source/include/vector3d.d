@@ -76,89 +76,105 @@ public:
 		return vector3d!T(X + other.X, Y + other.Y, Z + other.Z);
 	}
 
-	ref vector3d!T opOpAssign(string s : "+=")(const ref vector3d!T other) {
-		X += other.X;
-		Y += other.Y;
-		Z += other.Z;
+	ref vector3d!T opOpAssign(string op)(const T value) {
+		// This is compiler code. 
+		// Give vector3d even more operators than C++.
+		static if (is(typeof(T) == vector3d!T)) {
+			mixin("X " ~ op ~ "= value.x;");
+			mixin("Y " ~ op ~ "= value.y;");
+			mixin("Z " ~ op ~ "= value;");
+		} else {
+			mixin("X " ~ op ~ "= value;");
+			mixin("Y " ~ op ~ "= value;");
+			mixin("Z " ~ op ~ "= value;");
+		}
+
 		return this;
 	}
+
+	// ref vector3d!T opOpAssign(string s : "+=")(const ref vector3d!T other) {
+	// 	X += other.X;
+	// 	Y += other.Y;
+	// 	Z += other.Z;
+	// 	return this;
+	// }
 
 	vector3d!T opBinary(string s : "+")(const T val) const {
 		return vector3d!T(X + val, Y + val, Z + val);
 	}
 
-	ref vector3d!T opOpAssign(string s : "+=")(const T val) {
-		X += val;
-		Y += val;
-		Z += val;
-		return this;
-	}
+	// ref vector3d!T opOpAssign(string s : "+=")(const T val) {
+	// 	X += val;
+	// 	Y += val;
+	// 	Z += val;
+	// 	return this;
+	// }
 
 	vector3d!T opBinary(string s : "-")(const ref vector3d!T other) const {
 		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z);
 	}
 
-	ref vector3d!T opOpAssign(string s : "-=")(const ref vector3d!T other) {
-		X -= other.X;
-		Y -= other.Y;
-		Z -= other.Z;
-		return this;
-	}
+	// ref vector3d!T opOpAssign(string s : "-=")(const ref vector3d!T other) {
+	// 	X -= other.X;
+	// 	Y -= other.Y;
+	// 	Z -= other.Z;
+	// 	return this;
+	// }
 
 	vector3d!T opBinary(string s : "-")(const T val) const {
 		return vector3d!T(X - val, Y - val, Z - val);
 	}
 
-	ref vector3d!T opOpAssign(string s : "-=")(const T val) {
-		X -= val;
-		Y -= val;
-		Z -= val;
-		return this;
-	}
+	// ref vector3d!T opOpAssign(string s : "-=")(const T val) {
+	// 	X -= val;
+	// 	Y -= val;
+	// 	Z -= val;
+	// 	return this;
+	// }
 
 	vector3d!T opBinary(string s : "*")(const ref vector3d!T other) const {
 		return vector3d!T(X * other.X, Y * other.Y, Z * other.Z);
 	}
 
-	ref vector3d!T opOpAssign(string s : "*=")(const ref vector3d!T other) {
-		X *= other.X;
-		Y *= other.Y;
-		Z *= other.Z;
-		return this;
-	}
+	// ref vector3d!T opOpAssign(string s : "*=")(const ref vector3d!T other) {
+	// 	X *= other.X;
+	// 	Y *= other.Y;
+	// 	Z *= other.Z;
+	// 	return this;
+	// }
 
 	vector3d!T opBinary(string s : "*")(const T v) const {
 		return vector3d!T(X * v, Y * v, Z * v);
 	}
 
-	ref vector3d!T opOpAssign(string s : "*=")(const T v) {
-		X *= v;
-		Y *= v;
-		Z *= v;
-		return this;
-	}
+	// ref vector3d!T opOpAssign(string s : "*=")(const T v) {
+	// 	X *= v;
+	// 	Y *= v;
+	// 	Z *= v;
+	// 	return this;
+	// }
 
 	vector3d!T opBinary(string s : "/")(const ref vector3d!T other) const {
 		return vector3d!T(X / other.X, Y / other.Y, Z / other.Z);
 	}
 
-	ref vector3d!T opOpAssign(string s : "/=")(const ref vector3d!T other) {
-		X /= other.X;
-		Y /= other.Y;
-		Z /= other.Z;
-		return this;
-	}
+	// ref vector3d!T opOpAssign(string s : "/=")(const ref vector3d!T other) {
+	// 	X /= other.X;
+	// 	Y /= other.Y;
+	// 	Z /= other.Z;
+	// 	return this;
+	// }
 
 	vector3d!T opBinary(string s : "/")(const T v) const {
 		return vector3d!T(X / v, Y / v, Z / v);
 	}
 
-	ref vector3d!T opOpAssign(string s : "/=")(const T v) {
-		X /= v;
-		Y /= v;
-		Z /= v;
-		return this;
-	}
+	// ref vector3d!T opOpAssign(string s : "/=")(const T v) {
+	// 	X /= v;
+	// 	Y /= v;
+	// 	Z /= v;
+	// 	return this;
+	// }
 
 	ref T opIndex(u32 index) {
 		switch (index) {
