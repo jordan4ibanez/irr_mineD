@@ -175,41 +175,17 @@ public:
 		}
 	}
 
-	//! sort in order X, Y, Z.
-	constexpr bool operator<=(const vector3d<T> &other) const
-	{
-		return !(*this > other);
-	}
-
-	//! sort in order X, Y, Z.
-	constexpr bool operator>=(const vector3d<T> &other) const
-	{
-		return !(*this < other);
-	}
-
-	//! sort in order X, Y, Z.
-	constexpr bool operator<(const vector3d<T> &other) const
-	{
-		return X < other.X || (X == other.X && Y < other.Y) ||
-			   (X == other.X && Y == other.Y && Z < other.Z);
-	}
-
-	//! sort in order X, Y, Z.
-	constexpr bool operator>(const vector3d<T> &other) const
-	{
-		return X > other.X || (X == other.X && Y > other.Y) ||
-			   (X == other.X && Y == other.Y && Z > other.Z);
-	}
-
-	constexpr bool operator==(const vector3d<T> &other) const
-	{
-		return X == other.X && Y == other.Y && Z == other.Z;
-	}
-
-	constexpr bool operator!=(const vector3d<T> &other) const
-	{
-		return !(*this == other);
-	}
+    //! sort in order X, Y, Z.
+    int opCmp(const vector3d!T other) const {
+        if (X < other.X || (X == other.X && Y < other.Y) ||
+			(X == other.X && Y == other.Y && Z < other.Z)) {
+			return -1;
+		} else if (X > other.X || (X == other.X && Y > other.Y) ||
+			(X == other.X && Y == other.Y && Z > other.Z)) {
+			return 1;
+		}
+		return 0;
+    }	
 
 	// functions
 
