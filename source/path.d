@@ -1,4 +1,4 @@
-module irr_path;
+module path;
 
 import irr_types;
 import std.string;
@@ -7,7 +7,7 @@ import std.string;
 /** This type will transparently handle different file system encodings.
 	NOTE: For historical reasons the tool-functions using io::path are all in coreutil.h
 */
-alias Path = string;
+alias path = string;
 
 // Type only exists for historcal reasons, paths are always char now.
 // static assert(sizeof(fschar_t) == sizeof(char));
@@ -22,7 +22,7 @@ struct SNamedPath {
     // }
 
     //! Constructor
-    this(const Path* p) {
+    this(const path* p) {
         this.Path = *p;
         InternalName = PathToName(p);
     }
@@ -33,19 +33,19 @@ struct SNamedPath {
     // }
 
     //! Set the path.
-    void setPath(const Path* p) {
+    void setPath(const path* p) {
         Path = *p;
         InternalName = PathToName(p);
     }
 
     //! Get the path.
-    const(Path)* getPath() const {
+    const(path)* getPath() const {
         return &Path;
     }
 
     //! Get the name which is used to identify the file.
     //! This string is similar to the names and filenames used before Irrlicht 1.7
-    const(Path)* getInternalName() const {
+    const(path)* getInternalName() const {
         return &InternalName;
     }
 
@@ -56,8 +56,8 @@ struct SNamedPath {
 
 protected:
     // convert the given path string to a name string.
-    Path PathToName(const Path* p) const {
-        Path name = *p;
+    path PathToName(const path* p) const {
+        path name = *p;
 
         name.replace('\\', '/');
         name.toLower();
@@ -65,6 +65,6 @@ protected:
     }
 
 private:
-    Path Path;
-    Path InternalName;
+    path Path;
+    path InternalName;
 }
