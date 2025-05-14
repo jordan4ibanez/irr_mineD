@@ -65,66 +65,84 @@ public:
 
 	// operators
 
-	vector3d<T> operator-() const { return vector3d<T>(-X, -Y, -Z); }
+    // Negate.
+	vector3d!T opUnary(string s:  "-")() const {
+         return vector3d!T(-X, -Y, -Z); 
+         }
 
-	vector3d<T> operator+(const vector3d<T> &other) const { return vector3d<T>(X + other.X, Y + other.Y, Z + other.Z); }
-	vector3d<T> &operator+=(const vector3d<T> &other)
+	vector3d!T opUnary(string s:  "+")(const ref vector3d!T other) const { 
+        return vector3d!T(X + other.X, Y + other.Y, Z + other.Z); 
+        }
+    
+	ref vector3d!T opAssign(string s: "+=")(const ref vector3d!T other)
 	{
 		X += other.X;
 		Y += other.Y;
 		Z += other.Z;
-		return *this;
+		return this;
 	}
-	vector3d<T> operator+(const T val) const { return vector3d<T>(X + val, Y + val, Z + val); }
-	vector3d<T> &operator+=(const T val)
+	vector3d!T opUnary(string s:  "+")(const T val) const { 
+        return vector3d!T(X + val, Y + val, Z + val); 
+    }
+	ref vector3d!T opAssign(string s: "+=")(const T val)
 	{
 		X += val;
 		Y += val;
 		Z += val;
-		return *this;
+		return this;
 	}
 
-	vector3d<T> operator-(const vector3d<T> &other) const { return vector3d<T>(X - other.X, Y - other.Y, Z - other.Z); }
-	vector3d<T> &operator-=(const vector3d<T> &other)
+	vector3d!T opUnary(string s:  "-")(const ref vector3d!T other) const { 
+        return vector3d!T(X - other.X, Y - other.Y, Z - other.Z); 
+    }
+	ref vector3d!T opAssign(string s: "-=")(const ref vector3d!T other)
 	{
 		X -= other.X;
 		Y -= other.Y;
 		Z -= other.Z;
-		return *this;
+		return this;
 	}
-	vector3d<T> operator-(const T val) const { return vector3d<T>(X - val, Y - val, Z - val); }
-	vector3d<T> &operator-=(const T val)
+	vector3d!T opUnary(string s: "-")(const T val) const { 
+        return vector3d!T(X - val, Y - val, Z - val); 
+    }
+	ref vector3d!T opAssign(string s: "-=")(const T val)
 	{
 		X -= val;
 		Y -= val;
 		Z -= val;
-		return *this;
+		return this;
 	}
 
-	vector3d<T> operator*(const vector3d<T> &other) const { return vector3d<T>(X * other.X, Y * other.Y, Z * other.Z); }
-	vector3d<T> &operator*=(const vector3d<T> &other)
+	vector3d!T opUnary(string s: "*")(const ref vector3d!T other) const { 
+        return vector3d!T(X * other.X, Y * other.Y, Z * other.Z); 
+    }
+	ref vector3d!T opAssign(string s: "*=")(const ref vector3d!T other)
 	{
 		X *= other.X;
 		Y *= other.Y;
 		Z *= other.Z;
-		return *this;
+		return this;
 	}
-	vector3d<T> operator*(const T v) const { return vector3d<T>(X * v, Y * v, Z * v); }
-	vector3d<T> &operator*=(const T v)
+	vector3d!T opUnary(string s: "*")(const T v) const { 
+        return vector3d!T(X * v, Y * v, Z * v); 
+    }
+	ref vector3d!T opAssign(string s: "*=")(const T v)
 	{
 		X *= v;
 		Y *= v;
 		Z *= v;
-		return *this;
+		return this;
 	}
 
-	vector3d<T> operator/(const vector3d<T> &other) const { return vector3d<T>(X / other.X, Y / other.Y, Z / other.Z); }
-	vector3d<T> &operator/=(const vector3d<T> &other)
+	vector3d!T opUnary(string s: "/")(const ref vector3d!T other) const { 
+        return vector3d!T(X / other.X, Y / other.Y, Z / other.Z); 
+    }
+	ref vector3d!T opAssign(string s: "/=")(const ref vector3d!T other)
 	{
 		X /= other.X;
 		Y /= other.Y;
 		Z /= other.Z;
-		return *this;
+		return this;
 	}
 	vector3d<T> operator/(const T v) const { return vector3d<T>(X / v, Y / v, Z / v); }
 	vector3d<T> &operator/=(const T v)
