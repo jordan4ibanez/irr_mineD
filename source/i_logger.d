@@ -1,5 +1,7 @@
 module i_logger;
 
+import irr_types;
+
 //! Possible log levels.
 //! When used has filter ELL_DEBUG means => log everything and ELL_NONE means => log (nearly) nothing.
 //! When used to print logging information ELL_DEBUG will have lowest priority while ELL_NONE
@@ -23,13 +25,13 @@ enum ELOG_LEVEL {
 }
 
 //! Interface for logging messages, warnings and errors
-class ILogger : public virtual IReferenceCounted {
-    public : //! Destructor
-    virtual ~ ILogger() {
-    }
+class ILogger {
+    // public : //! Destructor
+    // virtual ~ ILogger() {
+    // }
 
     //! Returns the current set log level.
-    virtual ELOG_LEVEL getLogLevel() const = 0;
+    const ELOG_LEVEL getLogLevel() = ELOG_LEVEL.ELL_DEBUG;
 
     //! Sets a new log level.
     /** With this value, texts which are sent to the logger are filtered
@@ -38,7 +40,7 @@ class ILogger : public virtual IReferenceCounted {
 	default setting, warnings, errors and informational texts are printed
 	out.
 	\param ll: new log level filter value. */
-    virtual void setLogLevel(ELOG_LEVEL ll) = 0;
+    void setLogLevel(ELOG_LEVEL ll) = 0;
 
     //! Prints out a text into the log
     /** \param text: Text to print out.
@@ -47,7 +49,7 @@ class ILogger : public virtual IReferenceCounted {
 	is just an informational text, set it to ELL_INFORMATION. Texts are
 	filtered with these levels. If you want to be a text displayed,
 	independent on what level filter is set, use ELL_NONE. */
-    virtual void log(const c8 * text, ELOG_LEVEL ll = ELL_INFORMATION) = 0;
+    void log(const c8* text, ELOG_LEVEL ll = ELL_INFORMATION) = 0;
 
     //! Prints out a text into the log
     /** \param text: Text to print out.
@@ -58,5 +60,5 @@ class ILogger : public virtual IReferenceCounted {
 	is just an informational text, set it to ELL_INFORMATION. Texts are
 	filtered with these levels. If you want to be a text displayed,
 	independent on what level filter is set, use ELL_NONE. */
-    virtual void log(const c8 * text, const c8 * hint, ELOG_LEVEL ll = ELL_INFORMATION) = 0;
-};
+    void log(const c8* text, const c8* hint, ELOG_LEVEL ll = ELL_INFORMATION) = 0; // @suppress(dscanner.suspicious.label_var_same_name)
+}
