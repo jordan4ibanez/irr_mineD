@@ -1,6 +1,7 @@
 module include.vector3d;
 
 import include.irr_math;
+import include.irr_types;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -307,7 +308,7 @@ public:
 	To have this work the same way as rest of Irrlicht (nodes, matrices, other rotateBy functions) pass -1*degrees in here.
 	\param degrees Number of degrees to rotate around the Y axis.
 	\param center The center of the rotation. */
-	void rotateXZBy(f64 degrees, const ref vector3d!T center = vector3d!T()) {
+	void rotateXZBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
 		degrees *= DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
@@ -321,7 +322,7 @@ public:
 	//! Rotates the vector by a specified number of degrees around the Z axis and the specified center.
 	/** \param degrees: Number of degrees to rotate around the Z axis.
 	\param center: The center of the rotation. */
-	void rotateXYBy(f64 degrees, const ref vector3d!T center = vector3d!T()) {
+	void rotateXYBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
 		degrees *= DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
@@ -335,7 +336,7 @@ public:
 	//! Rotates the vector by a specified number of degrees around the X axis and the specified center.
 	/** \param degrees: Number of degrees to rotate around the X axis.
 	\param center: The center of the rotation. */
-	void rotateYZBy(f64 degrees, const ref vector3d!T center = vector3d!T()) {
+	void rotateYZBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
 		degrees *= DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
@@ -455,7 +456,7 @@ public:
 	If you do not provide a direction, then the +Z axis (0, 0, 1) will be assumed to be forwards.
 	\return A direction vector calculated by rotating the forwards direction by the 3 Euler angles
 	(in degrees) represented by this vector. */
-	vector3d!T rotationToDirection(const ref vector3d!T forwards = vector3d!T(0, 0, 1)) const {
+	vector3d!T rotationToDirection(const inout vector3d!T forwards = vector3d!T(0, 0, 1)) const {
 		const f64 cr = cos(DEGTORAD64 * X);
 		const f64 sr = sin(DEGTORAD64 * X);
 		const f64 cp = cos(DEGTORAD64 * Y);
