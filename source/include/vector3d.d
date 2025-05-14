@@ -193,19 +193,19 @@ public:
 	/** Takes floating point rounding errors into account.
 	\param other Vector to compare with.
 	\return True if the two vector are (almost) equal, else false. */
-	bool equals(const vector3d<T> &other) const
+	bool equals(const ref vector3d!T other) const
 	{
-		return core::equals(X, other.X) && core::equals(Y, other.Y) && core::equals(Z, other.Z);
+		return equals(X, other.X) && equals(Y, other.Y) && equals(Z, other.Z);
 	}
 
-	vector3d<T> &set(const T nx, const T ny, const T nz)
+	ref vector3d!T set(const T nx, const T ny, const T nz)
 	{
 		X = nx;
 		Y = ny;
 		Z = nz;
-		return *this;
+		return this;
 	}
-	vector3d<T> &set(const vector3d<T> &p)
+	ref vector3d!T set(const ref vector3d!T p)
 	{
 		X = p.X;
 		Y = p.Y;
@@ -213,10 +213,10 @@ public:
 		return *this;
 	}
 
-	std::array<T, 3> toArray() const { return {X, Y, Z}; }
+	T[3] toArray() const { return [X, Y, Z]; }
 
 	//! Get length of the vector.
-	T getLength() const { return core::squareroot(X * X + Y * Y + Z * Z); }
+	T getLength() const { return squareroot(X * X + Y * Y + Z * Z); }
 
 	//! Get squared length of the vector.
 	/** This is useful because it is much faster than getLength().
@@ -224,23 +224,23 @@ public:
 	T getLengthSQ() const { return X * X + Y * Y + Z * Z; }
 
 	//! Get the dot product with another vector.
-	T dotProduct(const vector3d<T> &other) const
+	T dotProduct(const ref vector3d!T other) const
 	{
 		return X * other.X + Y * other.Y + Z * other.Z;
 	}
 
 	//! Get distance from another point.
 	/** Here, the vector is interpreted as point in 3 dimensional space. */
-	T getDistanceFrom(const vector3d<T> &other) const
+	T getDistanceFrom(const ref vector3d!T other) const
 	{
-		return vector3d<T>(X - other.X, Y - other.Y, Z - other.Z).getLength();
+		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z).getLength();
 	}
 
 	//! Returns squared distance from another point.
 	/** Here, the vector is interpreted as point in 3 dimensional space. */
-	T getDistanceFromSQ(const vector3d<T> &other) const
+	T getDistanceFromSQ(const ref vector3d!T other) const
 	{
-		return vector3d<T>(X - other.X, Y - other.Y, Z - other.Z).getLengthSQ();
+		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z).getLengthSQ();
 	}
 
 	//! Calculates the cross product with another vector.
