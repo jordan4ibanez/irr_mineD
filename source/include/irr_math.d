@@ -335,12 +335,12 @@ u32* F32_AS_U32_POINTER(f32 f) {
     return (cast(u32 *)&(f));
 }
 
-#define F32_VALUE_0 0x00000000
-#define F32_VALUE_1 0x3f800000
+static immutable F32_VALUE_0 = 0x00000000;
+static immutable  F32_VALUE_1 = 0x3f800000;
 
 //! code is taken from IceFPU
 //! Integer representation of a floating-point value.
-inline u32 IR(f32 x)
+u32 IR(f32 x)
 {
 	inttofloat tmp;
 	tmp.f = x;
@@ -348,26 +348,46 @@ inline u32 IR(f32 x)
 }
 
 //! Floating-point representation of an integer value.
-inline f32 FR(u32 x)
+f32 FR(u32 x)
 {
 	inttofloat tmp;
 	tmp.u = x;
 	return tmp.f;
 }
-inline f32 FR(s32 x)
+f32 FR(s32 x)
 {
 	inttofloat tmp;
 	tmp.s = x;
 	return tmp.f;
 }
 
-#define F32_LOWER_0(n) ((n) < 0.0f)
-#define F32_LOWER_EQUAL_0(n) ((n) <= 0.0f)
-#define F32_GREATER_0(n) ((n) > 0.0f)
-#define F32_GREATER_EQUAL_0(n) ((n) >= 0.0f)
-#define F32_EQUAL_1(n) ((n) == 1.0f)
-#define F32_EQUAL_0(n) ((n) == 0.0f)
-#define F32_A_GREATER_B(a, b) ((a) > (b))
+bool F32_LOWER_0(f32 n) {
+    return ((n) < 0.0f);
+}
+
+bool F32_LOWER_EQUAL_0(f32 n) {
+    return ((n) <= 0.0f);
+}
+
+bool F32_GREATER_0(f32 n) {
+    return ((n) > 0.0f);
+}
+
+bool F32_GREATER_EQUAL_0(f32 n){
+ return ((n) >= 0.0f);
+}
+
+bool F32_EQUAL_1(f32 n) {
+    return ((n) == 1.0f);
+}
+
+bool F32_EQUAL_0(f32 n) {
+    return ((n) == 0.0f);
+}
+
+bool F32_A_GREATER_B(f32 a, f32 b) {
+    return ((a) > (b));
+}
 
 #ifndef REALINLINE
 #ifdef _MSC_VER
