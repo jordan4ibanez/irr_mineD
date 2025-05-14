@@ -1,8 +1,7 @@
 module os;
 
-import std.stdio;
+import irr_types;
 
-void main()
-{
-	writeln("Edit source/app.d to start your project.");
+void main() {
+	s8 t;
 }
