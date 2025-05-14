@@ -486,6 +486,10 @@ public:
 						forwards.Z * pseudoMatrix[8]));
 	}
 
+    size_t hashOf() {
+
+    }
+
 	
 }
 
@@ -505,52 +509,52 @@ public:
 // 	return *this;
 // }
 
-template <>
-inline vector3d<s32> vector3d<s32>::getSphericalCoordinateAngles() const
-{
-	vector3d<s32> angle;
-	const f64 length = X * X + Y * Y + Z * Z;
+// template <>
+// inline vector3d<s32> vector3d<s32>::getSphericalCoordinateAngles() const
+// {
+// 	vector3d<s32> angle;
+// 	const f64 length = X * X + Y * Y + Z * Z;
 
-	if (length) {
-		if (X != 0) {
-			angle.Y = round32((f32)(atan2((f64)Z, (f64)X) * RADTODEG64));
-		} else if (Z < 0)
-			angle.Y = 180;
+// 	if (length) {
+// 		if (X != 0) {
+// 			angle.Y = round32((f32)(atan2((f64)Z, (f64)X) * RADTODEG64));
+// 		} else if (Z < 0)
+// 			angle.Y = 180;
 
-		angle.X = round32((f32)(acos(Y * core::reciprocal_squareroot(length)) * RADTODEG64));
-	}
-	return angle;
-}
+// 		angle.X = round32((f32)(acos(Y * core::reciprocal_squareroot(length)) * RADTODEG64));
+// 	}
+// 	return angle;
+// }
 
-//! Typedef for a f32 3d vector.
-typedef vector3d<f32> vector3df;
+// //! Typedef for a f32 3d vector.
+// typedef vector3d<f32> vector3df;
 
-//! Typedef for an integer 3d vector.
-typedef vector3d<s32> vector3di;
+// //! Typedef for an integer 3d vector.
+// typedef vector3d<s32> vector3di;
 
-//! Function multiplying a scalar and a vector component-wise.
-template <class S, class T>
-vector3d<T> operator*(const S scalar, const vector3d<T> &vector)
-{
-	return vector * scalar;
-}
+// //! Function multiplying a scalar and a vector component-wise.
+// template <class S, class T>
+// vector3d<T> operator*(const S scalar, const vector3d<T> &vector)
+// {
+// 	return vector * scalar;
+// }
 
 // } // end namespace core
 // } // end namespace irr
 
-namespace std
-{
+// namespace std
+// {
 
-template <class T>
-struct hash<irr::core::vector3d<T>>
-{
-	size_t operator()(const irr::core::vector3d<T> &vec) const
-	{
-		size_t h1 = hash<T>()(vec.X);
-		size_t h2 = hash<T>()(vec.Y);
-		size_t h3 = hash<T>()(vec.Z);
-		return (h1 << (5 * sizeof(h1)) | h1 >> (3 * sizeof(h1))) ^ (h2 << (2 * sizeof(h2)) | h2 >> (6 * sizeof(h2))) ^ h3;
-	}
-};
+// template <class T>
+// struct hash<irr::core::vector3d<T>>
+// {
+// 	size_t operator()(const irr::core::vector3d<T> &vec) const
+// 	{
+// 		size_t h1 = hash<T>()(vec.X);
+// 		size_t h2 = hash<T>()(vec.Y);
+// 		size_t h3 = hash<T>()(vec.Z);
+// 		return (h1 << (5 * sizeof(h1)) | h1 >> (3 * sizeof(h1))) ^ (h2 << (2 * sizeof(h2)) | h2 >> (6 * sizeof(h2))) ^ h3;
+// 	}
+// };
 
-}
+// }
