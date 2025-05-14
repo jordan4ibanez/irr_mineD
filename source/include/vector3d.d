@@ -26,158 +26,167 @@ import include.irr_math;
 	3) To hold three Euler rotations, where X is pitch, Y is yaw and Z is roll.
 */
 // template <class T>
-struct vector3d(T)
-{
-    //! X coordinate of the vector
-	T X=0;
+struct vector3d(T) {
+	//! X coordinate of the vector
+	T X = 0;
 
 	//! Y coordinate of the vector
-	T Y=0;
+	T Y = 0;
 
 	//! Z coordinate of the vector
-	T Z=0;
+	T Z = 0;
 public:
 	//! Default constructor (null vector).
 	// constexpr vector3d() :
 	// 		X(0), Y(0), Z(0) {}
 	//! Constructor with three different values
 	this(T nx, T ny, T nz) {
-			X =nx;
-             Y =ny ; 
-             Z = nz;
-            }
+		X = nx;
+		Y = ny;
+		Z = nz;
+	}
 	//! Constructor with the same value for all elements
 	this(T n) {
-			X = n; Y = n; Z = n; 
-            }
+		X = n;
+		Y = n;
+		Z = n;
+	}
 	//! Array - vector conversion
 	this(const ref T[3] arr) {
-			X = arr[0]; 
-            Y = arr[1]; 
-            Z = arr[2];
-        }
+		X = arr[0];
+		Y = arr[1];
+		Z = arr[2];
+	}
 
 	// template <class U>
-	static vector3d!T from(U)(const ref vector3d!U other)
-	{
+	static vector3d!T from(U)(const ref vector3d!U other) {
 		return vector3d!T(cast(T)(other.X), cast(T)(other.Y), cast(T)(other.Z));
 	}
 
 	// operators
 
-    // Negate.
-	vector3d!T opUnary(string s:  "-")() const {
-         return vector3d!T(-X, -Y, -Z); 
-         }
+	// Negate.
+	vector3d!T opUnary(string s : "-")() const {
+		return vector3d!T(-X, -Y, -Z);
+	}
 
-	vector3d!T opUnary(string s:  "+")(const ref vector3d!T other) const { 
-        return vector3d!T(X + other.X, Y + other.Y, Z + other.Z); 
-        }
-    
-	ref vector3d!T opAssign(string s: "+=")(const ref vector3d!T other)
-	{
+	vector3d!T opUnary(string s : "+")(const ref vector3d!T other) const {
+		return vector3d!T(X + other.X, Y + other.Y, Z + other.Z);
+	}
+
+	ref vector3d!T opAssign(string s : "+=")(const ref vector3d!T other) {
 		X += other.X;
 		Y += other.Y;
 		Z += other.Z;
 		return this;
 	}
-	vector3d!T opUnary(string s:  "+")(const T val) const { 
-        return vector3d!T(X + val, Y + val, Z + val); 
-    }
-	ref vector3d!T opAssign(string s: "+=")(const T val)
-	{
+
+	vector3d!T opUnary(string s : "+")(const T val) const {
+		return vector3d!T(X + val, Y + val, Z + val);
+	}
+
+	ref vector3d!T opAssign(string s : "+=")(const T val) {
 		X += val;
 		Y += val;
 		Z += val;
 		return this;
 	}
 
-	vector3d!T opUnary(string s:  "-")(const ref vector3d!T other) const { 
-        return vector3d!T(X - other.X, Y - other.Y, Z - other.Z); 
-    }
-	ref vector3d!T opAssign(string s: "-=")(const ref vector3d!T other)
-	{
+	vector3d!T opUnary(string s : "-")(const ref vector3d!T other) const {
+		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z);
+	}
+
+	ref vector3d!T opAssign(string s : "-=")(const ref vector3d!T other) {
 		X -= other.X;
 		Y -= other.Y;
 		Z -= other.Z;
 		return this;
 	}
-	vector3d!T opUnary(string s: "-")(const T val) const { 
-        return vector3d!T(X - val, Y - val, Z - val); 
-    }
-	ref vector3d!T opAssign(string s: "-=")(const T val)
-	{
+
+	vector3d!T opUnary(string s : "-")(const T val) const {
+		return vector3d!T(X - val, Y - val, Z - val);
+	}
+
+	ref vector3d!T opAssign(string s : "-=")(const T val) {
 		X -= val;
 		Y -= val;
 		Z -= val;
 		return this;
 	}
 
-	vector3d!T opUnary(string s: "*")(const ref vector3d!T other) const { 
-        return vector3d!T(X * other.X, Y * other.Y, Z * other.Z); 
-    }
-	ref vector3d!T opAssign(string s: "*=")(const ref vector3d!T other)
-	{
+	vector3d!T opUnary(string s : "*")(const ref vector3d!T other) const {
+		return vector3d!T(X * other.X, Y * other.Y, Z * other.Z);
+	}
+
+	ref vector3d!T opAssign(string s : "*=")(const ref vector3d!T other) {
 		X *= other.X;
 		Y *= other.Y;
 		Z *= other.Z;
 		return this;
 	}
-	vector3d!T opUnary(string s: "*")(const T v) const { 
-        return vector3d!T(X * v, Y * v, Z * v); 
-    }
-	ref vector3d!T opAssign(string s: "*=")(const T v)
-	{
+
+	vector3d!T opUnary(string s : "*")(const T v) const {
+		return vector3d!T(X * v, Y * v, Z * v);
+	}
+
+	ref vector3d!T opAssign(string s : "*=")(const T v) {
 		X *= v;
 		Y *= v;
 		Z *= v;
 		return this;
 	}
 
-	vector3d!T opUnary(string s: "/")(const ref vector3d!T other) const { 
-        return vector3d!T(X / other.X, Y / other.Y, Z / other.Z); 
-    }
-	ref vector3d!T opAssign(string s: "/=")(const ref vector3d!T other)
-	{
+	vector3d!T opUnary(string s : "/")(const ref vector3d!T other) const {
+		return vector3d!T(X / other.X, Y / other.Y, Z / other.Z);
+	}
+
+	ref vector3d!T opAssign(string s : "/=")(const ref vector3d!T other) {
 		X /= other.X;
 		Y /= other.Y;
 		Z /= other.Z;
 		return this;
 	}
-	vector3d!T opUnary(string s: "/")(const T v) const { 
-        return vector3d!T(X / v, Y / v, Z / v); 
-    }
-	ref vector3d!T opAssign(string s: "/=")(const T v)
-	{
+
+	vector3d!T opUnary(string s : "/")(const T v) const {
+		return vector3d!T(X / v, Y / v, Z / v);
+	}
+
+	ref vector3d!T opAssign(string s : "/=")(const T v) {
 		X /= v;
 		Y /= v;
 		Z /= v;
 		return this;
 	}
 
-	ref T opIndex(u32 index)
-	{
+	ref T opIndex(u32 index) {
 		switch (index) {
-			case 0: return X;
-			case 1: return Y;
-			case 2: return Z;
-			default: IRR_CODE_UNREACHABLE();
+		case 0:
+			return X;
+		case 1:
+			return Y;
+		case 2:
+			return Z;
+		default:
+			IRR_CODE_UNREACHABLE();
 		}
 	}
 
-	 T opIndex(u32 index) const
-	{
+	T opIndex(u32 index) const {
 		switch (index) {
-			case 0: return X;
-			case 1: return Y;
-			case 2: return Z;
-			default: IRR_CODE_UNREACHABLE();
+		case 0:
+			return X;
+		case 1:
+			return Y;
+		case 2:
+			return Z;
+		default:
+			IRR_CODE_UNREACHABLE();
 		}
 	}
 
-    //! sort in order X, Y, Z.
-    int opCmp(const vector3d!T other) const {
-        if (X < other.X || (X == other.X && Y < other.Y) ||
+	//! sort in order X, Y, Z.
+	int opCmp(const vector3d!T other) const {
+		if (X < other.X || (X == other.X && Y < other.Y) ||
 			(X == other.X && Y == other.Y && Z < other.Z)) {
 			return -1;
 		} else if (X > other.X || (X == other.X && Y > other.Y) ||
@@ -185,7 +194,7 @@ public:
 			return 1;
 		}
 		return 0;
-    }	
+	}
 
 	// functions
 
@@ -193,61 +202,61 @@ public:
 	/** Takes floating point rounding errors into account.
 	\param other Vector to compare with.
 	\return True if the two vector are (almost) equal, else false. */
-	bool equals(const ref vector3d!T other) const
-	{
+	bool equals(const ref vector3d!T other) const {
 		return equals(X, other.X) && equals(Y, other.Y) && equals(Z, other.Z);
 	}
 
-	ref vector3d!T set(const T nx, const T ny, const T nz)
-	{
+	ref vector3d!T set(const T nx, const T ny, const T nz) {
 		X = nx;
 		Y = ny;
 		Z = nz;
 		return this;
 	}
-	ref vector3d!T set(const ref vector3d!T p)
-	{
+
+	ref vector3d!T set(const ref vector3d!T p) {
 		X = p.X;
 		Y = p.Y;
 		Z = p.Z;
 		return this;
 	}
 
-	T[3] toArray() const { return [X, Y, Z]; }
+	T[3] toArray() const {
+		return [X, Y, Z];
+	}
 
 	//! Get length of the vector.
-	T getLength() const { return squareroot(X * X + Y * Y + Z * Z); }
+	T getLength() const {
+		return squareroot(X * X + Y * Y + Z * Z);
+	}
 
 	//! Get squared length of the vector.
 	/** This is useful because it is much faster than getLength().
 	\return Squared length of the vector. */
-	T getLengthSQ() const { return X * X + Y * Y + Z * Z; }
+	T getLengthSQ() const {
+		return X * X + Y * Y + Z * Z;
+	}
 
 	//! Get the dot product with another vector.
-	T dotProduct(const ref vector3d!T other) const
-	{
+	T dotProduct(const ref vector3d!T other) const {
 		return X * other.X + Y * other.Y + Z * other.Z;
 	}
 
 	//! Get distance from another point.
 	/** Here, the vector is interpreted as point in 3 dimensional space. */
-	T getDistanceFrom(const ref vector3d!T other) const
-	{
+	T getDistanceFrom(const ref vector3d!T other) const {
 		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z).getLength();
 	}
 
 	//! Returns squared distance from another point.
 	/** Here, the vector is interpreted as point in 3 dimensional space. */
-	T getDistanceFromSQ(const ref vector3d!T other) const
-	{
+	T getDistanceFromSQ(const ref vector3d!T other) const {
 		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z).getLengthSQ();
 	}
 
 	//! Calculates the cross product with another vector.
 	/** \param p Vector to multiply with.
 	\return Cross product of this vector with p. */
-	vector3d!T crossProduct(const ref vector3d!T p) const
-	{
+	vector3d!T crossProduct(const ref vector3d!T p) const {
 		return vector3d!T(Y * p.Z - Z * p.Y, Z * p.X - X * p.Z, X * p.Y - Y * p.X);
 	}
 
@@ -256,19 +265,17 @@ public:
 	\param begin Beginning vector to compare between.
 	\param end Ending vector to compare between.
 	\return True if this vector is between begin and end, false if not. */
-	bool isBetweenPoints(const ref vector3d!T begin, const ref vector3d!T end) const
-	{
+	bool isBetweenPoints(const ref vector3d!T begin, const ref vector3d!T end) const {
 		const T f = (end - begin).getLengthSQ();
 		return getDistanceFromSQ(begin) <= f &&
-			   getDistanceFromSQ(end) <= f;
+			getDistanceFromSQ(end) <= f;
 	}
 
 	//! Normalizes the vector.
 	/** In case of the 0 vector the result is still 0, otherwise
 	the length of the vector will be 1.
 	\return Reference to this vector after normalization. */
-	ref vector3d!T normalize()
-	{
+	ref vector3d!T normalize() {
 		f64 length = X * X + Y * Y + Z * Z;
 		if (length == 0) // this check isn't an optimization but prevents getting NAN in the sqrt.
 			return this;
@@ -281,15 +288,13 @@ public:
 	}
 
 	//! Sets the length of the vector to a new value
-	ref vector3d!T setLength(T newlength)
-	{
+	ref vector3d!T setLength(T newlength) {
 		normalize();
 		return (this *= newlength);
 	}
 
 	//! Inverts the vector.
-	ref vector3d!T invert()
-	{
+	ref vector3d!T invert() {
 		X *= -1;
 		Y *= -1;
 		Z *= -1;
@@ -302,8 +307,7 @@ public:
 	To have this work the same way as rest of Irrlicht (nodes, matrices, other rotateBy functions) pass -1*degrees in here.
 	\param degrees Number of degrees to rotate around the Y axis.
 	\param center The center of the rotation. */
-	void rotateXZBy(f64 degrees, const ref vector3d!T center = vector3d!T())
-	{
+	void rotateXZBy(f64 degrees, const ref vector3d!T center = vector3d!T()) {
 		degrees *= DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
@@ -317,8 +321,7 @@ public:
 	//! Rotates the vector by a specified number of degrees around the Z axis and the specified center.
 	/** \param degrees: Number of degrees to rotate around the Z axis.
 	\param center: The center of the rotation. */
-	void rotateXYBy(f64 degrees, const ref vector3d!T center = vector3d!T())
-	{
+	void rotateXYBy(f64 degrees, const ref vector3d!T center = vector3d!T()) {
 		degrees *= DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
@@ -332,8 +335,7 @@ public:
 	//! Rotates the vector by a specified number of degrees around the X axis and the specified center.
 	/** \param degrees: Number of degrees to rotate around the X axis.
 	\param center: The center of the rotation. */
-	void rotateYZBy(f64 degrees, const ref vector3d!T center = vector3d!T())
-	{
+	void rotateYZBy(f64 degrees, const ref vector3d!T center = vector3d!T()) {
 		degrees *= DEGTORAD64;
 		f64 cs = cos(degrees);
 		f64 sn = sin(degrees);
@@ -349,10 +351,10 @@ public:
 	\param d Interpolation value between 0.0f (all the other vector) and 1.0f (all this vector).
 	Note that this is the opposite direction of interpolation to getInterpolated_quadratic()
 	\return An interpolated vector.  This vector is not modified. */
-	vector3d!T getInterpolated(const ref vector3d!T other, f64 d) const
-	{
+	vector3d!T getInterpolated(const ref vector3d!T other, f64 d) const {
 		const f64 inv = 1.0 - d;
-		return vector3d!T(cast(T)(other.X * inv + X * d), cast(T)(other.Y * inv + Y * d), cast(T)(other.Z * inv + Z * d));
+		return vector3d!T(cast(T)(other.X * inv + X * d), cast(T)(other.Y * inv + Y * d), cast(T)(
+				other.Z * inv + Z * d));
 	}
 
 	//! Creates a quadratically interpolated vector between this and two other vectors.
@@ -361,17 +363,16 @@ public:
 	\param d Interpolation value between 0.0f (all this vector) and 1.0f (all the 3rd vector).
 	Note that this is the opposite direction of interpolation to getInterpolated() and interpolate()
 	\return An interpolated vector. This vector is not modified. */
-	vector3d!T getInterpolated_quadratic(const ref vector3d!T v2, const ref vector3d!T v3, f64 d) const
-	{
+	vector3d!T getInterpolated_quadratic(const ref vector3d!T v2, const ref vector3d!T v3, f64 d) const {
 		// this*(1-d)*(1-d) + 2 * v2 * (1-d) + v3 * d * d;
-		const f64 inv = cast(T)1.0 - d;
+		const f64 inv = cast(T) 1.0 - d;
 		const f64 mul0 = inv * inv;
-		const f64 mul1 = cast(T)2.0 * d * inv;
+		const f64 mul1 = cast(T) 2.0 * d * inv;
 		const f64 mul2 = d * d;
 
 		return vector3d!T((T)(X * mul0 + v2.X * mul1 + v3.X * mul2),
-				(T)(Y * mul0 + v2.Y * mul1 + v3.Y * mul2),
-				(T)(Z * mul0 + v2.Z * mul1 + v3.Z * mul2));
+			(T)(Y * mul0 + v2.Y * mul1 + v3.Y * mul2),
+			(T)(Z * mul0 + v2.Z * mul1 + v3.Z * mul2));
 	}
 
 	//! Sets this vector to the linearly interpolated vector between a and b.
@@ -380,11 +381,10 @@ public:
 	\param d Interpolation value between 0.0f (all vector b) and 1.0f (all vector a)
 	Note that this is the opposite direction of interpolation to getInterpolated_quadratic()
 	*/
-	ref vector3d!T interpolate(const ref vector3d!T a, const ref vector3d!T b, f64 d)
-	{
-		X = cast(T)(cast(f64)b.X + ((a.X - b.X) * d));
-		Y = cast(T)(cast(f64)b.Y + ((a.Y - b.Y) * d));
-		Z = cast(T)(cast(f64)b.Z + ((a.Z - b.Z) * d));
+	ref vector3d!T interpolate(const ref vector3d!T a, const ref vector3d!T b, f64 d) {
+		X = cast(T)(cast(f64) b.X + ((a.X - b.X) * d));
+		Y = cast(T)(cast(f64) b.Y + ((a.Y - b.Y) * d));
+		Z = cast(T)(cast(f64) b.Z + ((a.Z - b.Z) * d));
 		return this;
 	}
 
@@ -402,13 +402,12 @@ public:
 	\return A rotation vector containing the X (pitch) and Y (raw) rotations (in degrees) that when applied to a
 	+Z (e.g. 0, 0, 1) direction vector would make it point in the same direction as this vector. The Z (roll) rotation
 	is always 0, since two Euler rotations are sufficient to point in any given direction. */
-	vector3d!T getHorizontalAngle() const
-	{
+	vector3d!T getHorizontalAngle() const {
 		vector3d!T angle;
 
 		// tmp avoids some precision troubles on some compilers when working with T=s32
-		f64 tmp = (atan2(cast(f64)X, cast(f64)Z) * RADTODEG64);
-		angle.Y = cast(T)tmp;
+		f64 tmp = (atan2(cast(f64) X, cast(f64) Z) * RADTODEG64);
+		angle.Y = cast(T) tmp;
 
 		if (angle.Y < 0)
 			angle.Y += 360;
@@ -417,8 +416,8 @@ public:
 
 		const f64 z1 = squareroot(X * X + Z * Z);
 
-		tmp = (atan2(cast(f64)z1, cast(f64)Y) * RADTODEG64 - 90.0);
-		angle.X = cast(T)tmp;
+		tmp = (atan2(cast(f64) z1, cast(f64) Y) * RADTODEG64 - 90.0);
+		angle.X = cast(T) tmp;
 
 		if (angle.X < 0)
 			angle.X += 360;
@@ -433,14 +432,13 @@ public:
 	this vector.  The calculation assumes the pole at (0,1,0) and
 	returns the angles in X and Y.
 	*/
-	vector3d!T getSphericalCoordinateAngles() const
-	{
+	vector3d!T getSphericalCoordinateAngles() const {
 		vector3d!T angle;
 		const f64 length = X * X + Y * Y + Z * Z;
 
 		if (length) {
 			if (X != 0) {
-				angle.Y = cast(T)(atan2(cast(f64)Z, cast(f64)X) * RADTODEG64);
+				angle.Y = cast(T)(atan2(cast(f64) Z, cast(f64) X) * RADTODEG64);
 			} else if (Z < 0)
 				angle.Y = 180;
 
@@ -457,8 +455,7 @@ public:
 	If you do not provide a direction, then the +Z axis (0, 0, 1) will be assumed to be forwards.
 	\return A direction vector calculated by rotating the forwards direction by the 3 Euler angles
 	(in degrees) represented by this vector. */
-	vector3d!T rotationToDirection(const ref vector3d!T forwards = vector3d!T(0, 0, 1)) const
-	{
+	vector3d!T rotationToDirection(const ref vector3d!T forwards = vector3d!T(0, 0, 1)) const {
 		const f64 cr = cos(DEGTORAD64 * X);
 		const f64 sr = sin(DEGTORAD64 * X);
 		const f64 cp = cos(DEGTORAD64 * Y);
@@ -469,21 +466,25 @@ public:
 		const f64 srsp = sr * sp;
 		const f64 crsp = cr * sp;
 
-		const f64 []pseudoMatrix = [
-				(cp * cy), (cp * sy), (-sp),
-				(srsp * cy - cr * sy), (srsp * sy + cr * cy), (sr * cp),
-				(crsp * cy + sr * sy), (crsp * sy - sr * cy), (cr * cp)];
+		const f64[] pseudoMatrix = [
+			(cp * cy), (cp * sy), (-sp),
+			(srsp * cy - cr * sy), (srsp * sy + cr * cy), (sr * cp),
+			(crsp * cy + sr * sy), (crsp * sy - sr * cy), (cr * cp)
+		];
 
 		return vector3d!T(
-				cast(T)(forwards.X * pseudoMatrix[0] +
-						forwards.Y * pseudoMatrix[3] +
-						forwards.Z * pseudoMatrix[6]),
-				cast(T)(forwards.X * pseudoMatrix[1] +
-						forwards.Y * pseudoMatrix[4] +
-						forwards.Z * pseudoMatrix[7]),
-				cast(T)(forwards.X * pseudoMatrix[2] +
-						forwards.Y * pseudoMatrix[5] +
-						forwards.Z * pseudoMatrix[8]));
+			cast(T)(
+				forwards.X * pseudoMatrix[0] +
+				forwards.Y * pseudoMatrix[3] +
+				forwards.Z * pseudoMatrix[6]),
+			cast(T)(
+				forwards.X * pseudoMatrix[1] +
+				forwards.Y * pseudoMatrix[4] +
+				forwards.Z * pseudoMatrix[7]),
+			cast(T)(
+				forwards.X * pseudoMatrix[2] +
+				forwards.Y * pseudoMatrix[5] +
+				forwards.Z * pseudoMatrix[8]));
 	}
 
 }
@@ -522,10 +523,10 @@ public:
 // }
 
 //! Typedef for a f32 3d vector.
-alias vector3df = vector3d!f32 ;
+alias vector3df = vector3d!f32;
 
 //! Typedef for an integer 3d vector.
-alias vector3di = vector3d!s32 ;
+alias vector3di = vector3d!s32;
 
 // //! Function multiplying a scalar and a vector component-wise.
 // template <class S, class T>
