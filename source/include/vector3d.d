@@ -26,7 +26,7 @@ import include.irr_math;
 	3) To hold three Euler rotations, where X is pitch, Y is yaw and Z is roll.
 */
 // template <class T>
-class vector3d(T)
+struct vector3d(T)
 {
     //! X coordinate of the vector
 	T X=0;
@@ -47,16 +47,20 @@ public:
              Z = nz;
             }
 	//! Constructor with the same value for all elements
-	explicit constexpr vector3d(T n) :
-			X(n), Y(n), Z(n) {}
+	this(T n) {
+			X = n; Y = n; Z = n; 
+            }
 	//! Array - vector conversion
-	constexpr vector3d(const std::array<T, 3> &arr) :
-			X(arr[0]), Y(arr[1]), Z(arr[2]) {}
+	this(const ref T[3] arr) {
+			X = arr[0]; 
+            Y = arr[1]; 
+            Z = arr[2];
+        }
 
-	template <class U>
-	constexpr static vector3d<T> from(const vector3d<U> &other)
+	// template <class U>
+	static vector3d!T from(U)(const ref vector3d!U other)
 	{
-		return {static_cast<T>(other.X), static_cast<T>(other.Y), static_cast<T>(other.Z)};
+		return vector3d!T(cast(T)(other.X), cast(T)(other.Y), cast(T)(other.Z));
 	}
 
 	// operators
