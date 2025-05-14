@@ -1,6 +1,7 @@
 module include.irr_math;
 
 import include.irr_types;
+import std.math.algebraic;
 import std.math.constants;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
@@ -85,25 +86,25 @@ pragma(inline, true) f64 degToRad(f64 degrees) {
 
 //! returns minimum of two values.
 // template <class T>
-pragma(inline, true) T min_(T)(const ref T a, const ref T b) const {
+pragma(inline, true) T min_(T)(const ref T a, const ref T b) {
     return a < b ? a : b;
 }
 
 //! returns minimum of three values.
 // template <class T>
-pragma(inline, true) T min_(T)(const ref T a, const ref T b, const ref T c) const {
+pragma(inline, true) T min_(T)(const ref T a, const ref T b, const ref T c) {
     return a < b ? min_(a, c) : min_(b, c);
 }
 
 //! returns maximum of two values.
 // template <class T>
-pragma(inline, true) T max_(T)(const ref T a, const ref T b) const {
+pragma(inline, true) T max_(T)(const ref T a, const ref T b) {
     return a < b ? b : a;
 }
 
 //! returns maximum of three values.
 // template <class T>
-pragma(inline, true) T max_(T)(const ref T a, const ref T b, const ref T c) const {
+pragma(inline, true) T max_(T)(const ref T a, const ref T b, const ref T c) {
     return a < b ? max_(b, c) : max_(a, c);
 }
 
@@ -122,7 +123,7 @@ pragma(inline, true) T lerp(T)(const ref T a, const ref T b, const f32 t) {
 
 //! clamps a value between low and high
 // template <class T>
-pragma(inline, true) T clamp(T)(const ref T value, const ref T low, const ref T high) const {
+pragma(inline, true) T clamp(T)(const ref T value, const ref T low, const ref T high) {
     return min_(max_(value, low), high);
 }
 
@@ -202,8 +203,8 @@ pragma(inline, true) bool equalsByUlp(f32 a, f32 b, int maxUlpDiff) {
     // by one integer number. Also works the other way round, an integer of 1 interpreted as float
     // is for example the smallest possible float number.
 
-    const FloatIntUnion32 fa(a);
-    const FloatIntUnion32 fb(b);
+    const FloatIntUnion32 fa = a;
+    const FloatIntUnion32 fb = b;
 
     // Different signs, we could maybe get difference to 0, but so close to 0 using epsilons is better.
     if (fa.sign() != fb.sign()) {
@@ -300,7 +301,7 @@ pragma(inline, true) u32 F32_AS_U32(f32 f) {
     return (*(cast(u32*)&(f)));
 }
 
-u32* F32_AS_U32_POINTER(f32 f) {
+u32* F32_AS_U32_POINTER(ref f32 f) {
     return (cast(u32*)&(f));
 }
 
