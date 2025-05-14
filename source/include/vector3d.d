@@ -487,23 +487,23 @@ public:
 	}
 
 	
-};
+}
 
 //! partial specialization for integer vectors
 // Implementer note: inline keyword needed due to template specialization for s32. Otherwise put specialization into a .cpp
-template <>
-inline vector3d<s32> vector3d<s32>::operator/(s32 val) const
-{
-	return core::vector3d<s32>(X / val, Y / val, Z / val);
-}
-template <>
-inline vector3d<s32> &vector3d<s32>::operator/=(s32 val)
-{
-	X /= val;
-	Y /= val;
-	Z /= val;
-	return *this;
-}
+// template <>
+// pragma(inli) vector3d<s32> vector3d<s32>::operator/(s32 val) const
+// {
+// 	return core::vector3d<s32>(X / val, Y / val, Z / val);
+// }
+// template <>
+// inline vector3d<s32> &vector3d<s32>::operator/=(s32 val)
+// {
+// 	X /= val;
+// 	Y /= val;
+// 	Z /= val;
+// 	return *this;
+// }
 
 template <>
 inline vector3d<s32> vector3d<s32>::getSphericalCoordinateAngles() const
