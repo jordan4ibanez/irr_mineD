@@ -89,106 +89,106 @@ f64 radToDeg(f64 radians)
 }
 
 //! returns minimum of two values.
-template <class T>
-inline const T &min_(const T &a, const T &b)
+// template <class T>
+  T min_(T)(const ref T a, const ref T b)const
 {
 	return a < b ? a : b;
 }
 
 //! returns minimum of three values.
-template <class T>
-inline const T &min_(const T &a, const T &b, const T &c)
+// template <class T>
+  T min_(T)(const ref T a, const ref T b, const ref T c)const
 {
 	return a < b ? min_(a, c) : min_(b, c);
 }
 
 //! returns maximum of two values.
-template <class T>
-inline const T &max_(const T &a, const T &b)
+// template <class T>
+  T max_(T)(const ref T a, const ref T b)const
 {
 	return a < b ? b : a;
 }
 
 //! returns maximum of three values.
-template <class T>
-inline const T &max_(const T &a, const T &b, const T &c)
+// template <class T>
+  T max_(T)(const ref T a, const ref T b, const ref T c)const
 {
 	return a < b ? max_(b, c) : max_(a, c);
 }
 
 //! returns abs of two values.
-template <class T>
-inline T abs_(const T &a)
+// template <class T>
+ T abs_(T)(const ref T a)
 {
-	return std::abs(a);
+	return abs(a);
 }
 
 //! returns linear interpolation of a and b with ratio t
 //! \return: a if t==0, b if t==1, and the linear interpolation else
-template <class T>
-inline T lerp(const T &a, const T &b, const f32 t)
+// template <class T>
+ T lerp(const ref T a, const ref T b, const f32 t)
 {
 	return (T)(a * (1.f - t)) + (b * t);
 }
 
 //! clamps a value between low and high
-template <class T>
-inline const T clamp(const T &value, const T &low, const T &high)
+// template <class T>
+  T clamp(const ref T value, const ref T low, const ref T high) const
 {
 	return min_(max_(value, low), high);
 }
 
-template <class T>
-inline T roundingError();
+// template <class T>
+//  T roundingError();
 
-template <>
-inline f32 roundingError()
+// template <>
+ f32 roundingError()
 {
 	return ROUNDING_ERROR_f32;
 }
 
-template <>
-inline f64 roundingError()
+// template <>
+ f64 roundingError()
 {
 	return ROUNDING_ERROR_f64;
 }
 
-template <class T>
-inline T relativeErrorFactor()
+// template <class T>
+ T relativeErrorFactor()
 {
 	return 1;
 }
 
-template <>
-inline f32 relativeErrorFactor()
+// template <>
+ f32 relativeErrorFactor()
 {
 	return 4;
 }
 
-template <>
-inline f64 relativeErrorFactor()
+// template <>
+ f64 relativeErrorFactor()
 {
 	return 8;
 }
 
 //! returns if a equals b, for types without rounding errors
-template <class T, std::enable_if_t<std::is_integral<T>::value, bool> = true>
-inline bool equals(const T a, const T b)
+// template <class T, std::enable_if_t<std::is_integral<T>::value, bool> = true>
+ bool equals(T)(const T a, const T b)
 {
 	return a == b;
 }
 
 //! returns if a equals b, taking possible rounding errors into account
-template <class T, std::enable_if_t<std::is_floating_point<T>::value, bool> = true>
-inline bool equals(const T a, const T b, const T tolerance = roundingError<T>())
+// template <class T, std::enable_if_t<std::is_floating_point<T>::value, bool> = true>
+ bool equals(T)(const T a, const T b, const T tolerance = roundingError())
 {
-	return std::abs(a - b) <= tolerance;
+	return abs(a - b) <= tolerance;
 }
 
 //! returns if a equals b, taking relative error in form of factor
 //! this particular function does not involve any division.
-template <class T>
-inline bool equalsRelative(const T a, const T b, const T factor = relativeErrorFactor<T>())
+// template <class T>
+ bool equalsRelative(T)(const T a, const T b, const T factor = relativeErrorFactor())
 {
 	// https://eagergames.wordpress.com/2017/04/01/fast-parallel-lines-and-vectors-test/
 
