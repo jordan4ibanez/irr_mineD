@@ -92,89 +92,33 @@ public:
 		return this;
 	}
 
-	// ref vector3d!T opOpAssign(string s : "+=")(const ref vector3d!T other) {
-	// 	X += other.X;
-	// 	Y += other.Y;
-	// 	Z += other.Z;
-	// 	return this;
-	// }
-
 	vector3d!T opBinary(string s : "+")(const T val) const {
 		return vector3d!T(X + val, Y + val, Z + val);
 	}
-
-	// ref vector3d!T opOpAssign(string s : "+=")(const T val) {
-	// 	X += val;
-	// 	Y += val;
-	// 	Z += val;
-	// 	return this;
-	// }
 
 	vector3d!T opBinary(string s : "-")(const ref vector3d!T other) const {
 		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z);
 	}
 
-	// ref vector3d!T opOpAssign(string s : "-=")(const ref vector3d!T other) {
-	// 	X -= other.X;
-	// 	Y -= other.Y;
-	// 	Z -= other.Z;
-	// 	return this;
-	// }
-
 	vector3d!T opBinary(string s : "-")(const T val) const {
 		return vector3d!T(X - val, Y - val, Z - val);
 	}
-
-	// ref vector3d!T opOpAssign(string s : "-=")(const T val) {
-	// 	X -= val;
-	// 	Y -= val;
-	// 	Z -= val;
-	// 	return this;
-	// }
 
 	vector3d!T opBinary(string s : "*")(const ref vector3d!T other) const {
 		return vector3d!T(X * other.X, Y * other.Y, Z * other.Z);
 	}
 
-	// ref vector3d!T opOpAssign(string s : "*=")(const ref vector3d!T other) {
-	// 	X *= other.X;
-	// 	Y *= other.Y;
-	// 	Z *= other.Z;
-	// 	return this;
-	// }
-
 	vector3d!T opBinary(string s : "*")(const T v) const {
 		return vector3d!T(X * v, Y * v, Z * v);
 	}
-
-	// ref vector3d!T opOpAssign(string s : "*=")(const T v) {
-	// 	X *= v;
-	// 	Y *= v;
-	// 	Z *= v;
-	// 	return this;
-	// }
 
 	vector3d!T opBinary(string s : "/")(const ref vector3d!T other) const {
 		return vector3d!T(X / other.X, Y / other.Y, Z / other.Z);
 	}
 
-	// ref vector3d!T opOpAssign(string s : "/=")(const ref vector3d!T other) {
-	// 	X /= other.X;
-	// 	Y /= other.Y;
-	// 	Z /= other.Z;
-	// 	return this;
-	// }
-
 	vector3d!T opBinary(string s : "/")(const T v) const {
 		return vector3d!T(X / v, Y / v, Z / v);
 	}
-
-	// ref vector3d!T opOpAssign(string s : "/=")(const T v) {
-	// 	X /= v;
-	// 	Y /= v;
-	// 	Z /= v;
-	// 	return this;
-	// }
 
 	ref T opIndex(u32 index) {
 		switch (index) {
