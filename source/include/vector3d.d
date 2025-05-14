@@ -152,7 +152,7 @@ public:
 		X /= v;
 		Y /= v;
 		Z /= v;
-		return *this;
+		return this;
 	}
 
 	ref T opIndex(u32 index)
@@ -210,7 +210,7 @@ public:
 		X = p.X;
 		Y = p.Y;
 		Z = p.Z;
-		return *this;
+		return this;
 	}
 
 	T[3] toArray() const { return [X, Y, Z]; }
@@ -271,7 +271,7 @@ public:
 	{
 		f64 length = X * X + Y * Y + Z * Z;
 		if (length == 0) // this check isn't an optimization but prevents getting NAN in the sqrt.
-			return *this;
+			return this;
 		length = reciprocal_squareroot(length);
 
 		X = (T)(X * length);
@@ -506,7 +506,7 @@ public:
 // 	X /= val;
 // 	Y /= val;
 // 	Z /= val;
-// 	return *this;
+// 	return this;
 // }
 
 // template <>
