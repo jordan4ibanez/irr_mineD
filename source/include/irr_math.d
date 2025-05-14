@@ -1,5 +1,6 @@
 module include.irr_math;
 
+public import std.algorithm.comparison : clamp;
 import include.irr_types;
 import std.algorithm.comparison;
 import std.math.algebraic;
@@ -100,12 +101,6 @@ alias abs_ = abs;
 // template <class T>
 pragma(inline, true) T lerp(T)(const ref T a, const ref T b, const f32 t) {
     return (T)(a * (1.f - t)) + (b * t);
-}
-
-//! clamps a value between low and high
-// template <class T>
-pragma(inline, true) T clamp(T)(const ref T value, const ref T low, const ref T high) {
-    return min_(max_(value, low), high);
 }
 
 // template <class T>
