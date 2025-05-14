@@ -1,7 +1,7 @@
 module include.vector3d;
 
+import include.irr_types;
 import IrrMath = include.irr_math;
-import include.irr_types ;
 import std.math.trigonometry;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
@@ -68,15 +68,15 @@ public:
 	// operators
 
 	// Negate.
-	vector3d!T opUnary(string s : "-")() const {
-		return vector3d!T(-X, -Y, -Z);
-	}
+	// vector3d!T opUnary(string s : "-")() const {
+	// 	return vector3d!T(-X, -Y, -Z);
+	// }
 
 	vector3d!T opUnary(string s : "+")(const ref vector3d!T other) const {
 		return vector3d!T(X + other.X, Y + other.Y, Z + other.Z);
 	}
 
-	ref vector3d!T opAssign(string s : "+=")(const ref vector3d!T other) {
+	ref vector3d!T opOpAssign(string s : "+=")(const ref vector3d!T other) {
 		X += other.X;
 		Y += other.Y;
 		Z += other.Z;
@@ -87,7 +87,7 @@ public:
 		return vector3d!T(X + val, Y + val, Z + val);
 	}
 
-	ref vector3d!T opAssign(string s : "+=")(const T val) {
+	ref vector3d!T opOpAssign(string s : "+=")(const T val) {
 		X += val;
 		Y += val;
 		Z += val;
@@ -98,18 +98,18 @@ public:
 		return vector3d!T(X - other.X, Y - other.Y, Z - other.Z);
 	}
 
-	ref vector3d!T opAssign(string s : "-=")(const ref vector3d!T other) {
+	ref vector3d!T opOpAssign(string s : "-=")(const ref vector3d!T other) {
 		X -= other.X;
 		Y -= other.Y;
 		Z -= other.Z;
 		return this;
 	}
 
-	vector3d!T opUnary(string s : "-")(const T val) const {
-		return vector3d!T(X - val, Y - val, Z - val);
-	}
+	// vector3d!T opUnary(string s : "-")(const T val) const {
+	// 	return vector3d!T(X - val, Y - val, Z - val);
+	// }
 
-	ref vector3d!T opAssign(string s : "-=")(const T val) {
+	ref vector3d!T opOpAssign(string s : "-=")(const T val) {
 		X -= val;
 		Y -= val;
 		Z -= val;
@@ -120,7 +120,7 @@ public:
 		return vector3d!T(X * other.X, Y * other.Y, Z * other.Z);
 	}
 
-	ref vector3d!T opAssign(string s : "*=")(const ref vector3d!T other) {
+	ref vector3d!T opOpAssign(string s : "*=")(const ref vector3d!T other) {
 		X *= other.X;
 		Y *= other.Y;
 		Z *= other.Z;
@@ -131,7 +131,7 @@ public:
 		return vector3d!T(X * v, Y * v, Z * v);
 	}
 
-	ref vector3d!T opAssign(string s : "*=")(const T v) {
+	ref vector3d!T opOpAssign(string s : "*=")(const T v) {
 		X *= v;
 		Y *= v;
 		Z *= v;
@@ -142,7 +142,7 @@ public:
 		return vector3d!T(X / other.X, Y / other.Y, Z / other.Z);
 	}
 
-	ref vector3d!T opAssign(string s : "/=")(const ref vector3d!T other) {
+	ref vector3d!T opOpAssign(string s : "/=")(const ref vector3d!T other) {
 		X /= other.X;
 		Y /= other.Y;
 		Z /= other.Z;
@@ -153,7 +153,7 @@ public:
 		return vector3d!T(X / v, Y / v, Z / v);
 	}
 
-	ref vector3d!T opAssign(string s : "/=")(const T v) {
+	ref vector3d!T opOpAssign(string s : "/=")(const T v) {
 		X /= v;
 		Y /= v;
 		Z /= v;
@@ -207,7 +207,8 @@ public:
 	\param other Vector to compare with.
 	\return True if the two vector are (almost) equal, else false. */
 	bool equals(const ref vector3d!T other) const {
-		return IrrMath.equals(X, other.X) && IrrMath.equals(Y, other.Y) && IrrMath.equals(Z, other.Z);
+		return IrrMath.equals(X, other.X) && IrrMath.equals(Y, other.Y) && IrrMath.equals(Z, other
+				.Z);
 	}
 
 	ref vector3d!T set(const T nx, const T ny, const T nz) {
