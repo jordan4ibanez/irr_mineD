@@ -1,6 +1,6 @@
 module include.irr_math;
 
-import std.math.trigonometry;
+import std.math.constants;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -22,6 +22,8 @@ import std.math.trigonometry;
 
 //! Rounding error constant often used when comparing f32 values.
 
+
+
 static immutable f32 ROUNDING_ERROR_f32 = 0.000001f;
 static immutable f64 ROUNDING_ERROR_f64 = 0.00000001;
 
@@ -30,31 +32,31 @@ static immutable f64 ROUNDING_ERROR_f64 = 0.00000001;
 // #endif
 
 //! Constant for PI.
-// static immutable f32 PI = PI;
+static immutable f32 PI = PI; // <- Incredible
 
-#ifdef PI64 // make sure we don't collide with a define
-#undef PI64
-#endif
+// #ifdef PI64 // make sure we don't collide with a define
+// #undef PI64
+// #endif
 //! Constant for 64bit PI.
-constexpr f64 PI64 = M_PI;
+static immutable f64 PI64 = PI;
 
 //! 32bit Constant for converting from degrees to radians
-constexpr f32 DEGTORAD = PI / 180.0f;
+static immutable f32 DEGTORAD = PI / 180.0f;
 
 //! 32bit constant for converting from radians to degrees (formally known as GRAD_PI)
-constexpr f32 RADTODEG = 180.0f / PI;
+static immutable f32 RADTODEG = 180.0f / PI;
 
 //! 64bit constant for converting from degrees to radians (formally known as GRAD_PI2)
-constexpr f64 DEGTORAD64 = PI64 / 180.0;
+static immutable f64 DEGTORAD64 = PI64 / 180.0;
 
 //! 64bit constant for converting from radians to degrees
-constexpr f64 RADTODEG64 = 180.0 / PI64;
+static immutable f64 RADTODEG64 = 180.0 / PI64;
 
 //! Utility function to convert a radian value to degrees
 /** Provided as it can be clearer to write radToDeg(X) than RADTODEG * X
 \param radians The radians value to convert to degrees.
 */
-inline constexpr f32 radToDeg(f32 radians)
+  f32 radToDeg(f32 radians) 
 {
 	return RADTODEG * radians;
 }
@@ -63,7 +65,7 @@ inline constexpr f32 radToDeg(f32 radians)
 /** Provided as it can be clearer to write radToDeg(X) than RADTODEG * X
 \param radians The radians value to convert to degrees.
 */
-inline constexpr f64 radToDeg(f64 radians)
+f64 radToDeg(f64 radians)
 {
 	return RADTODEG64 * radians;
 }
@@ -72,7 +74,7 @@ inline constexpr f64 radToDeg(f64 radians)
 /** Provided as it can be clearer to write degToRad(X) than DEGTORAD * X
 \param degrees The degrees value to convert to radians.
 */
-inline constexpr f32 degToRad(f32 degrees)
+ f32 degToRad(f32 degrees)
 {
 	return DEGTORAD * degrees;
 }
@@ -81,7 +83,7 @@ inline constexpr f32 degToRad(f32 degrees)
 /** Provided as it can be clearer to write degToRad(X) than DEGTORAD * X
 \param degrees The degrees value to convert to radians.
 */
-inline constexpr f64 degToRad(f64 degrees)
+ f64 degToRad(f64 degrees)
 {
 	return DEGTORAD64 * degrees;
 }
