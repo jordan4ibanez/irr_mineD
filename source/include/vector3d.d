@@ -67,6 +67,11 @@ public:
 
 	// operators
 
+	// Negate.
+	vector3d!T opUnary(string s : "-")() const {
+		return vector3d!T(-X, -Y, -Z);
+	}
+
 	ref vector3d!T opOpAssign(string op)(const T value) {
 		// This is compiler code. 
 		// Give vector3d even more operators than C++.
