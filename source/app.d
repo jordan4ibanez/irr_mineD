@@ -7,6 +7,7 @@ void main() {
     vector3d!float test;
     test += vector3d!float(1, 2, 3);
     test *= [1, 2, 3];
-    test += 5;
+    test = test + 1;
+    test = test + [1,1,1];
     writeln(test);
 }

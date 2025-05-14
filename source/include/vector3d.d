@@ -123,10 +123,6 @@ public:
 	vector3d!T opBinary(string op, U)(const U value) const {
 		// This is compiler code. 
 		// Give vector3d even more operators than C++.
-		pragma(msg, "=====");
-		pragma(msg, op);
-		pragma(msg, U);
-
 		static if (__traits(isSame, U, vector3d)) {
 			mixin("return vector3d!T(X " ~ op ~ " value.X, Y " ~ op ~ " value.Y, Z " ~ op ~ " value.Z);");
 		} else static if (isArray!U) {
