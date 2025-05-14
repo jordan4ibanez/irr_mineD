@@ -1,5 +1,7 @@
 module irr_types;
 
+import std.format;
+
 /// 8 bit unsigned variable.
 alias u8 = ubyte;
 
@@ -35,3 +37,14 @@ alias f32 = float;
 /** This is a typedef for double, it ensures portability of the engine. */
 /// 64 bit floating point variable.
 alias f64 = double;
+
+/// Defines for snprintf_irr because snprintf method does not match the ISO C
+/// standard on Windows platforms.
+/// We want int snprintf_irr(char *str, size_t size, const char *format, ...);
+alias snprintf_irr = format;
+
+/// Type name for character type used by the file system (legacy).
+alias fschar_t = char;
+string _IRR_TEXT(string X) {
+    return X;
+}
