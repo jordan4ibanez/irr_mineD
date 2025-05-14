@@ -144,8 +144,10 @@ public:
 		Z /= other.Z;
 		return this;
 	}
-	vector3d<T> operator/(const T v) const { return vector3d<T>(X / v, Y / v, Z / v); }
-	vector3d<T> &operator/=(const T v)
+	vector3d!T opUnary(string s: "/")(const T v) const { 
+        return vector3d!T(X / v, Y / v, Z / v); 
+    }
+	ref vector3d!T opAssign(string s: "/=")(const T v)
 	{
 		X /= v;
 		Y /= v;
@@ -153,7 +155,7 @@ public:
 		return *this;
 	}
 
-	T &operator[](u32 index)
+	ref T opIndex(u32 index)
 	{
 		switch (index) {
 			case 0: return X;
@@ -163,7 +165,7 @@ public:
 		}
 	}
 
-	const T &operator[](u32 index) const
+	 T opIndex(u32 index) const
 	{
 		switch (index) {
 			case 0: return X;
