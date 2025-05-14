@@ -67,15 +67,6 @@ public:
 
 	// operators
 
-	// Negate.
-	vector3d!T opBinary(string s : "-")() const {
-		return vector3d!T(-X, -Y, -Z);
-	}
-
-	vector3d!T opBinary(string s : "+")(const ref vector3d!T other) const {
-		return vector3d!T(X + other.X, Y + other.Y, Z + other.Z);
-	}
-
 	ref vector3d!T opOpAssign(string op)(const T value) {
 		// This is compiler code. 
 		// Give vector3d even more operators than C++.
@@ -90,6 +81,15 @@ public:
 		}
 
 		return this;
+	}
+
+	// Negate.
+	vector3d!T opUnary(string s : "-")() const {
+		return vector3d!T(-X, -Y, -Z);
+	}
+
+	vector3d!T opBinary(string s : "+")(const ref vector3d!T other) const {
+		return vector3d!T(X + other.X, Y + other.Y, Z + other.Z);
 	}
 
 	vector3d!T opBinary(string s : "+")(const T val) const {
