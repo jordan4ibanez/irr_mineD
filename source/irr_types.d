@@ -49,3 +49,9 @@ alias fschar_t = char;
 string _IRR_TEXT(string X) {
     return X;
 }
+
+/// Invokes undefined behavior for unreachable code optimization
+/// Note: an assert(false) is included first to catch this in debug builds
+void IRR_CODE_UNREACHABLE() {
+    assert(false);
+}
