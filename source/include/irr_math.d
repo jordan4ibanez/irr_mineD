@@ -1,6 +1,7 @@
 module include.irr_math;
 
 import include.irr_types;
+import std.algorithm.comparison;
 import std.math.algebraic;
 import std.math.constants;
 import std.math.rounding;
@@ -86,34 +87,13 @@ pragma(inline, true) f64 degToRad(f64 degrees) {
 }
 
 //! returns minimum of two values.
-// template <class T>
-pragma(inline, true) T min_(T)(const ref T a, const ref T b) {
-    return a < b ? a : b;
-}
+alias min_ = min;
 
-//! returns minimum of three values.
-// template <class T>
-pragma(inline, true) T min_(T)(const ref T a, const ref T b, const ref T c) {
-    return a < b ? min_(a, c) : min_(b, c);
-}
-
-//! returns maximum of two values.
-// template <class T>
-pragma(inline, true) T max_(T)(const ref T a, const ref T b) {
-    return a < b ? b : a;
-}
-
-//! returns maximum of three values.
-// template <class T>
-pragma(inline, true) T max_(T)(const ref T a, const ref T b, const ref T c) {
-    return a < b ? max_(b, c) : max_(a, c);
-}
+//! returns maximum of any values.
+alias max_ = max;
 
 //! returns abs of two values.
-// template <class T>
-pragma(inline, true) T abs_(T)(const ref T a) {
-    return abs(a);
-}
+alias abs_ = abs;
 
 //! returns linear interpolation of a and b with ratio t
 //! \return: a if t==0, b if t==1, and the linear interpolation else
