@@ -1,7 +1,7 @@
 module include.dimension_2d;
 
-import include.irr_types;
 import include.irr_math;
+import include.irr_types;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -21,131 +21,119 @@ import include.irr_math;
 
 //! Specifies a 2 dimensional size.
 // template <class T>
-struct dimension2d(T)
-{
-    public:
+struct dimension2d(T) {
+public:
     //! Width of the dimension.
-	T Width = 0;
-	//! Height of the dimension.
-	T Height = 0;
+    T Width = 0;
+    //! Height of the dimension.
+    T Height = 0;
 
-	// //! Default constructor for empty dimension
-	// constexpr dimension2d() :
-	// 		Width(0), Height(0) {}
+    // //! Default constructor for empty dimension
+    // constexpr dimension2d() :
+    // 		Width(0), Height(0) {}
 
-	//! Constructor with width and height
-	this(const ref T width, const ref T height)  {
-        Width = width; Height = height;
+    //! Constructor with width and height
+    this(const ref T width, const ref T height) {
+        Width = width;
+        Height = height;
     }
 
     // todo: fix this
-	// this(const ref vector2d!T other){
+    // this(const ref vector2d!T other){
 
     // } // Defined in vector2d.h
 
-	//! Use this constructor only where you are sure that the conversion is valid.
-	// template <class U>
-	 this(U)(const ref dimension2d!U other) {
-			Width = cast(T)other.Width; Height = cast(T)other.Height;
-	
-	}
+    //! Use this constructor only where you are sure that the conversion is valid.
+    // template <class U>
+    this(U)(const ref dimension2d!U other) {
+        Width = cast(T) other.Width;
+        Height = cast(T) other.Height;
 
-	// template <class U>
-	ref dimension2d!T opAssign(U)(const ref dimension2d!U other)
-	{
-		Width = cast(T)other.Width;
-		Height = cast(T)other.Height;
-		return this;
-	}
+    }
 
-	//! Equality operator
-	bool opEquals(const ref dimension2d!T other) const
-	{
-		return equals(Width, other.Width) &&
-			   equals(Height, other.Height);
-	}
+    // template <class U>
+    ref dimension2d!T opAssign(U)(const ref dimension2d!U other) {
+        Width = cast(T) other.Width;
+        Height = cast(T) other.Height;
+        return this;
+    }
 
+    //! Equality operator
+    bool opEquals(const ref dimension2d!T other) const {
+        return equals(Width, other.Width) &&
+            equals(Height, other.Height);
+    }
 
     //todo: fix this
-	// bool opEquals(const vector2d<T> &other) const; // Defined in vector2d.h
+    // bool opEquals(const vector2d<T> &other) const; // Defined in vector2d.h
 
-	// bool operator!=(const vector2d<T> &other) const
-	// {
-	// 	return !(*this == other);
-	// }
+    // bool operator!=(const vector2d<T> &other) const
+    // {
+    // 	return !(*this == other);
+    // }
 
-	//! Set to new values
-	ref dimension2d!T set(const ref T width, const ref T height)
-	{
-		Width = width;
-		Height = height;
-		return this;
-	}
+    //! Set to new values
+    ref dimension2d!T set(const ref T width, const ref T height) {
+        Width = width;
+        Height = height;
+        return this;
+    }
 
-	//! Divide width and height by scalar
-	ref dimension2d!T opAssign(string s : "/=")(const ref T scale)
-	{
-		Width /= scale;
-		Height /= scale;
-		return this;
-	}
+    //! Divide width and height by scalar
+    ref dimension2d!T opAssign(string s : "/=")(const ref T scale) {
+        Width /= scale;
+        Height /= scale;
+        return this;
+    }
 
-	//! Divide width and height by scalar
-	dimension2d!T opUnary(string s : "/")(const ref T scale) const
-	{
-		return dimension2d!T(Width / scale, Height / scale);
-	}
+    //! Divide width and height by scalar
+    dimension2d!T opUnary(string s : "/")(const ref T scale) const {
+        return dimension2d!T(Width / scale, Height / scale);
+    }
 
-	//! Multiply width and height by scalar
-	ref dimension2d!T opAssign(string s : "*=")(const ref T scale)
-	{
-		Width *= scale;
-		Height *= scale;
-		return this;
-	}
+    //! Multiply width and height by scalar
+    ref dimension2d!T opAssign(string s : "*=")(const ref T scale) {
+        Width *= scale;
+        Height *= scale;
+        return this;
+    }
 
-	//! Multiply width and height by scalar
-	dimension2d!T opUnary(string s : "*")(const ref T scale) const
-	{
-		return dimension2d!T(Width * scale, Height * scale);
-	}
+    //! Multiply width and height by scalar
+    dimension2d!T opUnary(string s : "*")(const ref T scale) const {
+        return dimension2d!T(Width * scale, Height * scale);
+    }
 
-	//! Add another dimension to this one.
-	ref dimension2d!T opAssign(string s : "+=")(const ref dimension2d!T other)
-	{
-		Width += other.Width;
-		Height += other.Height;
-		return this;
-	}
+    //! Add another dimension to this one.
+    ref dimension2d!T opAssign(string s : "+=")(const ref dimension2d!T other) {
+        Width += other.Width;
+        Height += other.Height;
+        return this;
+    }
 
-	//! Add two dimensions
-	dimension2d!T opUnary(string s : "+")(const ref dimension2d!T other) const
-	{
-		return dimension2d!T(Width + other.Width, Height + other.Height);
-	}
+    //! Add two dimensions
+    dimension2d!T opUnary(string s : "+")(const ref dimension2d!T other) const {
+        return dimension2d!T(Width + other.Width, Height + other.Height);
+    }
 
-	//! Subtract a dimension from this one
-	ref dimension2d!T opAssign(string s : "-=")(const ref dimension2d!T other)
-	{
-		Width -= other.Width;
-		Height -= other.Height;
-		return this;
-	}
+    //! Subtract a dimension from this one
+    ref dimension2d!T opAssign(string s : "-=")(const ref dimension2d!T other) {
+        Width -= other.Width;
+        Height -= other.Height;
+        return this;
+    }
 
-	//! Subtract one dimension from another
-	dimension2d!T opUnary(string s : "-")(const ref dimension2d!T other) const
-	{
-		return dimension2d!T(Width - other.Width, Height - other.Height);
-	}
+    //! Subtract one dimension from another
+    dimension2d!T opUnary(string s : "-")(const ref dimension2d!T other) const {
+        return dimension2d!T(Width - other.Width, Height - other.Height);
+    }
 
-	//! Get area
-	T getArea() const
-	{
-		return Width * Height;
-	}
+    //! Get area
+    T getArea() const {
+        return Width * Height;
+    }
 
-	//! Get the optimal size according to some properties
-	/** This is a function often used for texture dimension
+    //! Get the optimal size according to some properties
+    /** This is a function often used for texture dimension
 	calculations. The function returns the next larger or
 	smaller dimension which is a power-of-two dimension
 	(2^n,2^m) and/or square (Width=Height).
@@ -159,66 +147,64 @@ struct dimension2d(T)
 	clamped to maxValue
 	\return The optimal dimension under the given
 	constraints. */
-	dimension2d!T getOptimalSize(
-			bool requirePowerOfTwo = true,
-			bool requireSquare = false,
-			bool larger = true,
-			u32 maxValue = 0) const
-	{
-		u32 i = 1;
-		u32 j = 1;
-		if (requirePowerOfTwo) {
-			while (i < cast(u32)Width)
-				i <<= 1;
-			if (!larger && i != 1 && i != cast(u32)Width)
-				i >>= 1;
-			while (j < cast(u32)Height)
-				j <<= 1;
-			if (!larger && j != 1 && j != cast(u32)Height)
-				j >>= 1;
-		} else {
-			i = cast(u32)Width;
-			j = cast(u32)Height;
-		}
+    dimension2d!T getOptimalSize(
+        bool requirePowerOfTwo = true,
+        bool requireSquare = false,
+        bool larger = true,
+        u32 maxValue = 0) const {
+        u32 i = 1;
+        u32 j = 1;
+        if (requirePowerOfTwo) {
+            while (i < cast(u32) Width)
+                i <<= 1;
+            if (!larger && i != 1 && i != cast(u32) Width)
+                i >>= 1;
+            while (j < cast(u32) Height)
+                j <<= 1;
+            if (!larger && j != 1 && j != cast(u32) Height)
+                j >>= 1;
+        } else {
+            i = cast(u32) Width;
+            j = cast(u32) Height;
+        }
 
-		if (requireSquare) {
-			if ((larger && (i > j)) || (!larger && (i < j)))
-				j = i;
-			else
-				i = j;
-		}
+        if (requireSquare) {
+            if ((larger && (i > j)) || (!larger && (i < j)))
+                j = i;
+            else
+                i = j;
+        }
 
-		if (maxValue > 0 && i > maxValue)
-			i = maxValue;
+        if (maxValue > 0 && i > maxValue)
+            i = maxValue;
 
-		if (maxValue > 0 && j > maxValue)
-			j = maxValue;
+        if (maxValue > 0 && j > maxValue)
+            j = maxValue;
 
-		return dimension2d!T(cast(T)i, cast(T)j);
-	}
+        return dimension2d!T(cast(T) i, cast(T) j);
+    }
 
-	//! Get the interpolated dimension
-	/** \param other Other dimension to interpolate with.
+    //! Get the interpolated dimension
+    /** \param other Other dimension to interpolate with.
 	\param d Value between 0.0f and 1.0f. d=0 returns other, d=1 returns this, values between interpolate.
 	\return Interpolated dimension. */
-	dimension2d!T getInterpolated(const ref dimension2d!T other, f32 d) const
-	{
-		f32 inv = (1.0f - d);
-		return dimension2d!T(cast(T)(other.Width * inv + Width * d), cast(T)(other.Height * inv + Height * d));
-	}
+    dimension2d!T getInterpolated(const ref dimension2d!T other, f32 d) const {
+        f32 inv = (1.0f - d);
+        return dimension2d!T(cast(T)(other.Width * inv + Width * d), cast(T)(
+                other.Height * inv + Height * d));
+    }
 
-	
 }
 
 //! Typedef for an f32 dimension.
-alias  dimension2df = dimension2d!f32;
+alias dimension2df = dimension2d!f32;
 //! Typedef for an unsigned integer dimension.
-alias dimension2du = dimension2d!u32 ;
+alias dimension2du = dimension2d!u32;
 
 //! Typedef for an integer dimension.
 /** There are few cases where negative dimensions make sense. Please consider using
 	dimension2du instead. */
-alias dimension2di = dimension2d!s32 ;
+alias dimension2di = dimension2d!s32;
 
 // } // end namespace core
 // } // end namespace irr
