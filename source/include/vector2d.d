@@ -65,7 +65,10 @@ struct vector2d(T)
 
 	// operators
 
-	vector2d<T> operator-() const { return vector2d<T>(-X, -Y); }
+    // Negate.
+	vector2d!T opUnary(string s : "-")() const {
+        return vector2d!T(-X, -Y); 
+    }
 
 	vector2d<T> &operator=(const dimension2d<T> &other)
 	{
