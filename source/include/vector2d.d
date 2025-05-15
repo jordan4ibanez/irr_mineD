@@ -1,17 +1,19 @@
 module include.vector2d;
 
+import IrrMath = include.irr_math;
+
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#pragma once
+// #pragma once
 
-#include "irrMath.h"
-#include "dimension2d.h"
+// #include "irrMath.h"
+// #include "dimension2d.h"
 
-#include <functional>
-#include <array>
-#include <cassert>
+// #include <functional>
+// #include <array>
+// #include <cassert>
 
 // namespace irr
 // {
@@ -21,7 +23,7 @@ module include.vector2d;
 //! 2d vector template class with lots of operators and methods.
 /** As of Irrlicht 1.6, this class supersedes position2d, which should
 	be considered deprecated. */
-template <class T>
+// template <class T>
 class vector2d
 {
 public:
