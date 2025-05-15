@@ -207,12 +207,12 @@ struct vector2d(T) {
     }
 
     //! check if this vector is parallel to another vector
-    bool nearlyParallel(const ref vector2d!T other, const T factor = relativeErrorFactor!T()) const {
+    bool nearlyParallel(const ref vector2d!T other, const T factor = IrrMath.relativeErrorFactor!T()) const {
         // https://eagergames.wordpress.com/2017/04/01/fast-parallel-lines-and-vectors-test/
         // if a || b then  a.x/a.y = b.x/b.y (similar triangles)
         // if a || b then either both x are 0 or both y are 0.
 
-        return equalsRelative(X * other.Y, other.X * Y, factor) &&  // a bit counterintuitive, but makes sure  that
+        return IrrMath.equalsRelative(X * other.Y, other.X * Y, factor) &&  // a bit counterintuitive, but makes sure  that
             // only y or only x are 0, and at same time deals
             // with the case where one vector is zero vector.
             (X * other.X + Y * other.Y) != 0;
