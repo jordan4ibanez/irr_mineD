@@ -57,10 +57,10 @@ struct vector2d(T)
         X = arr[0]; Y = arr[1];
     }
 
-	template <class U>
-	constexpr static vector2d<T> from(const vector2d<U> &other)
+	// template <class U>
+	static vector2d!T from(U)(const ref vector2d!U other)
 	{
-		return {static_cast<T>(other.X), static_cast<T>(other.Y)};
+		return vector2d(cast(T)(other.X), cast(T)(other.Y));
 	}
 
 	// operators
