@@ -2,7 +2,6 @@ module include.vector3d;
 
 import include.irr_types;
 import IrrMath = include.irr_math;
-import std.math.trigonometry;
 import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
@@ -279,8 +278,8 @@ public:
 	\param center The center of the rotation. */
     void rotateXZBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
         degrees *= IrrMath.DEGTORAD64;
-        f64 cs = cos(degrees);
-        f64 sn = sin(degrees);
+        f64 cs = IrrMath.cos(degrees);
+        f64 sn = IrrMath.sin(degrees);
         X -= center.X;
         Z -= center.Z;
         set(cast(T)(X * cs - Z * sn), Y, cast(T)(X * sn + Z * cs));
@@ -293,8 +292,8 @@ public:
 	\param center: The center of the rotation. */
     void rotateXYBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
         degrees *= IrrMath.DEGTORAD64;
-        f64 cs = cos(degrees);
-        f64 sn = sin(degrees);
+        f64 cs = IrrMath.cos(degrees);
+        f64 sn = IrrMath.sin(degrees);
         X -= center.X;
         Y -= center.Y;
         set(cast(T)(X * cs - Y * sn), cast(T)(X * sn + Y * cs), Z);
@@ -307,8 +306,8 @@ public:
 	\param center: The center of the rotation. */
     void rotateYZBy(f64 degrees, const inout vector3d!T center = vector3d!T()) {
         degrees *= IrrMath.DEGTORAD64;
-        f64 cs = cos(degrees);
-        f64 sn = sin(degrees);
+        f64 cs = IrrMath.cos(degrees);
+        f64 sn = IrrMath.sin(degrees);
         Z -= center.Z;
         Y -= center.Y;
         set(X, cast(T)(Y * cs - Z * sn), cast(T)(Y * sn + Z * cs));
@@ -376,7 +375,7 @@ public:
         vector3d!T angle;
 
         // tmp avoids some precision troubles on some compilers when working with T=s32
-        f64 tmp = (atan2(cast(f64) X, cast(f64) Z) * IrrMath.RADTODEG64);
+        f64 tmp = (IrrMath.atan2(cast(f64) X, cast(f64) Z) * IrrMath.RADTODEG64);
         angle.Y = cast(T) tmp;
 
         if (angle.Y < 0)
@@ -386,7 +385,7 @@ public:
 
         const f64 z1 = IrrMath.squareroot(X * X + Z * Z);
 
-        tmp = (atan2(cast(f64) z1, cast(f64) Y) * IrrMath.RADTODEG64 - 90.0);
+        tmp = (IrrMath.atan2(cast(f64) z1, cast(f64) Y) * IrrMath.RADTODEG64 - 90.0);
         angle.X = cast(T) tmp;
 
         if (angle.X < 0)
@@ -408,11 +407,11 @@ public:
 
         if (length) {
             if (X != 0) {
-                angle.Y = cast(T)(atan2(cast(f64) Z, cast(f64) X) * IrrMath.RADTODEG64);
+                angle.Y = cast(T)(IrrMath.atan2(cast(f64) Z, cast(f64) X) * IrrMath.RADTODEG64);
             } else if (Z < 0)
                 angle.Y = 180;
 
-            angle.X = cast(T)(acos(Y * IrrMath.reciprocal_squareroot(length)) * IrrMath.RADTODEG64);
+            angle.X = cast(T)(IrrMath.acos(Y * IrrMath.reciprocal_squareroot(length)) * IrrMath.RADTODEG64);
         }
         return angle;
     }
@@ -426,12 +425,12 @@ public:
 	\return A direction vector calculated by rotating the forwards direction by the 3 Euler angles
 	(in degrees) represented by this vector. */
     vector3d!T rotationToDirection(const inout vector3d!T forwards = vector3d!T(0, 0, 1)) const {
-        const f64 cr = cos(IrrMath.DEGTORAD64 * X);
-        const f64 sr = sin(IrrMath.DEGTORAD64 * X);
-        const f64 cp = cos(IrrMath.DEGTORAD64 * Y);
-        const f64 sp = sin(IrrMath.DEGTORAD64 * Y);
-        const f64 cy = cos(IrrMath.DEGTORAD64 * Z);
-        const f64 sy = sin(IrrMath.DEGTORAD64 * Z);
+        const f64 cr = IrrMath.cos(IrrMath.DEGTORAD64 * X);
+        const f64 sr = IrrMath.sin(IrrMath.DEGTORAD64 * X);
+        const f64 cp = IrrMath.cos(IrrMath.DEGTORAD64 * Y);
+        const f64 sp = IrrMath.sin(IrrMath.DEGTORAD64 * Y);
+        const f64 cy = IrrMath.cos(IrrMath.DEGTORAD64 * Z);
+        const f64 sy = IrrMath.sin(IrrMath.DEGTORAD64 * Z);
 
         const f64 srsp = sr * sp;
         const f64 crsp = cr * sp;
