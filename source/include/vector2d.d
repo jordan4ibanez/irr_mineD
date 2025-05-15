@@ -70,6 +70,24 @@ struct vector2d(T)
         return vector2d!T(-X, -Y); 
     }
 
+    // Assignment.
+    void opAssign(U)(U value) {
+        // This is (half) compiler code. 
+        // Give vector2d even more assignments than C++.
+        static if (__traits(isSame, U, vector2d)) {
+            this.X = value.X;
+            this.Y = value.Y;
+        } else static if (isArray!U) {
+            static assert(isNumeric!(typeof(value[0])));
+            this.X = value[0];
+            this.Y = value[1];
+        } else {
+            static assert(isNumeric!(typeof(value)));
+            this.X = value;
+            this.Y = value;
+        }
+    }
+
 	vector2d<T> &operator=(const dimension2d<T> &other)
 	{
 		X = other.Width;
