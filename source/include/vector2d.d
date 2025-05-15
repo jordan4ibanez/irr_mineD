@@ -1,5 +1,6 @@
 module include.vector2d;
 
+import include.dimension_2d;
 import include.irr_types;
 import IrrMath = include.irr_math;
 import std.traits;
@@ -51,10 +52,11 @@ struct vector2d(T) {
         Y = n;
     }
 
-    // fixme: implement this
-    // this(const ref dimension2d!T other) {
-    //     X = other.Width; Y = other.Height;
-    // }
+    //! Construct from a dimension2d.
+    this(const ref dimension2d!T other) {
+        X = other.Width;
+        Y = other.Height;
+    }
 
     this(const ref T[2] arr) {
         X = arr[0];
