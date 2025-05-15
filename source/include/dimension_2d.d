@@ -1,25 +1,13 @@
 module include.dimension_2d;
 
-import IrrMath = include.irr_math;
 import include.irr_types;
 import include.vector2d;
+import IrrMath = include.irr_math;
 import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
-
-// #pragma once
-
-// #include "irrTypes.h"
-// #include "irrMath.h" // for irr::core::equals()
-
-// namespace irr
-// {
-// namespace core
-// {
-// template <class T>
-// class vector2d;
 
 //! Specifies a 2 dimensional size.
 // template <class T>
@@ -247,6 +235,3 @@ alias dimension2du = dimension2d!u32;
 /** There are few cases where negative dimensions make sense. Please consider using
 	dimension2du instead. */
 alias dimension2di = dimension2d!s32;
-
-// } // end namespace core
-// } // end namespace irr
