@@ -95,18 +95,15 @@ struct vector2d(T)
         static if (__traits(isSame, U, vector2d)) {
             mixin("X " ~ op ~ "= value.X;");
             mixin("Y " ~ op ~ "= value.Y;");
-            mixin("Z " ~ op ~ "= value.Z;");
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
             assert(value.length == 2, "Cannot add array. Length is not 2.");
             mixin("X " ~ op ~ "= value[0];");
             mixin("Y " ~ op ~ "= value[1];");
-            mixin("Z " ~ op ~ "= value[2];");
         } else {
             static assert(isNumeric!(typeof(value)));
             mixin("X " ~ op ~ "= value;");
             mixin("Y " ~ op ~ "= value;");
-            mixin("Z " ~ op ~ "= value;");
         }
 
         return this;
