@@ -102,17 +102,13 @@ pragma(inline, true) f64 roundingError(T = f64)() {
 
 // template <class T>
 pragma(inline, true) T relativeErrorFactor(T)() {
-    return 1;
-}
-
-// template <>
-pragma(inline, true) f32 relativeErrorFactor(T = f32)() {
-    return 4;
-}
-
-// template <>
-pragma(inline, true) f64 relativeErrorFactor(T = f64)() {
-    return 8;
+    static if (__traits(isSame, T, f32)) {
+        return 4;
+    } else static if (__traits(isSame, T, f64)) {
+        return 8;
+    } else {
+        return 1;
+    }
 }
 
 //! returns if a equals b, for types without rounding errors
