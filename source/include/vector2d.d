@@ -1,7 +1,7 @@
 module include.vector2d;
 
-import IrrMath = include.irr_math;
 import include.irr_types;
+import IrrMath = include.irr_math;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -444,10 +444,10 @@ struct vector2d(T)
 	\param d Interpolation value between 0.0f (all vector b) and 1.0f (all vector a)
 	Note that this is the opposite direction of interpolation to getInterpolated_quadratic()
 	*/
-	vector2d<T> &interpolate(const vector2d<T> &a, const vector2d<T> &b, f64 d)
+	ref vector2d!T interpolate(const ref vector2d!T a, const ref vector2d!T b, f64 d)
 	{
-		X = (T)((f64)b.X + ((a.X - b.X) * d));
-		Y = (T)((f64)b.Y + ((a.Y - b.Y) * d));
+		X = (T)(cast(f64)b.X + ((a.X - b.X) * d));
+		Y = (T)(cast(f64)b.Y + ((a.Y - b.Y) * d));
 		return *this;
 	}
 
@@ -455,10 +455,10 @@ struct vector2d(T)
 };
 
 //! Typedef for f32 2d vector.
-typedef vector2d<f32> vector2df;
+alias vector2df = vector2d!f32 ;
 
 //! Typedef for integer 2d vector.
-typedef vector2d<s32> vector2di;
+alias vector2di = vector2d!s32 ;
 
 // template <class S, class T>
 // vector2d<T> operator*(const S scalar, const vector2d<T> &vector)
