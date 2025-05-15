@@ -73,11 +73,11 @@ struct dimension2d(T) {
     //! Equality operator
     bool opEquals(U)(const ref U other) const {
         static if (__traits(isSame, U, dimension2d)) {
-            return equals(Width, other.Width) &&
-                equals(Height, other.Height);
-        } else static if (__traits(isSame, U, vector2d)) {
-            return equals(Width, other.X) &&
-                equals(Height, other.Y);
+            return IrrMath.equals(Width, other.Width) &&
+                IrrMath.equals(Height, other.Height);
+        } else static if (isInstanceOf!(vector2d, U)) {
+            return IrrMath.equals(Width, other.X) &&
+                IrrMath.equals(Height, other.Y);
         } else
             static assert(0, "Must be of vector2d or dimension2d");
     }
