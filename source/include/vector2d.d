@@ -26,7 +26,15 @@ import IrrMath = include.irr_math;
 // template <class T>
 class vector2d(T)
 {
-public:
+    // Basic any typecheck.
+    static assert(isNumeric!T);
+
+    //! X coordinate of vector.
+	T X = 0;
+
+	//! Y coordinate of vector.
+	T Y = 0;
+
 	//! Default constructor (null vector)
 	constexpr vector2d() :
 			X(0), Y(0) {}
