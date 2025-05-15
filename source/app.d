@@ -15,6 +15,8 @@ void main() {
     a += b;
     a = a * b;
     writeln(a == b);
+    writeln(a > b);
+    writeln(a > a);
 
     b = a;
     b += a;
@@ -22,9 +24,10 @@ void main() {
     writeln(b == a);
     b += [1, 2];
     writeln(b[0] + 10000);
+    writeln(b > a);
+    writeln(b > b);
 
     writeln(b);
-
     writeln(a);
 
 }
