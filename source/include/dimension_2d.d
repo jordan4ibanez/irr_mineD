@@ -2,6 +2,8 @@ module include.dimension_2d;
 
 import include.irr_math;
 import include.irr_types;
+import include.vector2d;
+import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -22,7 +24,9 @@ import include.irr_types;
 //! Specifies a 2 dimensional size.
 // template <class T>
 struct dimension2d(T) {
-public:
+    // Basic any typecheck.
+    static assert(isNumeric!T);
+
     //! Width of the dimension.
     T Width = 0;
     //! Height of the dimension.
@@ -33,7 +37,7 @@ public:
     // 		Width(0), Height(0) {}
 
     //! Constructor with width and height
-    this(const ref T width, const ref T height) {
+    this(const T width, const T height) {
         Width = width;
         Height = height;
     }
@@ -66,9 +70,103 @@ public:
     }
 
     //! Equality operator
-    bool opEquals(const ref dimension2d!T other) const {
-        return equals(Width, other.Width) &&
-            equals(Height, other.Height);
+    bool opEquals(U)(const ref U other) const {
+        static if (__traits(isSame, U, dimension2d)) {
+            return equals(Width, other.Width) &&
+                equals(Height, other.Height);
+        } else static if (__traits(isSame, U, vector2d)) {
+            return equals(Width, other.X) &&
+                equals(Height, other.Y);
+        } else
+            static assert(0, "Must be of vector2d or dimension2d");
+    }
+
+    // Assignment.
+    void opAssign(U)(U value) {
+        // This is (half) compiler code. 
+        // Give vector2d even more assignments than C++.
+        static if (__traits(isSame, U, dimension2d)) {
+            this.Width = value.Width;
+            this.Height = value.Height;
+        }
+        static if (__traits(isSame, U, vector2d)) {
+            this.Width = value.X;
+            this.Height = value.Y;
+        } else static if (isArray!U) {
+            static assert(isNumeric!(typeof(value[0])));
+            this.Width = value[0];
+            this.Height = value[1];
+        } else {
+            static assert(isNumeric!(typeof(value)));
+            this.Width = value;
+            this.Height = value;
+        }
+    }
+
+    // Operator assignment.
+    ref dimension2d!T opOpAssign(string op, U)(const U value) {
+        // This is compiler code. 
+        // Give vector2d even more assignment operator operators than C++.
+        static if (__traits(isSame, U, dimension2d)) {
+            mixin("Width " ~ op ~ "= value.Width;");
+            mixin("Height " ~ op ~ "= value.Height;");
+        } else static if (__traits(isSame, U, vector2d)) {
+            mixin("Width " ~ op ~ "= value.X;");
+            mixin("Height " ~ op ~ "= value.Y;");
+        } else static if (isArray!U) {
+            static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 2, "Cannot add array. Length is not 2.");
+            mixin("Width " ~ op ~ "= value[0];");
+            mixin("Height " ~ op ~ "= value[1];");
+        } else {
+            static assert(isNumeric!(typeof(value)));
+            mixin("Width " ~ op ~ "= value;");
+            mixin("Height " ~ op ~ "= value;");
+        }
+
+        return this;
+    }
+
+    // Operators.
+    dimension2d!T opBinary(string op, U)(const U value) const {
+        // This is compiler code. 
+        // Give dimension2d even more operators than C++.
+        static if (__traits(isSame, U, dimension2d)) {
+            mixin("return dimension2d!T(Width " ~ op ~ " value.Width, Height " ~ op ~ " value.Height);");
+        } else static if (__traits(isSame, U, vector2d)) {
+            mixin("return dimension2d!T(Width " ~ op ~ " value.X, Height " ~ op ~ " value.Y);");
+        } else static if (isArray!U) {
+            static assert(isNumeric!(typeof(value[0])));
+            mixin(
+                "return dimension2d!T(Width " ~ op ~ " value[0], Height " ~ op ~ " value[1]);");
+        } else {
+            static assert(isNumeric!(typeof(value)));
+            mixin("return dimension2d!T(Width " ~ op ~ " value, Height " ~ op ~ " value);");
+        }
+    }
+
+    ref T opIndex(u32 index) {
+        switch (index) {
+        case 0:
+            return Width;
+        case 1:
+            return Height;
+        default:
+            IRR_CODE_UNREACHABLE();
+        }
+        assert(0);
+    }
+
+    ref const(T) opIndex(u32 index) const {
+        switch (index) {
+        case 0:
+            return Width;
+        case 1:
+            return Height;
+        default:
+            IRR_CODE_UNREACHABLE();
+        }
+        assert(0);
     }
 
     //todo: fix this
@@ -78,8 +176,6 @@ public:
     // {
     // 	return !(*this == other);
     // }
-
-    
 
     // //! Divide width and height by scalar
     // ref dimension2d!T opAssign(string s : "/=")(const ref T scale) {
