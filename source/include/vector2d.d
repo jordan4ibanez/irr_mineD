@@ -155,9 +155,9 @@ struct vector2d(T)
 
        //! sort in order X, Y.
     int opCmp(const vector3d!T other) const {
-        if (X < other.X || (X == other.X && Y < other.Y) || (X == other.X && Y == other.Y && Z < other.Z)) {
+        if (X < other.X || (X == other.X && Y < other.Y)) {
             return -1;
-        } else if (X > other.X || (X == other.X && Y > other.Y) || (X == other.X && Y == other.Y && Z > other.Z)) {
+        } else if (X > other.X || (X == other.X && Y > other.Y)) {
             return 1;
         }
         return 0;
