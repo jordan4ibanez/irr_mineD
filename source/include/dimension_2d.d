@@ -73,59 +73,59 @@ public:
     // }
 
     //! Set to new values
-    ref dimension2d!T set(const ref T width, const ref T height) {
-        Width = width;
-        Height = height;
-        return this;
-    }
+    // ref dimension2d!T set(const ref T width, const ref T height) {
+    //     Width = width;
+    //     Height = height;
+    //     return this;
+    // }
 
-    //! Divide width and height by scalar
-    ref dimension2d!T opAssign(string s : "/=")(const ref T scale) {
-        Width /= scale;
-        Height /= scale;
-        return this;
-    }
+    // //! Divide width and height by scalar
+    // ref dimension2d!T opAssign(string s : "/=")(const ref T scale) {
+    //     Width /= scale;
+    //     Height /= scale;
+    //     return this;
+    // }
 
-    //! Divide width and height by scalar
-    dimension2d!T opUnary(string s : "/")(const ref T scale) const {
-        return dimension2d!T(Width / scale, Height / scale);
-    }
+    // //! Divide width and height by scalar
+    // dimension2d!T opUnary(string s : "/")(const ref T scale) const {
+    //     return dimension2d!T(Width / scale, Height / scale);
+    // }
 
-    //! Multiply width and height by scalar
-    ref dimension2d!T opAssign(string s : "*=")(const ref T scale) {
-        Width *= scale;
-        Height *= scale;
-        return this;
-    }
+    // //! Multiply width and height by scalar
+    // ref dimension2d!T opAssign(string s : "*=")(const ref T scale) {
+    //     Width *= scale;
+    //     Height *= scale;
+    //     return this;
+    // }
 
-    //! Multiply width and height by scalar
-    dimension2d!T opUnary(string s : "*")(const ref T scale) const {
-        return dimension2d!T(Width * scale, Height * scale);
-    }
+    // //! Multiply width and height by scalar
+    // dimension2d!T opUnary(string s : "*")(const ref T scale) const {
+    //     return dimension2d!T(Width * scale, Height * scale);
+    // }
 
-    //! Add another dimension to this one.
-    ref dimension2d!T opAssign(string s : "+=")(const ref dimension2d!T other) {
-        Width += other.Width;
-        Height += other.Height;
-        return this;
-    }
+    // //! Add another dimension to this one.
+    // ref dimension2d!T opAssign(string s : "+=")(const ref dimension2d!T other) {
+    //     Width += other.Width;
+    //     Height += other.Height;
+    //     return this;
+    // }
 
-    //! Add two dimensions
-    dimension2d!T opUnary(string s : "+")(const ref dimension2d!T other) const {
-        return dimension2d!T(Width + other.Width, Height + other.Height);
-    }
+    // //! Add two dimensions
+    // dimension2d!T opUnary(string s : "+")(const ref dimension2d!T other) const {
+    //     return dimension2d!T(Width + other.Width, Height + other.Height);
+    // }
 
-    //! Subtract a dimension from this one
-    ref dimension2d!T opAssign(string s : "-=")(const ref dimension2d!T other) {
-        Width -= other.Width;
-        Height -= other.Height;
-        return this;
-    }
+    // //! Subtract a dimension from this one
+    // ref dimension2d!T opAssign(string s : "-=")(const ref dimension2d!T other) {
+    //     Width -= other.Width;
+    //     Height -= other.Height;
+    //     return this;
+    // }
 
-    //! Subtract one dimension from another
-    dimension2d!T opUnary(string s : "-")(const ref dimension2d!T other) const {
-        return dimension2d!T(Width - other.Width, Height - other.Height);
-    }
+    // //! Subtract one dimension from another
+    // dimension2d!T opUnary(string s : "-")(const ref dimension2d!T other) const {
+    //     return dimension2d!T(Width - other.Width, Height - other.Height);
+    // }
 
     //! Get area
     T getArea() const {
