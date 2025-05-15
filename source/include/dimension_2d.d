@@ -89,8 +89,7 @@ struct dimension2d(T) {
         static if (__traits(isSame, U, dimension2d)) {
             this.Width = value.Width;
             this.Height = value.Height;
-        }
-        static if (__traits(isSame, U, vector2d)) {
+        } else static if (isInstanceOf!(vector2d, U)) {
             this.Width = value.X;
             this.Height = value.Y;
         } else static if (isArray!U) {
