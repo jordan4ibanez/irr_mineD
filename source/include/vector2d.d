@@ -118,15 +118,15 @@ struct vector2d(T) {
     vector2d!T opBinary(string op, U)(const U value) const {
         // This is compiler code. 
         // Give vector2d even more operators than C++.
-        static if (__traits(isSame, U, vector3d)) {
-            mixin("return vector3d!T(X " ~ op ~ " value.X, Y " ~ op ~ " value.Y);");
+        static if (__traits(isSame, U, vector2d)) {
+            mixin("return vector2d!T(X " ~ op ~ " value.X, Y " ~ op ~ " value.Y);");
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
             mixin(
-                "return vector3d!T(X " ~ op ~ " value[0], Y " ~ op ~ " value[1]);");
+                "return vector2d!T(X " ~ op ~ " value[0], Y " ~ op ~ " value[1]);");
         } else {
             static assert(isNumeric!(typeof(value)));
-            mixin("return vector3d!T(X " ~ op ~ " value, Y " ~ op ~ " value);");
+            mixin("return vector2d!T(X " ~ op ~ " value, Y " ~ op ~ " value);");
         }
     }
 
