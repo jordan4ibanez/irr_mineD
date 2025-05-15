@@ -126,7 +126,7 @@ pragma(inline, true) bool equals(T)(const T a, const T b, const T tolerance = ro
 //! returns if a equals b, taking relative error in form of factor
 //! this particular function does not involve any division.
 // template <class T>
-pragma(inline, true) bool equalsRelative(T)(const T a, const T b, const T factor = relativeErrorFactor()) {
+pragma(inline, true) bool equalsRelative(T)(const T a, const T b, const T factor = relativeErrorFactor!T()) {
     // https://eagergames.wordpress.com/2017/04/01/fast-parallel-lines-and-vectors-test/
 
     const T maxi = max_(a, b);
