@@ -1,6 +1,7 @@
 module include.vector2d;
 
 import IrrMath = include.irr_math;
+import include.irr_types;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -169,27 +170,27 @@ struct vector2d(T)
 	/** Takes floating point rounding errors into account.
 	\param other Vector to compare with.
 	\return True if the two vector are (almost) equal, else false. */
-	bool equals(const vector2d<T> &other) const
+	bool equals(const ref vector2d!T other) const
 	{
-		return core::equals(X, other.X) && core::equals(Y, other.Y);
+		return IrrMath.equals(X, other.X) && IrrMath.equals(Y, other.Y);
 	}
 
-	vector2d<T> &set(T nx, T ny)
+	ref vector2d!T set(T nx, T ny)
 	{
 		X = nx;
 		Y = ny;
-		return *this;
+		return this;
 	}
-	vector2d<T> &set(const vector2d<T> &p)
+	ref vector2d!T set(const ref vector2d!T p)
 	{
 		X = p.X;
 		Y = p.Y;
-		return *this;
+		return this;
 	}
 
 	//! Gets the length of the vector.
 	/** \return The length of the vector. */
-	T getLength() const { return core::squareroot(X * X + Y * Y); }
+	T getLength() const { return IrrMath.squareroot(X * X + Y * Y); }
 
 	//! Get the squared length of this vector
 	/** This is useful because it is much faster than getLength().
@@ -199,13 +200,13 @@ struct vector2d(T)
 	//! Get the dot product of this vector with another.
 	/** \param other Other vector to take dot product with.
 	\return The dot product of the two vectors. */
-	T dotProduct(const vector2d<T> &other) const
+	T dotProduct(const ref vector2d!T other) const
 	{
 		return X * other.X + Y * other.Y;
 	}
 
 	//! check if this vector is parallel to another vector
-	bool nearlyParallel(const vector2d<T> &other, const T factor = relativeErrorFactor<T>()) const
+	bool nearlyParallel(const ref vector2d!T other, const T factor = relativeErrorFactor!T()) const
 	{
 		// https://eagergames.wordpress.com/2017/04/01/fast-parallel-lines-and-vectors-test/
 		// if a || b then  a.x/a.y = b.x/b.y (similar triangles)
@@ -221,25 +222,25 @@ struct vector2d(T)
 	/** Here, the vector is interpreted as a point in 2-dimensional space.
 	\param other Other vector to measure from.
 	\return Distance from other point. */
-	T getDistanceFrom(const vector2d<T> &other) const
+	T getDistanceFrom(const ref vector2d!T other) const
 	{
-		return vector2d<T>(X - other.X, Y - other.Y).getLength();
+		return vector2d!T(X - other.X, Y - other.Y).getLength();
 	}
 
 	//! Returns squared distance from another point.
 	/** Here, the vector is interpreted as a point in 2-dimensional space.
 	\param other Other vector to measure from.
 	\return Squared distance from other point. */
-	T getDistanceFromSQ(const vector2d<T> &other) const
+	T getDistanceFromSQ(const ref vector2d!T other) const
 	{
-		return vector2d<T>(X - other.X, Y - other.Y).getLengthSQ();
+		return vector2d!T(X - other.X, Y - other.Y).getLengthSQ();
 	}
 
 	//! rotates the point anticlockwise around a center by an amount of degrees.
 	/** \param degrees Amount of degrees to rotate by, anticlockwise.
 	\param center Rotation center.
 	\return This vector after transformation. */
-	vector2d<T> &rotateBy(f64 degrees, const vector2d<T> &center = vector2d<T>())
+	ref vector2d!T rotateBy(f64 degrees, const ref vector2d!T center = vector2d!T())
 	{
 		degrees *= DEGTORAD64;
 		const f64 cs = cos(degrees);
@@ -252,18 +253,18 @@ struct vector2d(T)
 
 		X += center.X;
 		Y += center.Y;
-		return *this;
+		return this;
 	}
 
 	//! Normalize the vector.
 	/** The null vector is left untouched.
 	\return Reference to this vector, after normalization. */
-	vector2d<T> &normalize()
+	ref vector2d!T normalize()
 	{
 		f32 length = (f32)(X * X + Y * Y);
 		if (length == 0)
 			return *this;
-		length = core::reciprocal_squareroot(length);
+		length = IrrMath.reciprocal_squareroot(length);
 		X = (T)(X * length);
 		Y = (T)(Y * length);
 		return *this;
@@ -280,15 +281,17 @@ struct vector2d(T)
 		else if (X == 0)
 			return Y < 0 ? 270 : 90;
 
-		if (Y > 0)
-			if (X > 0)
-				return atan((irr::f64)Y / (irr::f64)X) * RADTODEG64;
-			else
-				return 180.0 - atan((irr::f64)Y / -(irr::f64)X) * RADTODEG64;
-		else if (X > 0)
-			return 360.0 - atan(-(irr::f64)Y / (irr::f64)X) * RADTODEG64;
-		else
-			return 180.0 + atan(-(irr::f64)Y / -(irr::f64)X) * RADTODEG64;
+		if (Y > 0) {
+			if (X > 0) {
+				return atan(cast(f64)Y / cast(f64)X) * RADTODEG64;
+            }else{
+				return 180.0 - atan(cast(f64)Y / -cast(f64)X) * RADTODEG64;
+            }
+        }else if (X > 0){
+			return 360.0 - atan(-cast(f64)Y / cast(f64)X) * RADTODEG64;
+        }else {
+			return 180.0 + atan(-cast(f64)Y / -cast(f64)X) * RADTODEG64;
+        }
 	}
 
 	//! Calculates the angle of this vector in degrees in the counter trigonometric sense.
