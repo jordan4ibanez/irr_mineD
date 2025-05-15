@@ -163,40 +163,6 @@ struct vector2d(T)
         return 0;
     }
 
-	//! sort in order X, Y.
-	constexpr bool operator<=(const vector2d<T> &other) const
-	{
-		return !(*this > other);
-	}
-
-	//! sort in order X, Y.
-	constexpr bool operator>=(const vector2d<T> &other) const
-	{
-		return !(*this < other);
-	}
-
-	//! sort in order X, Y.
-	constexpr bool operator<(const vector2d<T> &other) const
-	{
-		return X < other.X || (X == other.X && Y < other.Y);
-	}
-
-	//! sort in order X, Y.
-	constexpr bool operator>(const vector2d<T> &other) const
-	{
-		return X > other.X || (X == other.X && Y > other.Y);
-	}
-
-	constexpr bool operator==(const vector2d<T> &other) const
-	{
-		return X == other.X && Y == other.Y;
-	}
-
-	constexpr bool operator!=(const vector2d<T> &other) const
-	{
-		return !(*this == other);
-	}
-
 	// functions
 
 	//! Checks if this vector equals the other one.
