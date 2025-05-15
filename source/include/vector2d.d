@@ -24,7 +24,7 @@ import IrrMath = include.irr_math;
 /** As of Irrlicht 1.6, this class supersedes position2d, which should
 	be considered deprecated. */
 // template <class T>
-class vector2d
+class vector2d(T)
 {
 public:
 	//! Default constructor (null vector)
