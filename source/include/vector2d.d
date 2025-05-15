@@ -80,11 +80,11 @@ struct vector2d(T) {
     //! Equality operator
     bool opEquals(U)(const ref U other) const {
         static if (__traits(isSame, U, vector2d)) {
-            return equals(X, other.X) &&
-                equals(Y, other.Y);
-        } else static if (__traits(isSame, U, dimension2d)) {
-            return equals(X, other.Width) &&
-                equals(Y, other.Height);
+            return IrrMath.equals(X, other.X) &&
+                IrrMath.equals(Y, other.Y);
+        } else static if (isInstanceOf!(dimension2d, U)) {
+            return IrrMath.equals(X, other.Width) &&
+                IrrMath.equals(Y, other.Height);
         } else
             static assert(0, "Must be of vector2d or dimension2d");
     }
