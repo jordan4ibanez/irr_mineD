@@ -21,7 +21,9 @@ void main() {
     b = b - a;
     writeln(b == a);
     b += [1, 2];
-    writeln(b[0] + 1);
+    writeln(b[0] + 10000);
+
+    writeln(b);
 
     writeln(a);
 
