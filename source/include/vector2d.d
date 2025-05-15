@@ -153,6 +153,16 @@ struct vector2d(T)
         assert(0);
     }
 
+       //! sort in order X, Y.
+    int opCmp(const vector3d!T other) const {
+        if (X < other.X || (X == other.X && Y < other.Y) || (X == other.X && Y == other.Y && Z < other.Z)) {
+            return -1;
+        } else if (X > other.X || (X == other.X && Y > other.Y) || (X == other.X && Y == other.Y && Z > other.Z)) {
+            return 1;
+        }
+        return 0;
+    }
+
 	//! sort in order X, Y.
 	constexpr bool operator<=(const vector2d<T> &other) const
 	{
