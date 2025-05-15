@@ -13,10 +13,10 @@ module include.vector2d;
 #include <array>
 #include <cassert>
 
-namespace irr
-{
-namespace core
-{
+// namespace irr
+// {
+// namespace core
+// {
 
 //! 2d vector template class with lots of operators and methods.
 /** As of Irrlicht 1.6, this class supersedes position2d, which should
@@ -500,21 +500,21 @@ bool dimension2d<T>::operator==(const vector2d<T> &other) const
 	return Width == other.X && Height == other.Y;
 }
 
-} // end namespace core
-} // end namespace irr
+// } // end namespace core
+// } // end namespace irr
 
-namespace std
-{
+// namespace std
+// {
 
-template <class T>
-struct hash<irr::core::vector2d<T>>
-{
-	size_t operator()(const irr::core::vector2d<T> &vec) const
-	{
-		size_t h1 = hash<T>()(vec.X);
-		size_t h2 = hash<T>()(vec.Y);
-		return (h1 << (4 * sizeof(h1)) | h1 >> (4 * sizeof(h1))) ^ h2;
-	}
-};
+// template <class T>
+// struct hash<irr::core::vector2d<T>>
+// {
+// 	size_t operator()(const irr::core::vector2d<T> &vec) const
+// 	{
+// 		size_t h1 = hash<T>()(vec.X);
+// 		size_t h2 = hash<T>()(vec.Y);
+// 		return (h1 << (4 * sizeof(h1)) | h1 >> (4 * sizeof(h1))) ^ h2;
+// 	}
+// };
 
-}
+// }
