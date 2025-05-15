@@ -88,86 +88,86 @@ struct vector2d(T)
         }
     }
 
-	vector2d<T> &operator=(const dimension2d<T> &other)
-	{
-		X = other.Width;
-		Y = other.Height;
-		return *this;
-	}
+	// vector2d<T> &operator=(const dimension2d<T> &other)
+	// {
+	// 	X = other.Width;
+	// 	Y = other.Height;
+	// 	return *this;
+	// }
 
-	vector2d<T> operator+(const vector2d<T> &other) const { return vector2d<T>(X + other.X, Y + other.Y); }
-	vector2d<T> operator+(const dimension2d<T> &other) const { return vector2d<T>(X + other.Width, Y + other.Height); }
-	vector2d<T> &operator+=(const vector2d<T> &other)
-	{
-		X += other.X;
-		Y += other.Y;
-		return *this;
-	}
-	vector2d<T> operator+(const T v) const { return vector2d<T>(X + v, Y + v); }
-	vector2d<T> &operator+=(const T v)
-	{
-		X += v;
-		Y += v;
-		return *this;
-	}
-	vector2d<T> &operator+=(const dimension2d<T> &other)
-	{
-		X += other.Width;
-		Y += other.Height;
-		return *this;
-	}
+	// vector2d<T> operator+(const vector2d<T> &other) const { return vector2d<T>(X + other.X, Y + other.Y); }
+	// vector2d<T> operator+(const dimension2d<T> &other) const { return vector2d<T>(X + other.Width, Y + other.Height); }
+	// vector2d<T> &operator+=(const vector2d<T> &other)
+	// {
+	// 	X += other.X;
+	// 	Y += other.Y;
+	// 	return *this;
+	// }
+	// vector2d<T> operator+(const T v) const { return vector2d<T>(X + v, Y + v); }
+	// vector2d<T> &operator+=(const T v)
+	// {
+	// 	X += v;
+	// 	Y += v;
+	// 	return *this;
+	// }
+	// vector2d<T> &operator+=(const dimension2d<T> &other)
+	// {
+	// 	X += other.Width;
+	// 	Y += other.Height;
+	// 	return *this;
+	// }
 
-	vector2d<T> operator-(const vector2d<T> &other) const { return vector2d<T>(X - other.X, Y - other.Y); }
-	vector2d<T> operator-(const dimension2d<T> &other) const { return vector2d<T>(X - other.Width, Y - other.Height); }
-	vector2d<T> &operator-=(const vector2d<T> &other)
-	{
-		X -= other.X;
-		Y -= other.Y;
-		return *this;
-	}
-	vector2d<T> operator-(const T v) const { return vector2d<T>(X - v, Y - v); }
-	vector2d<T> &operator-=(const T v)
-	{
-		X -= v;
-		Y -= v;
-		return *this;
-	}
-	vector2d<T> &operator-=(const dimension2d<T> &other)
-	{
-		X -= other.Width;
-		Y -= other.Height;
-		return *this;
-	}
+	// vector2d<T> operator-(const vector2d<T> &other) const { return vector2d<T>(X - other.X, Y - other.Y); }
+	// vector2d<T> operator-(const dimension2d<T> &other) const { return vector2d<T>(X - other.Width, Y - other.Height); }
+	// vector2d<T> &operator-=(const vector2d<T> &other)
+	// {
+	// 	X -= other.X;
+	// 	Y -= other.Y;
+	// 	return *this;
+	// }
+	// vector2d<T> operator-(const T v) const { return vector2d<T>(X - v, Y - v); }
+	// vector2d<T> &operator-=(const T v)
+	// {
+	// 	X -= v;
+	// 	Y -= v;
+	// 	return *this;
+	// }
+	// vector2d<T> &operator-=(const dimension2d<T> &other)
+	// {
+	// 	X -= other.Width;
+	// 	Y -= other.Height;
+	// 	return *this;
+	// }
 
-	vector2d<T> operator*(const vector2d<T> &other) const { return vector2d<T>(X * other.X, Y * other.Y); }
-	vector2d<T> &operator*=(const vector2d<T> &other)
-	{
-		X *= other.X;
-		Y *= other.Y;
-		return *this;
-	}
-	vector2d<T> operator*(const T v) const { return vector2d<T>(X * v, Y * v); }
-	vector2d<T> &operator*=(const T v)
-	{
-		X *= v;
-		Y *= v;
-		return *this;
-	}
+	// vector2d<T> operator*(const vector2d<T> &other) const { return vector2d<T>(X * other.X, Y * other.Y); }
+	// vector2d<T> &operator*=(const vector2d<T> &other)
+	// {
+	// 	X *= other.X;
+	// 	Y *= other.Y;
+	// 	return *this;
+	// }
+	// vector2d<T> operator*(const T v) const { return vector2d<T>(X * v, Y * v); }
+	// vector2d<T> &operator*=(const T v)
+	// {
+	// 	X *= v;
+	// 	Y *= v;
+	// 	return *this;
+	// }
 
-	vector2d<T> operator/(const vector2d<T> &other) const { return vector2d<T>(X / other.X, Y / other.Y); }
-	vector2d<T> &operator/=(const vector2d<T> &other)
-	{
-		X /= other.X;
-		Y /= other.Y;
-		return *this;
-	}
-	vector2d<T> operator/(const T v) const { return vector2d<T>(X / v, Y / v); }
-	vector2d<T> &operator/=(const T v)
-	{
-		X /= v;
-		Y /= v;
-		return *this;
-	}
+	// vector2d<T> operator/(const vector2d<T> &other) const { return vector2d<T>(X / other.X, Y / other.Y); }
+	// vector2d<T> &operator/=(const vector2d<T> &other)
+	// {
+	// 	X /= other.X;
+	// 	Y /= other.Y;
+	// 	return *this;
+	// }
+	// vector2d<T> operator/(const T v) const { return vector2d<T>(X / v, Y / v); }
+	// vector2d<T> &operator/=(const T v)
+	// {
+	// 	X /= v;
+	// 	Y /= v;
+	// 	return *this;
+	// }
 
 	T &operator[](u32 index)
 	{
