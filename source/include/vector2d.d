@@ -96,7 +96,7 @@ struct vector2d(T) {
         static if (__traits(isSame, U, vector2d)) {
             this.X = value.X;
             this.Y = value.Y;
-        } else static if (isInstanceOf!(U, dimension2d)) {
+        } else static if (isInstanceOf!(dimension2d, U)) {
             this.X = value.Width;
             this.Y = value.Height;
         } else static if (isArray!U) {
@@ -117,7 +117,7 @@ struct vector2d(T) {
         static if (__traits(isSame, U, vector2d)) {
             mixin("X " ~ op ~ "= value.X;");
             mixin("Y " ~ op ~ "= value.Y;");
-        } else static if (isInstanceOf!(U, dimension2d)) {
+        } else static if (isInstanceOf!(dimension2d, U)) {
             mixin("X " ~ op ~ "= value.Width;");
             mixin("Y " ~ op ~ "= value.Height;");
         } else static if (isArray!U) {
@@ -140,7 +140,7 @@ struct vector2d(T) {
         // Give vector2d even more operators than C++.
         static if (__traits(isSame, U, vector2d)) {
             mixin("return vector2d!T(X " ~ op ~ " value.X, Y " ~ op ~ " value.Y);");
-        } else static if (isInstanceOf!(U, dimension2d)) {
+        } else static if (isInstanceOf!(dimension2d, U)) {
             mixin("return vector2d!T(X " ~ op ~ " value.Width, Y " ~ op ~ " value.Height);");
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
