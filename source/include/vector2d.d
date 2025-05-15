@@ -470,11 +470,7 @@ public:
 		return *this;
 	}
 
-	//! X coordinate of vector.
-	T X;
-
-	//! Y coordinate of vector.
-	T Y;
+	
 };
 
 //! Typedef for f32 2d vector.
