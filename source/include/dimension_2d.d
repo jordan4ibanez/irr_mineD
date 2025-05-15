@@ -1,6 +1,6 @@
 module include.dimension_2d;
 
-import include.irr_math;
+import IrrMath = include.irr_math;
 import include.irr_types;
 import include.vector2d;
 import std.traits;
