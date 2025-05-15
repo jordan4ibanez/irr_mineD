@@ -58,6 +58,13 @@ public:
         return this;
     }
 
+    // ! Set to new values
+    ref dimension2d!T set(const ref T width, const ref T height) {
+        Width = width;
+        Height = height;
+        return this;
+    }
+
     //! Equality operator
     bool opEquals(const ref dimension2d!T other) const {
         return equals(Width, other.Width) &&
@@ -72,12 +79,7 @@ public:
     // 	return !(*this == other);
     // }
 
-    //! Set to new values
-    // ref dimension2d!T set(const ref T width, const ref T height) {
-    //     Width = width;
-    //     Height = height;
-    //     return this;
-    // }
+    
 
     // //! Divide width and height by scalar
     // ref dimension2d!T opAssign(string s : "/=")(const ref T scale) {
