@@ -177,13 +177,22 @@ struct vector2d(T) {
     }
 
     //! sort in order X, Y.
-    int opCmp(const vector2d!T other) const {
-        if (X < other.X || (X == other.X && Y < other.Y)) {
-            return -1;
-        } else if (X > other.X || (X == other.X && Y > other.Y)) {
-            return 1;
+    int opCmp(U)(const U other) const {
+        static if (__traits(isSame, U, vector2d)) {
+            if (X < other.X || (X == other.X && Y < other.Y)) {
+                return -1;
+            } else if (X > other.X || (X == other.X && Y > other.Y)) {
+                return 1;
+            }
+            return 0;
+        } else static if (isInstanceOf!(dimension2d, U)) {
+            if (X < other.Width || (X == other.Width && Y < other.Height)) {
+                return -1;
+            } else if (X > other.Width || (X == other.Width && Y > other.Height)) {
+                return 1;
+            }
+            return 0;
         }
-        return 0;
     }
 
     // functions
