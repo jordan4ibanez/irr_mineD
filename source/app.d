@@ -27,6 +27,9 @@ void main() {
     writeln(b > a);
     writeln(b > b);
 
+    writeln("====");
+    writeln(dimension2df(1, 1) + [1, 2] - 3 + vector2df(10, 10));
+
     writeln(b);
     writeln(a);
 
