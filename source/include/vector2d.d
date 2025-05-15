@@ -483,24 +483,24 @@ typedef vector2d<f32> vector2df;
 //! Typedef for integer 2d vector.
 typedef vector2d<s32> vector2di;
 
-template <class S, class T>
-vector2d<T> operator*(const S scalar, const vector2d<T> &vector)
-{
-	return vector * scalar;
-}
+// template <class S, class T>
+// vector2d<T> operator*(const S scalar, const vector2d<T> &vector)
+// {
+// 	return vector * scalar;
+// }
 
-// These methods are declared in dimension2d, but need definitions of vector2d
-template <class T>
-dimension2d<T>::dimension2d(const vector2d<T> &other) :
-		Width(other.X), Height(other.Y)
-{
-}
+// // These methods are declared in dimension2d, but need definitions of vector2d
+// template <class T>
+// dimension2d<T>::dimension2d(const vector2d<T> &other) :
+// 		Width(other.X), Height(other.Y)
+// {
+// }
 
-template <class T>
-bool dimension2d<T>::operator==(const vector2d<T> &other) const
-{
-	return Width == other.X && Height == other.Y;
-}
+// template <class T>
+// bool dimension2d<T>::operator==(const vector2d<T> &other) const
+// {
+// 	return Width == other.X && Height == other.Y;
+// }
 
 // } // end namespace core
 // } // end namespace irr
