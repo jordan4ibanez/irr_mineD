@@ -70,6 +70,8 @@ struct vector2d(T)
         return vector2d!T(-X, -Y); 
     }
 
+    // todo: Add dimension2d to this
+
     // Assignment.
     void opAssign(U)(U value) {
         // This is (half) compiler code. 
