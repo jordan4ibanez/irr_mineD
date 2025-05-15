@@ -95,6 +95,7 @@ public:
             mixin("Z " ~ op ~ "= value.Z;");
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 3, "Cannot add array. Length is not 3.");
             mixin("X " ~ op ~ "= value[0];");
             mixin("Y " ~ op ~ "= value[1];");
             mixin("Z " ~ op ~ "= value[2];");
