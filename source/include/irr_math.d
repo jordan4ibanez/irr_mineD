@@ -1,9 +1,10 @@
 module include.irr_math;
 
 public import std.algorithm.comparison : clamp;
+public import std.math.algebraic;
+public import std.math.trigonometry;
 import include.irr_types;
 import std.algorithm.comparison;
-import std.math.algebraic;
 import std.math.constants;
 import std.math.rounding;
 
