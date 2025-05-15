@@ -20,7 +20,8 @@ void main() {
     b += a;
     b = b - a;
     writeln(b == a);
-
+    b += [1, 2];
+    writeln(b[0] + 1);
 
     writeln(a);
 
