@@ -129,23 +129,29 @@ struct vector2d(T)
 
 	
 
-	T &operator[](u32 index)
-	{
-		switch (index) {
-			case 0: return X;
-			case 1: return Y;
-			default: IRR_CODE_UNREACHABLE();
-		}
-	}
+	    ref T opIndex(u32 index) {
+        switch (index) {
+        case 0:
+            return X;
+        case 1:
+            return Y;
+        default:
+            IRR_CODE_UNREACHABLE();
+        }
+        assert(0);
+    }
 
-	const T &operator[](u32 index) const
-	{
-		switch (index) {
-			case 0: return X;
-			case 1: return Y;
-			default: IRR_CODE_UNREACHABLE();
-		}
-	}
+    ref const(T) opIndex(u32 index) const {
+        switch (index) {
+        case 0:
+            return X;
+        case 1:
+            return Y;
+        default:
+            IRR_CODE_UNREACHABLE();
+        }
+        assert(0);
+    }
 
 	//! sort in order X, Y.
 	constexpr bool operator<=(const vector2d<T> &other) const
