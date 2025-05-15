@@ -2,6 +2,7 @@ module include.vector2d;
 
 import include.irr_types;
 import IrrMath = include.irr_math;
+import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -154,7 +155,7 @@ struct vector2d(T) {
     }
 
     //! sort in order X, Y.
-    int opCmp(const vector3d!T other) const {
+    int opCmp(const vector2d!T other) const {
         if (X < other.X || (X == other.X && Y < other.Y)) {
             return -1;
         } else if (X > other.X || (X == other.X && Y > other.Y)) {
@@ -237,15 +238,15 @@ struct vector2d(T) {
     /** \param degrees Amount of degrees to rotate by, anticlockwise.
 	\param center Rotation center.
 	\return This vector after transformation. */
-    ref vector2d!T rotateBy(f64 degrees, const ref vector2d!T center = vector2d!T()) {
-        degrees *= DEGTORAD64;
-        const f64 cs = cos(degrees);
-        const f64 sn = sin(degrees);
+    ref vector2d!T rotateBy(f64 degrees, const vector2d!T center = vector2d!T()) {
+        degrees *= IrrMath.DEGTORAD64;
+        const f64 cs = IrrMath.cos(degrees);
+        const f64 sn = IrrMath.sin(degrees);
 
         X -= center.X;
         Y -= center.Y;
 
-        set((T)(X * cs - Y * sn), (T)(X * sn + Y * cs));
+        set(cast(T)(X * cs - Y * sn), cast(T)(X * sn + Y * cs));
 
         X += center.X;
         Y += center.Y;
@@ -258,11 +259,11 @@ struct vector2d(T) {
     ref vector2d!T normalize() {
         f32 length = (f32)(X * X + Y * Y);
         if (length == 0)
-            return *this;
+            return this;
         length = IrrMath.reciprocal_squareroot(length);
-        X = (T)(X * length);
-        Y = (T)(Y * length);
-        return *this;
+        X = cast(T)(X * length);
+        Y = cast(T)(Y * length);
+        return this;
     }
 
     //! Calculates the angle of this vector in degrees in the trigonometric sense.
@@ -277,14 +278,14 @@ struct vector2d(T) {
 
         if (Y > 0) {
             if (X > 0) {
-                return atan(cast(f64) Y / cast(f64) X) * RADTODEG64;
+                return IrrMath.atan(cast(f64) Y / cast(f64) X) * IrrMath.RADTODEG64;
             } else {
-                return 180.0 - atan(cast(f64) Y / -cast(f64) X) * RADTODEG64;
+                return 180.0 - IrrMath.atan(cast(f64) Y / -cast(f64) X) * IrrMath.RADTODEG64;
             }
         } else if (X > 0) {
-            return 360.0 - atan(-cast(f64) Y / cast(f64) X) * RADTODEG64;
+            return 360.0 - IrrMath.atan(-cast(f64) Y / cast(f64) X) * IrrMath.RADTODEG64;
         } else {
-            return 180.0 + atan(-cast(f64) Y / -cast(f64) X) * RADTODEG64;
+            return 180.0 + IrrMath.atan(-cast(f64) Y / -cast(f64) X) * IrrMath.RADTODEG64;
         }
     }
 
@@ -299,8 +300,9 @@ struct vector2d(T) {
 
         // don't use getLength here to avoid precision loss with s32 vectors
         // avoid floating-point trouble as sqrt(y*y) is occasionally larger than y, so clamp
-        const f64 tmp = IrrMath.clamp(Y / IrrMath.sqrt((f64)(X * X + Y * Y)), -1.0, 1.0);
-        const f64 angle = IrrMath.atan(IrrMath.squareroot(1 - tmp * tmp) / tmp) * RADTODEG64;
+        const f64 tmp = IrrMath.clamp(Y / IrrMath.sqrt(cast(f64)(X * X + Y * Y)), -1.0, 1.0);
+        const f64 angle = IrrMath.atan(IrrMath.squareroot(1 - tmp * tmp) / tmp) * IrrMath
+            .RADTODEG64;
 
         if (X > 0 && Y > 0)
             return angle + 270;
@@ -329,7 +331,7 @@ struct vector2d(T) {
         if (tmp > 1.0) //   avoid floating-point trouble
             tmp = 1.0;
 
-        return atan(sqrt(1 - tmp * tmp) / tmp) * RADTODEG64;
+        return IrrMath.atan(IrrMath.sqrt(1 - tmp * tmp) / tmp) * IrrMath.RADTODEG64;
     }
 
     //! Returns if this vector interpreted as a point is on a line between two other points.
@@ -431,12 +433,12 @@ struct vector2d(T) {
 	Note that this is the opposite direction of interpolation to getInterpolated_quadratic()
 	*/
     ref vector2d!T interpolate(const ref vector2d!T a, const ref vector2d!T b, f64 d) {
-        X = (T)(cast(f64) b.X + ((a.X - b.X) * d));
-        Y = (T)(cast(f64) b.Y + ((a.Y - b.Y) * d));
-        return *this;
+        X = cast(T)(cast(f64) b.X + ((a.X - b.X) * d));
+        Y = cast(T)(cast(f64) b.Y + ((a.Y - b.Y) * d));
+        return this;
     }
 
-};
+}
 
 //! Typedef for f32 2d vector.
 alias vector2df = vector2d!f32;
