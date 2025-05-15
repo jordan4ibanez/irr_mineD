@@ -110,7 +110,7 @@ struct dimension2d(T) {
         static if (__traits(isSame, U, dimension2d)) {
             mixin("Width " ~ op ~ "= value.Width;");
             mixin("Height " ~ op ~ "= value.Height;");
-        } else static if (__traits(isSame, U, vector2d)) {
+        } else static if (isInstanceOf!(vector2d, U)) {
             mixin("Width " ~ op ~ "= value.X;");
             mixin("Height " ~ op ~ "= value.Y;");
         } else static if (isArray!U) {
@@ -133,7 +133,7 @@ struct dimension2d(T) {
         // Give dimension2d even more operators than C++.
         static if (__traits(isSame, U, dimension2d)) {
             mixin("return dimension2d!T(Width " ~ op ~ " value.Width, Height " ~ op ~ " value.Height);");
-        } else static if (__traits(isSame, U, vector2d)) {
+        } else static if (isInstanceOf!(vector2d, U)) {
             mixin("return dimension2d!T(Width " ~ op ~ " value.X, Height " ~ op ~ " value.Y);");
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
