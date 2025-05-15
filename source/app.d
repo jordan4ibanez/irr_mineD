@@ -14,6 +14,13 @@ void main() {
     a = b;
     a += b;
     a = a * b;
+    writeln(a == b);
+
+    b = a;
+    b += a;
+    b = b - a;
+    writeln(b == a);
+
 
     writeln(a);
 
