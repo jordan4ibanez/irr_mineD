@@ -84,7 +84,7 @@ struct dimension2d(T) {
     // Assignment.
     void opAssign(U)(U value) {
         // This is (half) compiler code. 
-        // Give vector2d even more assignments than C++.
+        // Give dimension2d even more assignments than C++.
         static if (__traits(isSame, U, dimension2d)) {
             this.Width = value.Width;
             this.Height = value.Height;
@@ -106,7 +106,7 @@ struct dimension2d(T) {
     // Operator assignment.
     ref dimension2d!T opOpAssign(string op, U)(const U value) {
         // This is compiler code. 
-        // Give vector2d even more assignment operator operators than C++.
+        // Give dimension2d even more assignment operator operators than C++.
         static if (__traits(isSame, U, dimension2d)) {
             mixin("Width " ~ op ~ "= value.Width;");
             mixin("Height " ~ op ~ "= value.Height;");
