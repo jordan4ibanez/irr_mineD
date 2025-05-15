@@ -36,20 +36,26 @@ struct vector2d(T)
 	T Y = 0;
 
 	//! Default constructor (null vector)
-	constexpr vector2d() :
-			X(0), Y(0) {}
+	// constexpr vector2d() :
+	// 		X(0), Y(0) {}
+
 	//! Constructor with two different values
-	constexpr vector2d(T nx, T ny) :
-			X(nx), Y(ny) {}
+	this(T nx, T ny) {
+        X = nx; Y = ny;
+    }
 	//! Constructor with the same value for both members
-	explicit constexpr vector2d(T n) :
-			X(n), Y(n) {}
+	this(T n) {
+        X = n; Y = n;
+    }
 
-	constexpr vector2d(const dimension2d<T> &other) :
-			X(other.Width), Y(other.Height) {}
+    // fixme: implement this
+	// this(const ref dimension2d!T other) {
+    //     X = other.Width; Y = other.Height;
+    // }
 
-	explicit constexpr vector2d(const std::array<T, 2> &arr) :
-			X(arr[0]), Y(arr[1]) {}
+	this(const ref T[ 2] arr) {
+        X = arr[0]; Y = arr[1];
+    }
 
 	template <class U>
 	constexpr static vector2d<T> from(const vector2d<U> &other)
