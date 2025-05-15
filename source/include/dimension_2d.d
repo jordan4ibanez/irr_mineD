@@ -42,10 +42,11 @@ struct dimension2d(T) {
         Height = height;
     }
 
-    // todo: fix this
-    // this(const ref vector2d!T other){
-
-    // } // Defined in vector2d.h
+    //! Constructor from a vector2d.
+    this(const ref vector2d!T other) {
+        Width = other.X;
+        Height = other.Y;
+    }
 
     //! Use this constructor only where you are sure that the conversion is valid.
     // template <class U>
