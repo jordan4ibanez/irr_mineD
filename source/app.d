@@ -23,7 +23,7 @@ void main() {
     b = b - a;
     writeln(b == a);
     b += [1, 2];
-    writeln(b[0] + 10000);
+    writeln(b[0] + 10_000);
     writeln(b > a);
     writeln(b > b);
 

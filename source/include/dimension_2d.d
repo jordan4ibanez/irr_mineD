@@ -157,6 +157,25 @@ struct dimension2d(T) {
         assert(0);
     }
 
+    //! sort in order Width, Height.
+    int opCmp(U)(const U other) const {
+        static if (__traits(isSame, U, dimension2d)) {
+            if (Width < other.Width || (Width == other.Width && Height < other.Height)) {
+                return -1;
+            } else if (Width > other.Width || (Width == other.Width && Height > other.Height)) {
+                return 1;
+            }
+            return 0;
+        } else static if (isInstanceOf!(vector2d, U)) {
+            if (Width < other.X || (Width == other.X && Height < other.Y)) {
+                return -1;
+            } else if (Width > other.X || (Width == other.X && Height > other.Y)) {
+                return 1;
+            }
+            return 0;
+        }
+    }
+
     //! Get area
     T getArea() const {
         return Width * Height;
