@@ -297,7 +297,7 @@ struct vector2d(T)
 	//! Calculates the angle of this vector in degrees in the counter trigonometric sense.
 	/** 0 is to the right (3 o'clock), values increase clockwise.
 	\return Returns a value between 0 and 360. */
-	inline f64 getAngle() const
+	pragma(inline, true) f64 getAngle() const
 	{
 		if (Y == 0) // corrected thanks to a suggestion by Jox
 			return X < 0 ? 180 : 0;
@@ -306,8 +306,8 @@ struct vector2d(T)
 
 		// don't use getLength here to avoid precision loss with s32 vectors
 		// avoid floating-point trouble as sqrt(y*y) is occasionally larger than y, so clamp
-		const f64 tmp = core::clamp(Y / sqrt((f64)(X * X + Y * Y)), -1.0, 1.0);
-		const f64 angle = atan(core::squareroot(1 - tmp * tmp) / tmp) * RADTODEG64;
+		const f64 tmp = IrrMath.clamp(Y / IrrMath.sqrt((f64)(X * X + Y * Y)), -1.0, 1.0);
+		const f64 angle = IrrMath.atan(IrrMath.squareroot(1 - tmp * tmp) / tmp) * RADTODEG64;
 
 		if (X > 0 && Y > 0)
 			return angle + 270;
@@ -324,14 +324,14 @@ struct vector2d(T)
 	//! Calculates the angle between this vector and another one in degree.
 	/** \param b Other vector to test with.
 	\return Returns a value between 0 and 90. */
-	inline f64 getAngleWith(const vector2d<T> &b) const
+	pragma(inline, true) f64 getAngleWith(const ref vector2d!T b) const
 	{
 		f64 tmp = (f64)(X * b.X + Y * b.Y);
 
 		if (tmp == 0.0)
 			return 90.0;
 
-		tmp = tmp / core::squareroot((f64)((X * X + Y * Y) * (b.X * b.X + b.Y * b.Y)));
+		tmp = tmp / IrrMath.squareroot((f64)((X * X + Y * Y) * (b.X * b.X + b.Y * b.Y)));
 		if (tmp < 0.0)
 			tmp = -tmp;
 		if (tmp > 1.0) //   avoid floating-point trouble
@@ -345,7 +345,7 @@ struct vector2d(T)
 	\param begin Beginning vector to compare between.
 	\param end Ending vector to compare between.
 	\return True if this vector is between begin and end, false if not. */
-	bool isBetweenPoints(const vector2d<T> &begin, const vector2d<T> &end) const
+	bool isBetweenPoints(const ref vector2d!T begin, const ref vector2d!T end) const
 	{
 		//             .  end
 		//            /
@@ -354,7 +354,7 @@ struct vector2d(T)
 		//         . begin
 		//        -
 		//       -
-		//      . this point (am I inside or outside)?
+		//      . this point (am I inside or outside)? <- You're not not inside the outside of the line
 		//
 		if (begin.X != end.X) {
 			return ((begin.X <= X && X <= end.X) ||
@@ -370,10 +370,10 @@ struct vector2d(T)
 	\param d Interpolation value between 0.0f (all the other vector) and 1.0f (all this vector).
 	Note that this is the opposite direction of interpolation to getInterpolated_quadratic()
 	\return An interpolated vector.  This vector is not modified. */
-	vector2d<T> getInterpolated(const vector2d<T> &other, f64 d) const
+	vector2d!T getInterpolated(const ref vector2d!T other, f64 d) const
 	{
 		const f64 inv = 1.0f - d;
-		return vector2d<T>((T)(other.X * inv + X * d), (T)(other.Y * inv + Y * d));
+		return vector2d!T(cast(T)(other.X * inv + X * d), cast(T)(other.Y * inv + Y * d));
 	}
 
 	//! Creates a quadratically interpolated vector between this and two other vectors.
@@ -382,7 +382,7 @@ struct vector2d(T)
 	\param d Interpolation value between 0.0f (all this vector) and 1.0f (all the 3rd vector).
 	Note that this is the opposite direction of interpolation to getInterpolated() and interpolate()
 	\return An interpolated vector. This vector is not modified. */
-	vector2d<T> getInterpolated_quadratic(const vector2d<T> &v2, const vector2d<T> &v3, f64 d) const
+	vector2d!T getInterpolated_quadratic(const ref vector2d!T v2, const ref vector2d!T v3, f64 d) const
 	{
 		// this*(1-d)*(1-d) + 2 * v2 * (1-d) + v3 * d * d;
 		const f64 inv = 1.0f - d;
@@ -390,8 +390,8 @@ struct vector2d(T)
 		const f64 mul1 = 2.0f * d * inv;
 		const f64 mul2 = d * d;
 
-		return vector2d<T>((T)(X * mul0 + v2.X * mul1 + v3.X * mul2),
-				(T)(Y * mul0 + v2.Y * mul1 + v3.Y * mul2));
+		return vector2d!T(cast(T)(X * mul0 + v2.X * mul1 + v3.X * mul2),
+				cast(T)(Y * mul0 + v2.Y * mul1 + v3.Y * mul2));
 	}
 
 	/*! Test if this point and another 2 points taken as triplet
@@ -399,16 +399,17 @@ struct vector2d(T)
 		to check winding order in triangles for 2D meshes.
 		\return 0 if points are colinear, 1 if clockwise, 2 if anticlockwise
 	*/
-	s32 checkOrientation(const vector2d<T> &b, const vector2d<T> &c) const
+	s32 checkOrientation(const ref vector2d!T b, const ref vector2d!T c) const
 	{
 		// Example of clockwise points
 		//
-		//   ^ Y
+		//   ^ Y     *
 		//   |       A
-		//   |      . .
-		//   |     .   .
+		//   |      ...
+		//   |     . . .
 		//   |    C.....B
-		//   +---------------> X
+		//   |      | |     I made it into a christmas tree.
+        //   +---------------> X
 
 		T val = (b.Y - Y) * (c.X - b.X) -
 				(b.X - X) * (c.Y - b.Y);
@@ -420,7 +421,7 @@ struct vector2d(T)
 	}
 
 	/*! Returns true if points (a,b,c) are clockwise on the X,Y plane*/
-	inline bool areClockwise(const vector2d<T> &b, const vector2d<T> &c) const
+	pragma(inline, true) bool areClockwise(const ref vector2d!T b, const ref vector2d!T c) const
 	{
 		T val = (b.Y - Y) * (c.X - b.X) -
 				(b.X - X) * (c.Y - b.Y);
@@ -429,7 +430,7 @@ struct vector2d(T)
 	}
 
 	/*! Returns true if points (a,b,c) are counterclockwise on the X,Y plane*/
-	inline bool areCounterClockwise(const vector2d<T> &b, const vector2d<T> &c) const
+	pragma(inline, true) bool areCounterClockwise(const ref vector2d!T b, const ref vector2d!T c) const
 	{
 		T val = (b.Y - Y) * (c.X - b.X) -
 				(b.X - X) * (c.Y - b.Y);
