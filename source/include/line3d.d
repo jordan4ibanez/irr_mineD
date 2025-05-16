@@ -120,19 +120,19 @@ class line3d(T)
 
 	// functions
 	//! Set this line to a new line going through the two points.
-	void setLine(const T &xa, const T &ya, const T &za, const T &xb, const T &yb, const T &zb)
+	void setLine(const T xa, const T ya, const T za, const T xb, const T yb, const T zb)
 	{
 		start.set(xa, ya, za);
 		end.set(xb, yb, zb);
 	}
 	//! Set this line to a new line going through the two points.
-	void setLine(const vector3d<T> &nstart, const vector3d<T> &nend)
+	void setLine(const ref vector3d!T nstart, const ref vector3d!T nend)
 	{
 		start.set(nstart);
 		end.set(nend);
 	}
 	//! Set this line to new line given as parameter.
-	void setLine(const line3d<T> &line)
+	void setLine(const ref line3d!T line)
 	{
 		start.set(line.start);
 		end.set(line.end);
@@ -148,14 +148,14 @@ class line3d(T)
 
 	//! Get middle of line
 	/** \return Center of line. */
-	vector3d<T> getMiddle() const
+	vector3d!T getMiddle() const
 	{
-		return (start + end) / (T)2;
+		return (start + end) / cast(T)2;
 	}
 
 	//! Get vector of line
 	/** \return vector of line. */
-	vector3d<T> getVector() const
+	vector3d!T getVector() const
 	{
 		return end - start;
 	}
@@ -165,7 +165,7 @@ class line3d(T)
 	\param point The point to test.
 	\return True if point is on the line between start and end, else false.
 	*/
-	bool isPointBetweenStartAndEnd(const vector3d<T> &point) const
+	bool isPointBetweenStartAndEnd(const ref vector3d!T point) const
 	{
 		return point.isBetweenPoints(start, end);
 	}
@@ -173,15 +173,15 @@ class line3d(T)
 	//! Get the closest point on this line to a point
 	/** \param point The point to compare to.
 	\return The nearest point which is part of the line. */
-	vector3d<T> getClosestPoint(const vector3d<T> &point) const
+	vector3d!T getClosestPoint(const ref vector3d!T point) const
 	{
-		vector3d<T> c = point - start;
-		vector3d<T> v = end - start;
-		T d = (T)v.getLength();
+		vector3d!T c = point - start;
+		vector3d!T v = end - start;
+		T d = cast(T)v.getLength();
 		v /= d;
 		T t = v.dotProduct(c);
 
-		if (t < (T)0.0)
+		if (t < cast(T)0.0)
 			return start;
 		if (t > d)
 			return end;
@@ -197,9 +197,9 @@ class line3d(T)
 	\return True if there is an intersection.
 	If there is one, the distance to the first intersection point
 	is stored in outdistance. */
-	bool getIntersectionWithSphere(const vector3d<T> &sorigin, T sradius, f64 &outdistance) const
+	bool getIntersectionWithSphere(const ref vector3d!T sorigin, T sradius, f64 outdistance) const
 	{
-		const vector3d<T> q = sorigin - start;
+		const vector3d!T q = sorigin - start;
 		T c = q.getLength();
 		T v = q.dotProduct(getVector().normalize());
 		T d = sradius * sradius - (c * c - v * v);
@@ -207,7 +207,7 @@ class line3d(T)
 		if (d < 0.0)
 			return false;
 
-		outdistance = v - core::squareroot(d);
+		outdistance = v - IrrMath.squareroot(d);
 		return true;
 	}
 
@@ -215,9 +215,9 @@ class line3d(T)
 };
 
 //! Typedef for an f32 line.
-typedef line3d<f32> line3df;
+alias line3df = line3d!f32 ;
 //! Typedef for an integer line.
-typedef line3d<s32> line3di;
+alias line3di = line3d!s32 ;
 
 // } // end namespace core
 // } // end namespace irr
