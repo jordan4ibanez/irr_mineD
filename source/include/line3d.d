@@ -42,6 +42,79 @@ class line3d(T)
 
 	// operators
 
+    // Negate.
+    line3d!T opUnary(string s : "-")() const {
+        return line3d!T(-Start, - End);
+    }
+
+        // Assignment.
+    void opAssign(U)(U value) {
+        // This is (half) compiler code. 
+        // Give line3d even more assignments than C++.
+        static if (__traits(isSame, U, line3d)) {
+            this.start = value.start;
+            this.end = value.end;
+        } else static if (isInstanceOf!(vector3d, U)) {
+            this.start = value;
+            this.end = value;
+        } else static if (isArray!U) {
+            static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 3, "Cannot add array. Length is not 3.");
+            this.start = value;
+            this.end = value;
+        } else {
+            static assert(isNumeric!(typeof(value)));
+            this.start = value;
+            this.end = value;
+        }
+    }
+
+        // Operator assignment.
+    ref line3d!T opOpAssign(string op, U)(const U value) {
+        // This is compiler code. 
+        // Give line3d even more assignment operator operators than C++.
+        static if (__traits(isSame, U, line3d)) {
+            mixin("start " ~ op ~ "= value.start;");
+            mixin("end " ~ op ~ "= value.end;");
+            } else static if (isInstanceOf!(vector3d, U)) {
+                mixin("start " ~ op ~ "= value;");
+            mixin("end " ~ op ~ "= value;");
+        } else static if (isArray!U) {
+            static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 3, "Cannot add array. Length is not 3.");
+            mixin("start " ~ op ~ "= value;");
+            mixin("end " ~ op ~ "= value;");
+        } else {
+            static assert(isNumeric!(typeof(value)));
+            mixin("start " ~ op ~ "= value;");
+            mixin("end " ~ op ~ "= value;");
+        }
+
+        return this;
+    }
+
+    // Operators.
+    line3d!T opBinary(string op, U)(const U value) const {
+        // This is compiler code. 
+        // Give line3d even more operators than C++.
+        static if (__traits(isSame, U, line3d)) {
+            mixin("return line3d!T(start " ~ op ~ " value.start, end " ~ op ~ " value.end);");
+            } else static if (isInstanceOf!(vector3d, U)) {
+                mixin("return line3d!T(start " ~ op ~ " value, end " ~ op ~ " value);");
+        } else static if (isArray!U) {
+            static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 3, "Cannot add array. Length is not 3.");
+            mixin(
+                "return line3d!T(start " ~ op ~ " value, end " ~ op ~ " value);");
+        } else {
+            static assert(isNumeric!(typeof(value)));
+            mixin(
+                "return line3d!T(start " ~ op ~ " value, end " ~ op ~ " value);");
+        }
+    }
+
+
+
 	line3d<T> operator+(const vector3d<T> &point) const { return line3d<T>(start + point, end + point); }
 	line3d<T> &operator+=(const vector3d<T> &point)
 	{
