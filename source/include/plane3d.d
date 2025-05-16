@@ -74,9 +74,14 @@ struct plane3d(T)
 
 	// operators
 
-	inline bool operator==(const plane3d<T> &other) const { return (equals(D, other.D) && Normal == other.Normal); }
+    bool opEquals(U)(const U other) const {
+        static if (__traits(isSame, U, dimension2d)) {
+                    return (equals(D, other.D) && Normal == other.Normal);
+        } else
+            static assert(0, "Must be of plane3d");        
+    }
 
-	inline bool operator!=(const plane3d<T> &other) const { return !(*this == other); }
+	
 
 	// functions
 
