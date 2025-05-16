@@ -114,6 +114,7 @@ struct vector3d(T) {
             mixin("return vector3d!T(X " ~ op ~ " value.X, Y " ~ op ~ " value.Y, Z " ~ op ~ " value.Z);");
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 3, "Cannot add array. Length is not 3.");
             mixin(
                 "return vector3d!T(X " ~ op ~ " value[0], Y " ~ op ~ " value[1], Z " ~ op ~ " value[2]);");
         } else {
