@@ -24,8 +24,6 @@ class line3d(T)
     // Basic any typecheck.
     static assert(isNumeric!T);
 
-    // member variables
-
 	//! Start point of line
 	vector3d!T start;
 	//! End point of line
