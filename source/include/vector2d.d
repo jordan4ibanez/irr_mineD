@@ -75,8 +75,6 @@ struct vector2d(T) {
         return vector2d!T(-X, -Y);
     }
 
-    // todo: Add dimension2d to this
-
     //! Equality operator
     bool opEquals(U)(const ref U other) const {
         static if (__traits(isSame, U, vector2d)) {
@@ -476,4 +474,3 @@ alias vector2df = vector2d!f32;
 
 //! Typedef for integer 2d vector.
 alias vector2di = vector2d!s32;
-
