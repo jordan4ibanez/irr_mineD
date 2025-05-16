@@ -29,11 +29,8 @@ class line3d(T)
 	//! End point of line
 	vector3d!T end = vector3d!T(1,1,1);
 
-	//! Default constructor
-	/** line from (0,0,0) to (1,1,1) */
-	// constexpr line3d() :
-	// 		start(0, 0, 0), end(1, 1, 1) {}
-    
+	
+
 	//! Constructor with two points
 	constexpr line3d(T xa, T ya, T za, T xb, T yb, T zb) :
 			start(xa, ya, za), end(xb, yb, zb) {}
