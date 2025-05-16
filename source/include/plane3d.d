@@ -36,6 +36,8 @@ enum EIntersectionRelation3D
 // template <class T>
 struct plane3d(T)
 {
+    // Basic any typecheck.
+    static assert(isNumeric!T);
 
 
 
