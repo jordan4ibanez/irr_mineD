@@ -40,7 +40,7 @@ struct plane3d(T)
     static assert(isNumeric!T);
 
     //! Normal vector of the plane.
-	vector3d!T Normal;
+	vector3d!T Normal = vector3d!T(0, 1, 0);
 
 	//! Distance from origin.
 	T D;
