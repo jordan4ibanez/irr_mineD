@@ -411,7 +411,8 @@ public:
             } else if (Z < 0)
                 angle.Y = 180;
 
-            angle.X = cast(T)(IrrMath.acos(Y * IrrMath.reciprocal_squareroot(length)) * IrrMath.RADTODEG64);
+            angle.X = cast(T)(IrrMath.acos(
+                    Y * IrrMath.reciprocal_squareroot(length)) * IrrMath.RADTODEG64);
         }
         return angle;
     }
