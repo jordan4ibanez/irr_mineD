@@ -1,18 +1,21 @@
 module include.plane3d;
 
+import IrrMath = include.irr_math;
+import include.vector3d;
+
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#pragma once
+// #pragma once
 
-#include "irrMath.h"
-#include "vector3d.h"
+// #include "irrMath.h"
+// #include "vector3d.h"
 
-namespace irr
-{
-namespace core
-{
+// namespace irr
+// {
+// namespace core
+// {
 
 //! Enumeration for intersection relations of 3d objects
 enum EIntersectionRelation3D
@@ -242,5 +245,5 @@ typedef plane3d<f32> plane3df;
 //! Typedef for an integer 3d plane.
 typedef plane3d<s32> plane3di;
 
-} // end namespace core
-} // end namespace irr
+// } // end namespace core
+// } // end namespace irr
