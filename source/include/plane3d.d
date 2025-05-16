@@ -85,19 +85,19 @@ struct plane3d(T)
 
 	// functions
 
-	void setPlane(const vector3d<T> &point, const vector3d<T> &nvector)
+	void setPlane(const ref vector3d!T point, const ref vector3d!T nvector)
 	{
 		Normal = nvector;
 		recalculateD(point);
 	}
 
-	void setPlane(const vector3d<T> &nvect, T d)
+	void setPlane(const ref vector3d!T nvect, T d)
 	{
 		Normal = nvect;
 		D = d;
 	}
 
-	void setPlane(const vector3d<T> &point1, const vector3d<T> &point2, const vector3d<T> &point3)
+	void setPlane(const ref vector3d!T point1, const ref vector3d!T point2, const ref vector3d!T point3)
 	{
 		// creates the plane from 3 memberpoints
 		Normal = (point2 - point1).crossProduct(point3 - point1);
@@ -112,9 +112,9 @@ struct plane3d(T)
 	\param outIntersection Place to store the intersection point, if there is one.
 	\return True if there was an intersection, false if there was not.
 	*/
-	bool getIntersectionWithLine(const vector3d<T> &linePoint,
-			const vector3d<T> &lineVect,
-			vector3d<T> &outIntersection) const
+	bool getIntersectionWithLine(const ref vector3d!T linePoint,
+			const ref vector3d!T lineVect,
+			ref vector3d!T outIntersection) const
 	{
 		T t2 = Normal.dotProduct(lineVect);
 
@@ -133,12 +133,12 @@ struct plane3d(T)
 	\return Where on a line between two points an intersection with this plane happened.
 	For example, 0.5 is returned if the intersection happened exactly in the middle of the two points.
 	*/
-	f32 getKnownIntersectionWithLine(const vector3d<T> &linePoint1,
-			const vector3d<T> &linePoint2) const
+	f32 getKnownIntersectionWithLine(const ref vector3d!T linePoint1,
+			const ref vector3d!T linePoint2) const
 	{
-		vector3d<T> vect = linePoint2 - linePoint1;
-		T t2 = (f32)Normal.dotProduct(vect);
-		return (f32) - ((Normal.dotProduct(linePoint1) + D) / t2);
+		vector3d!T vect = linePoint2 - linePoint1;
+		T t2 = cast(f32)Normal.dotProduct(vect);
+		return cast(f32) - ((Normal.dotProduct(linePoint1) + D) / t2);
 	}
 
 	//! Get an intersection with a 3d line, limited between two 3d points.
