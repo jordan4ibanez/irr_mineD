@@ -47,11 +47,16 @@ struct plane3d(T)
 
 	// Constructors
 
-	plane3d() :
-			Normal(0, 1, 0) { recalculateD(vector3d<T>(0, 0, 0)); }
+    // todo: implement this
+	// plane3d() :
+	// 		Normal(0, 1, 0) { recalculateD(vector3d<T>(0, 0, 0)); }
 
-	plane3d(const vector3d<T> &MPoint, const vector3d<T> &Normal) :
-			Normal(Normal) { recalculateD(MPoint); }
+	this(const ref vector3d!T MPoint, const ref vector3d!T Normal) {
+			this.Normal = Normal; 
+
+            recalculateD(MPoint);         
+    }
+
 
 	plane3d(T px, T py, T pz, T nx, T ny, T nz) :
 			Normal(nx, ny, nz) { recalculateD(vector3d<T>(px, py, pz)); }
