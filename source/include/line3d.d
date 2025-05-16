@@ -18,10 +18,12 @@ import include.vector3d;
 // {
 
 //! 3D line between two points with intersection methods.
-template <class T>
-class line3d
+// template <class T>
+class line3d(T)
 {
-public:
+    // Basic any typecheck.
+    static assert(isNumeric!T);
+
 	//! Default constructor
 	/** line from (0,0,0) to (1,1,1) */
 	constexpr line3d() :
