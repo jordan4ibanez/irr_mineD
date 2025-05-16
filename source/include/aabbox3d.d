@@ -34,6 +34,7 @@ struct aabbox3d(T)
 	//! The far edge
 	vector3d!T MaxEdge;
 
+    //? This seems kinda dangerous?
 	// constexpr aabbox3d() = delete;
 
 	//! Constructor with min edge and max edge.
