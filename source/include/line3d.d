@@ -32,11 +32,13 @@ class line3d(T)
 	
 
 	//! Constructor with two points
-	constexpr line3d(T xa, T ya, T za, T xb, T yb, T zb) :
-			start(xa, ya, za), end(xb, yb, zb) {}
+	this(T xa, T ya, T za, T xb, T yb, T zb) {
+			start = vector3d!(xa, ya, za); end = vector3d! (xb, yb, zb) ;
+            }
 	//! Constructor with two points as vectors
-	constexpr line3d(const vector3d<T> &start, const vector3d<T> &end) :
-			start(start), end(end) {}
+	this(const ref vector3d!T start, const ref vector3d!T end) {
+			start = start; end = end;
+            }
 
 	// operators
 
