@@ -24,6 +24,13 @@ class line3d(T)
     // Basic any typecheck.
     static assert(isNumeric!T);
 
+    // member variables
+
+	//! Start point of line
+	vector3d!T start;
+	//! End point of line
+	vector3d!T end;
+
 	//! Default constructor
 	/** line from (0,0,0) to (1,1,1) */
 	constexpr line3d() :
@@ -155,12 +162,7 @@ class line3d(T)
 		return true;
 	}
 
-	// member variables
-
-	//! Start point of line
-	vector3d<T> start;
-	//! End point of line
-	vector3d<T> end;
+	
 };
 
 //! Typedef for an f32 line.
