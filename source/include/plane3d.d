@@ -2,6 +2,8 @@ module include.plane3d;
 
 import IrrMath = include.irr_math;
 import include.vector3d;
+import include.irr_types;
+import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -200,9 +202,9 @@ struct plane3d(T)
 	\param outLinePoint Base point of intersection line.
 	\param outLineVect Vector of intersection.
 	\return True if there is a intersection, false if not. */
-	bool getIntersectionWithPlane(const plane3d<T> &other,
-			vector3d<T> &outLinePoint,
-			vector3d<T> &outLineVect) const
+	bool getIntersectionWithPlane(const ref plane3d!T other,
+			ref vector3d!T outLinePoint,
+			ref vector3d!T outLineVect) const
 	{
 		const T fn00 = Normal.getLength();
 		const T fn01 = Normal.dotProduct(other.Normal);
@@ -217,15 +219,15 @@ struct plane3d(T)
 		const f64 fc1 = (fn00 * -other.D + fn01 * D) * invdet;
 
 		outLineVect = Normal.crossProduct(other.Normal);
-		outLinePoint = Normal * (T)fc0 + other.Normal * (T)fc1;
+		outLinePoint = Normal * cast(T)fc0 + other.Normal * cast(T)fc1;
 		return true;
 	}
 
 	//! Get the intersection point with two other planes if there is one.
-	bool getIntersectionWithPlanes(const plane3d<T> &o1,
-			const plane3d<T> &o2, vector3d<T> &outPoint) const
+	bool getIntersectionWithPlanes(const ref plane3d!T o1,
+			const ref plane3d!T o2, ref vector3d!T outPoint) const
 	{
-		vector3d<T> linePoint, lineVect;
+		vector3d!T linePoint, lineVect;
 		if (getIntersectionWithPlane(o1, linePoint, lineVect))
 			return o2.getIntersectionWithLine(linePoint, lineVect, outPoint);
 
@@ -241,7 +243,7 @@ struct plane3d(T)
 	\param lookDirection: Look direction.
 	\return True if the plane is front facing and
 	false if it is backfacing. */
-	bool isFrontFacing(const vector3d<T> &lookDirection) const
+	bool isFrontFacing(const ref vector3d!T lookDirection) const
 	{
 		const f32 d = Normal.dotProduct(lookDirection);
 		return F32_LOWER_EQUAL_0(d);
@@ -249,7 +251,7 @@ struct plane3d(T)
 
 	//! Get the distance to a point.
 	/** Note that this only works if the normal is normalized. */
-	T getDistanceTo(const vector3d<T> &point) const
+	T getDistanceTo(const ref vector3d!T point) const
 	{
 		return point.dotProduct(Normal) + D;
 	}
@@ -258,10 +260,10 @@ struct plane3d(T)
 };
 
 //! Typedef for a f32 3d plane.
-typedef plane3d<f32> plane3df;
+alias plane3df = plane3d!f32 ;
 
 //! Typedef for an integer 3d plane.
-typedef plane3d<s32> plane3di;
+alias plane3di = plane3d!s32 ;
 
 // } // end namespace core
 // } // end namespace irr
