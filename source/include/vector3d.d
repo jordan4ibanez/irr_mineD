@@ -16,7 +16,6 @@ import std.traits;
 */
 // template <class T>
 struct vector3d(T) {
-
     // Basic any typecheck.
     static assert(isNumeric!T);
 
