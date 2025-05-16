@@ -20,10 +20,6 @@ struct dimension2d(T) {
     //! Height of the dimension.
     T Height = 0;
 
-    // //! Default constructor for empty dimension
-    // constexpr dimension2d() :
-    // 		Width(0), Height(0) {}
-
     //! Constructor with width and height
     this(const T width, const T height) {
         Width = width;
