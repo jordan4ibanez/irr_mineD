@@ -1,8 +1,8 @@
 module include.plane3d;
 
-import IrrMath = include.irr_math;
-import include.vector3d;
 import include.irr_types;
+import include.vector3d;
+import IrrMath = include.irr_math;
 import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
@@ -114,8 +114,8 @@ struct plane3d(T)
 	\param outIntersection Place to store the intersection point, if there is one.
 	\return True if there was an intersection, false if there was not.
 	*/
-	bool getIntersectionWithLine(const ref vector3d!T linePoint,
-			const ref vector3d!T lineVect,
+	bool getIntersectionWithLine(const vector3d!T linePoint,
+			const vector3d!T lineVect,
 			ref vector3d!T outIntersection) const
 	{
 		T t2 = Normal.dotProduct(lineVect);
@@ -178,7 +178,7 @@ struct plane3d(T)
 	}
 
 	//! Recalculates the distance from origin by applying a new member point to the plane.
-	void recalculateD(const ref vector3d!T MPoint)
+	void recalculateD(const vector3d!T MPoint)
 	{
 		D = -MPoint.dotProduct(Normal);
 	}
