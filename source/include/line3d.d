@@ -2,6 +2,8 @@ module include.line3d;
 
 import include.irr_types;
 import include.vector3d;
+import IrrMath = include.irr_math;
+import std.traits;
 
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
@@ -19,7 +21,7 @@ import include.vector3d;
 
 //! 3D line between two points with intersection methods.
 // template <class T>
-class line3d(T)
+struct line3d(T)
 {
     // Basic any typecheck.
     static assert(isNumeric!T);
@@ -33,11 +35,12 @@ class line3d(T)
 
 	//! Constructor with two points
 	this(T xa, T ya, T za, T xb, T yb, T zb) {
-			start = vector3d!(xa, ya, za); end = vector3d! (xb, yb, zb) ;
+			start = vector3d!T(xa, ya, za); end = vector3d!T (xb, yb, zb) ;
             }
 	//! Constructor with two points as vectors
 	this(const ref vector3d!T start, const ref vector3d!T end) {
-			start = start; end = end;
+			this.start = start; 
+            this.end = end;
             }
 
 	// operators
