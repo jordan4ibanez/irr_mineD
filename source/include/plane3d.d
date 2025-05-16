@@ -137,7 +137,7 @@ struct plane3d(T)
 			const ref vector3d!T linePoint2) const
 	{
 		vector3d!T vect = linePoint2 - linePoint1;
-        // fixme: //! warning: cast is getting some extremely wonky precision disccard if type is an integer.
+        // fixme: //! warning: cast is getting some extremely wonky precision discard if type is an integer.
 		T t2 = cast(f32)Normal.dotProduct(vect);
 		return cast(f32) - ((Normal.dotProduct(linePoint1) + D) / t2);
 	}
