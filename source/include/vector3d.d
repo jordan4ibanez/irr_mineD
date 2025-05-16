@@ -28,10 +28,7 @@ struct vector3d(T) {
 
     //! Z coordinate of the vector
     T Z = 0;
-public:
-    //! Default constructor (null vector).
-    // constexpr vector3d() :
-    // 		X(0), Y(0), Z(0) {}
+
     //! Constructor with three different values
     this(T nx, T ny, T nz) {
         X = nx;
