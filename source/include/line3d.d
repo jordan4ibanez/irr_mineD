@@ -1,18 +1,21 @@
 module include.line3d;
 
+import include.irr_types;
+import include.vector3d;
+
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#pragma once
+// #pragma once
 
-#include "irrTypes.h"
-#include "vector3d.h"
+// #include "irrTypes.h"
+// #include "vector3d.h"
 
-namespace irr
-{
-namespace core
-{
+// namespace irr
+// {
+// namespace core
+// {
 
 //! 3D line between two points with intersection methods.
 template <class T>
@@ -163,5 +166,5 @@ typedef line3d<f32> line3df;
 //! Typedef for an integer line.
 typedef line3d<s32> line3di;
 
-} // end namespace core
-} // end namespace irr
+// } // end namespace core
+// } // end namespace irr
