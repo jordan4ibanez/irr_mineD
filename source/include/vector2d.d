@@ -37,10 +37,6 @@ struct vector2d(T) {
     //! Y coordinate of vector.
     T Y = 0;
 
-    //! Default constructor (null vector)
-    // constexpr vector2d() :
-    // 		X(0), Y(0) {}
-
     //! Constructor with two different values
     this(T nx, T ny) {
         X = nx;
