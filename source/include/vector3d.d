@@ -19,6 +19,8 @@ struct vector3d(T) {
     // Basic any typecheck.
     static assert(isNumeric!T);
 
+    //todo: implement opequals, I forgot :D
+
     //! X coordinate of the vector
     T X = 0;
 
