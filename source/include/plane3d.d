@@ -168,13 +168,13 @@ struct plane3d(T)
 	{
 		const T d = Normal.dotProduct(point) + D;
 
-		if (d < -ROUNDING_ERROR_f32)
-			return ISREL3D_BACK;
+		if (d < -IrrMath.ROUNDING_ERROR_f32)
+			return EIntersectionRelation3D.ISREL3D_BACK;
 
-		if (d > ROUNDING_ERROR_f32)
-			return ISREL3D_FRONT;
+		if (d > IrrMath.ROUNDING_ERROR_f32)
+			return EIntersectionRelation3D.ISREL3D_FRONT;
 
-		return ISREL3D_PLANAR;
+		return EIntersectionRelation3D.ISREL3D_PLANAR;
 	}
 
 	//! Recalculates the distance from origin by applying a new member point to the plane.
@@ -194,7 +194,7 @@ struct plane3d(T)
 	bool existsIntersection(const ref plane3d!T other) const
 	{
 		vector3d!T cross = other.Normal.crossProduct(Normal);
-		return cross.getLength() > ROUNDING_ERROR_f32;
+		return cross.getLength() > IrrMath.ROUNDING_ERROR_f32;
 	}
 
 	//! Intersects this plane with another.
@@ -211,7 +211,7 @@ struct plane3d(T)
 		const T fn11 = other.Normal.getLength();
 		const f64 det = fn00 * fn11 - fn01 * fn01;
 
-		if (fabs(det) < ROUNDING_ERROR_f64)
+		if (IrrMath.abs(det) < IrrMath.ROUNDING_ERROR_f64)
 			return false;
 
 		const f64 invdet = 1.0 / det;
@@ -246,7 +246,7 @@ struct plane3d(T)
 	bool isFrontFacing(const ref vector3d!T lookDirection) const
 	{
 		const f32 d = Normal.dotProduct(lookDirection);
-		return F32_LOWER_EQUAL_0(d);
+		return IrrMath.F32_LOWER_EQUAL_0(d);
 	}
 
 	//! Get the distance to a point.
