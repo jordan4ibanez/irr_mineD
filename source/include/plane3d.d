@@ -33,13 +33,9 @@ struct plane3d(T) {
     vector3d!T Normal = vector3d!T(0, 1, 0);
 
     //! Distance from origin.
-    T D;
+    T D = -0;
 
     // Constructors
-
-    // todo: implement this
-    // plane3d() :
-    // 		Normal(0, 1, 0) { recalculateD(vector3d<T>(0, 0, 0)); }
 
     this(const ref vector3d!T MPoint, const ref vector3d!T Normal) {
         this.Normal = Normal;
