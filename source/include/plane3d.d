@@ -39,7 +39,11 @@ struct plane3d(T)
     // Basic any typecheck.
     static assert(isNumeric!T);
 
+    //! Normal vector of the plane.
+	vector3d!T Normal;
 
+	//! Distance from origin.
+	T D;
 
 	// Constructors
 
@@ -236,11 +240,7 @@ struct plane3d(T)
 		return point.dotProduct(Normal) + D;
 	}
 
-	//! Normal vector of the plane.
-	vector3d<T> Normal;
-
-	//! Distance from origin.
-	T D;
+	
 };
 
 //! Typedef for a f32 3d plane.
