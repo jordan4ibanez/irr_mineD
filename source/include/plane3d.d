@@ -149,9 +149,9 @@ struct plane3d(T)
 	\return True if there was an intersection, false if there was not.
 	*/
 	bool getIntersectionWithLimitedLine(
-			const vector3d<T> &linePoint1,
-			const vector3d<T> &linePoint2,
-			vector3d<T> &outIntersection) const
+			const ref vector3d!T linePoint1,
+			const ref vector3d!T linePoint2,
+			ref vector3d!T outIntersection) const
 	{
 		return (getIntersectionWithLine(linePoint1, linePoint2 - linePoint1, outIntersection) &&
 				outIntersection.isBetweenPoints(linePoint1, linePoint2));
@@ -162,7 +162,7 @@ struct plane3d(T)
 	\return ISREL3D_FRONT if the point is in front of the plane,
 	ISREL3D_BACK if the point is behind of the plane, and
 	ISREL3D_PLANAR if the point is within the plane. */
-	EIntersectionRelation3D classifyPointRelation(const vector3d<T> &point) const
+	EIntersectionRelation3D classifyPointRelation(const ref vector3d!T point) const
 	{
 		const T d = Normal.dotProduct(point) + D;
 
@@ -176,22 +176,22 @@ struct plane3d(T)
 	}
 
 	//! Recalculates the distance from origin by applying a new member point to the plane.
-	void recalculateD(const vector3d<T> &MPoint)
+	void recalculateD(const ref vector3d!T MPoint)
 	{
 		D = -MPoint.dotProduct(Normal);
 	}
 
 	//! Gets a member point of the plane.
-	vector3d<T> getMemberPoint() const
+	vector3d!T getMemberPoint() const
 	{
 		return Normal * -D;
 	}
 
 	//! Tests if there is an intersection with the other plane
 	/** \return True if there is a intersection. */
-	bool existsIntersection(const plane3d<T> &other) const
+	bool existsIntersection(const ref plane3d!T other) const
 	{
-		vector3d<T> cross = other.Normal.crossProduct(Normal);
+		vector3d!T cross = other.Normal.crossProduct(Normal);
 		return cross.getLength() > core::ROUNDING_ERROR_f32;
 	}
 
