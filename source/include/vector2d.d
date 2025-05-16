@@ -95,6 +95,7 @@ struct vector2d(T) {
             this.Y = value.Height;
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 2, "Cannot add array. Length is not 2.");
             this.X = value[0];
             this.Y = value[1];
         } else {
@@ -138,6 +139,7 @@ struct vector2d(T) {
             mixin("return vector2d!T(X " ~ op ~ " value.Width, Y " ~ op ~ " value.Height);");
         } else static if (isArray!U) {
             static assert(isNumeric!(typeof(value[0])));
+            assert(value.length == 2, "Cannot add array. Length is not 2.");
             mixin(
                 "return vector2d!T(X " ~ op ~ " value[0], Y " ~ op ~ " value[1]);");
         } else {
