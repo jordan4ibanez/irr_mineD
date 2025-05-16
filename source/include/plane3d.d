@@ -9,16 +9,6 @@ import std.traits;
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-// #pragma once
-
-// #include "irrMath.h"
-// #include "vector3d.h"
-
-// namespace irr
-// {
-// namespace core
-// {
-
 //! Enumeration for intersection relations of 3d objects
 enum EIntersectionRelation3D {
     ISREL3D_FRONT = 0,
@@ -236,13 +226,10 @@ struct plane3d(T) {
         return point.dotProduct(Normal) + D;
     }
 
-};
+}
 
 //! Typedef for a f32 3d plane.
 alias plane3df = plane3d!f32;
 
 //! Typedef for an integer 3d plane.
 alias plane3di = plane3d!s32;
-
-// } // end namespace core
-// } // end namespace irr
