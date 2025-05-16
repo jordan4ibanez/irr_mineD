@@ -42,6 +42,10 @@ class line3d(T)
 
 	// operators
 
+    bool opEquals(const line3d!T other) const {
+        return (start == other.start && end == other.end) || (end == other.start && start == other.end);
+    }
+
     // Negate.
     line3d!T opUnary(string s : "-")() const {
         return line3d!T(-Start, - End);
@@ -113,32 +117,6 @@ class line3d(T)
         }
     }
 
-
-
-	line3d<T> operator+(const vector3d<T> &point) const { return line3d<T>(start + point, end + point); }
-	line3d<T> &operator+=(const vector3d<T> &point)
-	{
-		start += point;
-		end += point;
-		return *this;
-	}
-
-	line3d<T> operator-(const vector3d<T> &point) const { return line3d<T>(start - point, end - point); }
-	line3d<T> &operator-=(const vector3d<T> &point)
-	{
-		start -= point;
-		end -= point;
-		return *this;
-	}
-
-	constexpr bool operator==(const line3d<T> &other) const
-	{
-		return (start == other.start && end == other.end) || (end == other.start && start == other.end);
-	}
-	constexpr bool operator!=(const line3d<T> &other) const
-	{
-		return !(start == other.start && end == other.end) || (end == other.start && start == other.end);
-	}
 
 	// functions
 	//! Set this line to a new line going through the two points.
