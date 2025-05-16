@@ -74,7 +74,7 @@ struct plane3d(T)
 
 	// operators
 
-    bool opEquals(U)(const U other) const {
+    bool opEquals(U)(const ref U other) const {
         static if (__traits(isSame, U, dimension2d)) {
                     return (equals(D, other.D) && Normal == other.Normal);
         } else
