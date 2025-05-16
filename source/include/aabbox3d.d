@@ -1,28 +1,41 @@
 module include.aabbox3d;
 
+import IrrMath = include.irr_math;
+import include.plane3d;
+import include.line3d;
+
 // Copyright (C) 2002-2012 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
-#pragma once
+// #pragma once
 
-#include "irrMath.h"
-#include "plane3d.h"
-#include "line3d.h"
+// #include "irrMath.h"
+// #include "plane3d.h"
+// #include "line3d.h"
 
-namespace irr
-{
-namespace core
-{
+// namespace irr
+// {
+// namespace core
+// {
 
 //! Axis aligned bounding box in 3d dimensional space.
 /** Has some useful methods used with occlusion culling or clipping.
  */
-template <class T>
-class aabbox3d
+// template <class T>
+struct aabbox3d(T)
 {
-public:
-	constexpr aabbox3d() = delete;
+    // Basic any typecheck.
+    static assert(isNumeric!T);
+
+    //! The near edge
+	vector3d!T MinEdge;
+
+	//! The far edge
+	vector3d!T MaxEdge;
+
+	// constexpr aabbox3d() = delete;
+
 	//! Constructor with min edge and max edge.
 	constexpr aabbox3d(const vector3d<T> &min, const vector3d<T> &max) :
 			MinEdge(min), MaxEdge(max) {}
@@ -373,11 +386,7 @@ public:
 		return ISREL3D_BACK;
 	}
 
-	//! The near edge
-	vector3d<T> MinEdge;
-
-	//! The far edge
-	vector3d<T> MaxEdge;
+	
 };
 
 //! Typedef for a f32 3d bounding box.
@@ -385,5 +394,5 @@ typedef aabbox3d<f32> aabbox3df;
 //! Typedef for an integer 3d bounding box.
 typedef aabbox3d<s32> aabbox3di;
 
-} // end namespace core
-} // end namespace irr
+// } // end namespace core
+// } // end namespace irr
