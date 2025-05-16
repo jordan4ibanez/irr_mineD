@@ -25,7 +25,7 @@ enum EIntersectionRelation3D
 	ISREL3D_PLANAR,
 	ISREL3D_SPANNING,
 	ISREL3D_CLIPPED
-};
+}
 
 //! Template plane class with some intersection testing methods.
 /** It has to be ensured, that the normal is always normalized. The constructors
@@ -33,10 +33,12 @@ enum EIntersectionRelation3D
 	passed in has to be normalized in advance. No change to the normal will be
 	made by any of the class methods.
 */
-template <class T>
-class plane3d
+// template <class T>
+struct plane3d(T)
 {
-public:
+
+
+
 	// Constructors
 
 	plane3d() :
